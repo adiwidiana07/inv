@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karsa - Pegang Kendali Masa Depanmu!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 01 Navbar -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Karsa</a>
+    <a href="tentang.html" class="nav-link">Tentang</a>
+  </div>
+</nav>
+
+<!-- 02 Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Pegang Kendali<br>Masa <span class="accent">Depanmu!</span></h1>
+    <p class="hero-sub">Arahkan karir dan keuanganmu tanpa ragu.</p>
+    <div class="hero-btns">
+      <a href="#panduan" class="btn btn-tan">Cek Panduan</a>
+      <a href="#timeline-start" class="btn btn-red">Ayo Mulai!</a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Warning Banner -->
+<div class="warning-banner">
+  <span class="warn-icon">!</span>
+  <p>Alat bantu pertimbangan,<br>bukan penentu keputusan</p>
+  <span class="warn-icon">!</span>
+</div>
+
+<div class="hero-gap"></div>
+<!-- 04 Checker Pattern -->
+<div class="checker"></div>
+
+<!-- 05 Panduan Title + 06 Intro -->
+<section id="panduan" class="panduan-section">
+  <h2 class="panduan-title">PANDUAN</h2>
+  <p class="panduan-intro">CareerPath Simulator adalah alat bantu sederhana untuk melihat gambaran dampak finansial dari keputusan kerjamu - sebelum benar-benar kamu ambil. Bukan penentu keputusan, tapi teman diskusi sebelum kamu memutuskan sendiri.</p>
+</section>
+
+<!-- Timeline wrapper -->
+<div id="timeline-start" class="timeline-wrapper">
+  <div class="timeline-line"></div>
+
+  <!-- 07 Timeline Start -->
+  <div class="tl-item tl-right" data-dot="red">
+    <div class="tl-dot dot-red"></div>
+    <div class="tl-card tl-start">
+      <div class="label-tag tag-red">Tekan Tombol "Ayo Mulai"</div>
+      <button class="btn btn-red btn-full" id="btnAyoMulai">Ayo Mulai!</button>
+    </div>
+  </div>
+
+  <!-- 08 Pilih Persona -->
+  <div class="tl-item tl-left" data-dot="yellow">
+    <div class="tl-dot dot-yellow"></div>
+    <div class="tl-card card-yellow">
+      <div class="card-header header-yellow">Pilih Persona Mu</div>
+      <div class="persona-grid">
+        <div class="persona" data-persona="1">
+          <div class="avatar"></div>
+          <strong>PRESET 1</strong>
+          <p>Lorem Ipsum is<br>simply dummy,<br>Lorem Ipsum is<br>simply dummy</p>
+        </div>
+        <div class="persona" data-persona="2">
+          <div class="avatar"></div>
+          <strong>PRESET 1</strong>
+          <p>Lorem Ipsum is<br>simply dummy,<br>Lorem Ipsum is<br>simply dummy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 Input Data -->
+  <div class="tl-item tl-right" data-dot="green">
+    <div class="tl-dot dot-green"></div>
+    <div class="tl-card card-green">
+      <div class="card-header header-green">Isi Data Wajib Dibawah</div>
+      <div class="card-body green-body">
+        <ul class="bullet-list" style="margin-bottom:10px;">
+          <li>input gaji bulanan</li>
+          <li>Proyeksi Kenaikan Gaji / Tahun</li>
+          <li>Estimasi Biaya Hidup Bulanan</li>
+          <li>Target Tabungan Bulanan</li>
+          <li>Investasi Karir (Sertifikasi/ Kursus)</li>
+        </ul>
+        <form id="formInput">
+          <label>Gaji bulanan <input type="number" id="gaji" placeholder="Rp 5.000.000" value="5000000"></label>
+          <label>Kenaikan /Thn (%) <input type="number" id="kenaikan" placeholder="8" value="8"></label>
+          <label>Biaya Hidup <input type="number" id="biaya" placeholder="Rp 3.000.000" value="3000000"></label>
+          <label>Target Tabungan <input type="number" id="target" placeholder="Rp 1.000.000" value="1000000"></label>
+          <label>Investasi Karir <input type="number" id="investasi" placeholder="Rp 2.000.000" value="2000000"></label>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 Kondisi Personal -->
+  <div class="tl-item tl-left" data-dot="green">
+    <div class="tl-dot dot-green"></div>
+    <div class="tl-card card-green" style="max-width:280px;">
+      <div class="card-header header-green" style="font-size:9px;">Bagaimana Kondisi Personal mu?</div>
+      <div class="card-body green-body">
+        <ul class="bullet-list" style="margin-bottom:8px;">
+          <li>Status Tinggal</li>
+          <li>Ada Tanggungan</li>
+          <li>Jenis Pekerjaan</li>
+        </ul>
+        <label class="select-label">Status Tinggal
+          <select id="statusTinggal">
+            <option value="sendiri">Tinggal Sendiri / Kos</option>
+            <option value="ortu">Tinggal dengan Ortu</option>
+            <option value="keluarga">Sudah Berkeluarga</option>
+          </select>
+        </label>
+        <label class="select-label">Ada Tanggungan
+          <select id="tanggungan">
+            <option value="0">Tidak ada</option>
+            <option value="1">1 Orang</option>
+            <option value="2">2+ Orang</option>
+          </select>
+        </label>
+        <label class="select-label">Jenis Pekerjaan
+          <select id="jenisKerja">
+            <option value="tetap">Karyawan Tetap</option>
+            <option value="kontrak">Kontrak / Freelance</option>
+            <option value="wirausaha">Wirausaha</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 Simulasi -->
+  <div class="tl-item tl-right" data-dot="yellow">
+    <div class="tl-dot dot-yellow"></div>
+    <div class="tl-card card-yellow" style="max-width:300px;">
+      <div class="card-header header-yellow">Modifikasi Sesuka mu</div>
+      <div class="sim-box">
+        <p class="sim-desc">Perkiraan kenaikan gaji setelah sertifikasi</p>
+        <div class="sim-body">
+          <input type="range" id="slider" min="0" max="20" value="6">
+          <div class="range-labels"><span>0%</span><span>10%</span><span>20%</span></div>
+          <div class="sim-value" id="sliderValue">+6%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 Hasil Output -->
+  <div class="tl-item tl-left" data-dot="red">
+    <div class="tl-dot dot-red"></div>
+    <div class="tl-card" style="background:transparent;border:none;box-shadow:none;padding:0;">
+      <div class="label-tag tag-red">Dapatkan Hasil mu</div>
+      <div class="result-card" id="resultCard">
+        <strong>Kartu Rekomendasi<br>Rule-Based</strong>
+        <div class="result-dot"></div>
+        <p id="resultText">Lorem Ipsum is simply dummy text of the printing industry. Lorem Ipsum has been</p>
+        <div class="result-stats" id="resultStats"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end timeline -->
+
+<!-- 13 Divider -->
+<div class="divider-red"></div>
+
+<!-- 14 Kenapa CareerPath -->
+<section class="kenapa">
+  <h2 class="kenapa-title">KENAPA<br>CAREERPATH</h2>
+  <div class="kenapa-grid">
+    <div class="alert-card">
+      <strong>ALERT<br>MESSAGE</strong>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+      <div class="alert-icon">☺</div>
+    </div>
+    <div class="alert-card">
+      <strong>ALERT<br>MESSAGE</strong>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+      <div class="alert-icon">☺</div>
+    </div>
+    <div class="alert-card">
+      <strong>ALERT<br>MESSAGE</strong>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+      <div class="alert-icon">☺</div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 FAQ -->
+<section class="faq">
+  <h2 class="faq-title">FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q">Lorem Ipsum is simply <span class="chev">⌄</span></button>
+      <div class="faq-a">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Lorem Ipsum is simply <span class="chev">⌄</span></button>
+      <div class="faq-a">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Lorem Ipsum is simply <span class="chev">⌄</span></button>
+      <div class="faq-a">It has survived not only five centuries but also the leap into electronic typesetting.</div>
+    </div>
+    <div class="faq-item open">
+      <button class="faq-q">Lorem Ipsum is simply <span class="chev">⌃</span></button>
+      <div class="faq-a" style="display:block;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 Footer -->
+<footer class="footer">
+  <div class="logo foot-logo">Karsa</div>
+  <p class="foot-made">Made with <span class="heart">♥</span> by<br>Lebah Ganteng Team</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
