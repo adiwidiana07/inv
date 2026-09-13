@@ -36,11 +36,14 @@ if(slider){
   if(el) el.addEventListener('change',updateResult);
 });
 
-document.getElementById('btnAyoMulai')?.addEventListener('click',()=>{
-  document.querySelector('.timeline-wrapper').scrollIntoView({behavior:'smooth'});
-  // auto select persona 1 hint
-  if(!selectedPersona){ personas[0]?.classList.add('active'); selectedPersona='1'; }
-  updateResult();
+document.getElementById('btnAyoMulai')?.addEventListener('click',(e)=>{
+  // navigasi ke halaman Input Data 1-2-3
+  if(document.getElementById('btnAyoMulai').tagName==='A'){
+    // biarkan href="input-data.html" yang bekerja
+    return;
+  }
+  e.preventDefault();
+  window.location.href='input-data.html';
 });
 
 function formatRp(n){
@@ -103,3 +106,64 @@ function updateResult(){
 }
 // initial calc
 updateResult();
+
+// ===== Input Data Page 1-2-3 (pisah file, fitur aktif) =====
+let jobOpenInput = true;
+function toggleDropdownInput(){
+  const list=document.getElementById('dropdownList');
+  const btn=document.getElementById('dropdownBtn');
+  if(!list||!btn) return;
+  jobOpenInput=!jobOpenInput;
+  list.style.display=jobOpenInput?'block':'none';
+  btn.style.borderRadius=jobOpenInput?'10px 10px 0 0':'10px';
+}
+function selectJobInput(el){
+  document.querySelectorAll('#dropdownList div').forEach(d=>d.classList.remove('active'));
+  el.classList.add('active');
+  const hidden=document.getElementById('jenisKerja');
+  if(hidden) hidden.value=el.dataset.value;
+  const btn=document.getElementById('dropdownBtn');
+  if(btn) btn.innerHTML=el.textContent+' <span>▼</span>';
+}
+function toggleSwitchInput(el){
+  el.classList.toggle('on');
+  const isOn=el.classList.contains('on');
+  if(el.id==='switchTinggal'){
+    const lbl=document.getElementById('labelTinggal');
+    if(lbl) lbl.textContent=isOn?'Dengan Ortu / Keluarga':'Kos / Sendiri';
+  } else if(el.id==='switchTanggungan'){
+    const lbl=document.getElementById('labelTanggungan');
+    if(lbl) lbl.textContent=isOn?'Ada (1+ orang)':'Tidak ada';
+  }
+}
+function kalkulasiInput(){
+  const gaji=parseInt(document.getElementById('gaji')?.value||0);
+  const biaya=parseInt(document.getElementById('biaya')?.value||0);
+  const target=parseInt(document.getElementById('target')?.value||0);
+  const investasi=parseInt(document.getElementById('investasi')?.value||0);
+  const kenaikan=parseInt(document.getElementById('kenaikan')?.value||0);
+  const jenis=document.getElementById('jenisKerja')?.value||'tetap';
+  const tinggal=document.getElementById('switchTinggal')?.classList.contains('on')?'ortu':'sendiri';
+  const tanggungan=document.getElementById('switchTanggungan')?.classList.contains('on')?'ada':'tidak';
+  if(!gaji || !biaya){ alert('Isi Gaji Bulanan dan Biaya Hidup dulu'); return; }
+  const cashflow = gaji - biaya - target;
+  const extra = Math.round(gaji * (kenaikan/100)/12);
+  const bep = extra>0 ? Math.ceil(investasi/extra) : 99;
+  let personal='';
+  if(tinggal==='ortu') personal=' Biaya hidup lebih ringan (tinggal dengan ortu).';
+  if(tanggungan==='ada') personal+=' Siapkan dana darurat 3-6x biaya.';
+  let rekom='';
+  if(cashflow<0) rekom=`Cashflow negatif Rp ${cashflow.toLocaleString('id-ID')}/bln. Tunda investasi besar.${personal}`;
+  else if(bep>24) rekom=`BEP ${bep} bulan terlalu lama. Cari sertifikasi lebih murah atau pastikan kenaikan >${kenaikan}%.${personal}`;
+  else rekom=`LAYAK! Cashflow Rp ${cashflow.toLocaleString('id-ID')}/bln • Extra +Rp ${extra.toLocaleString('id-ID')}/bln • BEP ${bep} bulan • Jenis: ${jenis}.${personal}`;
+  const box=document.getElementById('resultBox');
+  const txt=document.getElementById('resultText');
+  if(txt) txt.textContent=rekom;
+  if(box){ box.classList.add('show'); box.scrollIntoView({behavior:'smooth'}); }
+  localStorage.setItem('karsa_input', JSON.stringify({gaji,biaya,target,investasi,kenaikan,jenis,tinggal,tanggungan}));
+  // Auto redirect ke Dashboard Hasil (1.2.png) setelah 900ms
+  setTimeout(()=>{ window.location.href='hasil.html'; }, 900);
+}
+// init dropdown default untuk input-data page
+const firstJob=document.querySelector('#dropdownList div');
+if(firstJob) firstJob.classList.add('active');
