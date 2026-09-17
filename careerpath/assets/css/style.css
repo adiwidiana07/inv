@@ -1,3 +1,11 @@
+/* ============================================================
+   Karsa - CareerPath Simulator
+   Lokasi: careerpath/assets/css/style.css
+   Struktur:
+   01 Navbar | 02 Hero | 03 Warning | 04 Checker
+   05-12 Panduan + Timeline | 13 Divider | 14 Kenapa
+   15 FAQ | 16 Footer | Tentang | Input Data | Hasil
+   ============================================================ */
 :root {
   --black: #1a1a1a;
   --cream: #fdf6e7;
@@ -1080,10 +1088,6 @@ body.tentang-page {
   text-justify: inter-word;
   font-size: 15.5px;
   line-height: 1.75;
-}
-.nav-link {
-  color: #fff;
-  text-underline-offset: 4px;
 }
 .footer-tentang {
   background: #1c1a18;
