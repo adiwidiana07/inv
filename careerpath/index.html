@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
 </head>
 <body>
 <!-- 01 Navbar -->
@@ -19,6 +20,7 @@
 
 <!-- 02 Hero -->
 <section class="hero">
+  <div class="hero-bg-floats" aria-hidden="true"></div>
   <div class="hero-inner">
     <h1 class="hero-title">Pegang Kendali<br>Masa <span class="accent">Depanmu!</span></h1>
     <p class="hero-sub">Arahkan karir dan keuanganmu tanpa ragu.</p>
@@ -41,9 +43,16 @@
 <div class="checker"></div>
 
 <!-- 05 Panduan Title + 06 Intro -->
-<section id="panduan" class="panduan-section">
-  <h2 class="panduan-title">PANDUAN</h2>
-  <p class="panduan-intro">CareerPath Simulator adalah alat bantu sederhana untuk melihat gambaran dampak finansial dari keputusan kerjamu - sebelum benar-benar kamu ambil. Bukan penentu keputusan, tapi teman diskusi sebelum kamu memutuskan sendiri.</p>
+<section id="panduan" class="panduan-section" data-parallax="panduan">
+  <div class="px-scene" aria-hidden="true">
+    <div class="px-layer px-dot px-red" data-depth="0.5" style="width:150px;height:150px;margin:40px 0 0 60px;"></div>
+    <div class="px-layer px-box px-green" data-depth="0.6" style="width:120px;height:120px;margin:30px 0 0 calc(100% - 190px);"></div>
+    <div class="px-layer px-ring" data-depth="0.4" style="width:170px;height:170px;margin:calc(100% - 150px) 0 0 calc(100% - 240px);"></div>
+    <div class="px-layer px-dot px-yellow" data-depth="0.3" style="width:90px;height:90px;margin:calc(100% - 320px) 0 0 70px;"></div>
+    <div class="px-layer px-box px-dark" data-depth="0.7" style="width:80px;height:80px;margin:60px 0 0 calc(100% - 130px);"></div>
+  </div>
+  <h2 class="panduan-title" data-mask>PANDUAN</h2>
+  <p class="panduan-intro" data-mask>CareerPath Simulator adalah alat bantu sederhana untuk melihat gambaran dampak finansial dari keputusan kerjamu - sebelum benar-benar kamu ambil. Bukan penentu keputusan, tapi teman diskusi sebelum kamu memutuskan sendiri.</p>
 </section>
 
 <!-- Timeline wrapper -->
@@ -225,6 +234,10 @@
   <p class="foot-made">Made with <span class="heart">♥</span> by<br>Lebah Ganteng Team</p>
 </footer>
 
+<script src="assets/vendor/anime/anime.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/parallax/parallax.min.js"></script>
+<script src="assets/js/animasi.js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>

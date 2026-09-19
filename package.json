@@ -1,0 +1,27 @@
+{
+  "name": "inv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adiwidiana07/inv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adiwidiana07/inv/issues"
+  },
+  "homepage": "https://github.com/adiwidiana07/inv#readme",
+  "dependencies": {
+    "animejs": "^3.2.2",
+    "aos": "^2.3.4",
+    "parallax-js": "^3.1.0",
+    "sharp": "^0.35.4"
+  }
+}

@@ -6,46 +6,52 @@
 <title>Input Data Dasar - Karsa</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
 </head>
 <body class="input-page">
+<div class="scroll-progress" aria-hidden="true"><i id="scrollProgressFill"></i></div>
 
 <!-- Referensi desain: assets/img/ref-input-header.png -->
-<section class="header-section">
-  <h1 class="header-title">INPUT DATA<br>DASAR</h1>
+<section class="header-section" data-parallax="hdr">
+  <div class="px-scene">
+    <div class="px-layer px-dot px-yellow" data-depth="0.4" style="width:120px;height:120px;margin:44px 0 0 60px;"></div>
+    <div class="px-layer px-box px-green" data-depth="0.55" style="width:96px;height:96px;margin:100px 0 0 calc(100% - 180px);"></div>
+  </div>
+  <h1 class="header-title" data-mask>INPUT DATA<br>DASAR</h1>
 </section>
 
 <!-- Referensi desain: assets/img/ref-input-form.png -->
 <section class="form-section">
   <div class="form-inner">
-    <div class="field">
+    <div class="field" data-aos="fade-up" data-aos-delay="0">
       <label for="gaji">Gaji Bulanan</label>
       <div class="input-row">
         <input type="number" id="gaji" placeholder="Masukan Input">
         <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8zm12 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></div>
       </div>
     </div>
-    <div class="field">
+    <div class="field" data-aos="fade-up" data-aos-delay="80">
       <label for="biaya">Estimasi Biaya Hidup Bulanan</label>
       <div class="input-row">
         <input type="number" id="biaya" placeholder="Masukan Input">
         <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-2-7a6 6 0 0 0 9.2 5.1A8 8 0 0 0 10 6.5a6 6 0 0 0 0 6.5z"/></svg></div>
       </div>
     </div>
-    <div class="field">
+    <div class="field" data-aos="fade-up" data-aos-delay="160">
       <label for="target">Target Tabungan Bulanan</label>
       <div class="input-row">
         <input type="number" id="target" placeholder="Masukan Input">
         <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 11a3 3 0 0 0-1-.2V9a1 1 0 0 0-1-1h-1V7a1 1 0 0 0-1.5-.86L12 7.6V7a4 4 0 0 0-4 4H6a2 2 0 0 0 0 4h.7A3 3 0 0 0 9 17h6a3 3 0 0 0 3-3v-1.2A3 3 0 0 0 19 11zm-1 3a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-1h10v1z"/></svg></div>
       </div>
     </div>
-    <div class="field">
+    <div class="field" data-aos="fade-up" data-aos-delay="240">
       <label for="investasi">Investasi Karir (Sertifikasi/Kursus)</label>
       <div class="input-row">
         <input type="number" id="investasi" placeholder="Masukan Input">
         <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9.5l2 2v-2H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM7 7h6v2H7zm0 4h4v2H7z"/></svg></div>
       </div>
     </div>
-    <div class="field" style="margin-bottom:0">
+    <div class="field" style="margin-bottom:0" data-aos="fade-up" data-aos-delay="320">
       <label for="kenaikan">Proyeksi Kenaikan Gaji / Tahun</label>
       <div class="input-row">
         <input type="number" id="kenaikan" placeholder="Masukan Input">
@@ -57,7 +63,7 @@
 
 <!-- Referensi desain: assets/img/ref-input-personal.png -->
 <section class="personal-section">
-  <div class="personal-inner">
+  <div class="personal-inner" data-aos="fade-up" data-aos-delay="150">
     <div class="personal-top">
       <div class="toggles">
         <div>
@@ -95,6 +101,10 @@
   <a href="hasil.html">NEXT <span class="arrow">→</span></a>
 </footer>
 
+<script src="assets/vendor/anime/anime.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/parallax/parallax.min.js"></script>
+<script src="assets/js/animasi.js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>

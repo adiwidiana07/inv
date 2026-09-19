@@ -87,6 +87,9 @@ select {
 
 /* 02 Hero - 1:1 dari screenshot baru */
 .hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background: #fdf6e7;
   background-image: radial-gradient(#d9d2bd 1.6px, transparent 1.6px);
   background-size: 22px 22px;
@@ -95,6 +98,8 @@ select {
   border-bottom: none;
 }
 .hero-inner {
+  position: relative;
+  z-index: 1;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -216,11 +221,15 @@ select {
 
 /* 05-06 Panduan - sesuai referensi: PANDUAN putih stroke tebal, underline bracket */
 .panduan-section {
+  position: relative;
+  overflow: visible;
   text-align: center;
   padding: 38px 20px 22px;
   border-bottom: none;
 }
 .panduan-title {
+  position: relative;
+  z-index: 1;
   font-family: "Poppins", sans-serif;
   font-weight: 900;
   font-size: 72px;
@@ -244,6 +253,8 @@ select {
   border-top: none;
 }
 .panduan-intro {
+  position: relative;
+  z-index: 1;
   max-width: 580px;
   margin: 18px auto 0;
   font-size: 12.5px;
@@ -251,6 +262,104 @@ select {
   font-family: "Space Mono", monospace;
   font-weight: 700;
   color: #1a1a1a;
+}
+
+/* ===== Parallax dekor (px-scene) - dipakai di semua halaman ===== */
+.px-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.px-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.px-dot { border-radius: 50%; }
+.px-box { border-radius: 14px; }
+.px-ring { border: 3px solid #1a1a1a; border-radius: 50%; }
+.px-red { background: #d85a44; opacity: 0.16; }
+.px-green { background: #4b8a6b; opacity: 0.18; }
+.px-yellow { background: #d9a441; opacity: 0.22; }
+.px-dark { background: #1a1a1a; opacity: 0.12; }
+
+/* konten selalu di atas dekor parallax */
+.panduan-title,
+.panduan-intro,
+.dashboard-inner,
+.tentang-card,
+.tentang-title,
+.header-section > h1 {
+  position: relative;
+  z-index: 1;
+}
+.tentang-main,
+.dashboard-section,
+.header-section {
+  position: relative;
+}
+
+/* ===== Scroll progress bar ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1000;
+  pointer-events: none;
+  background: transparent;
+}
+.scroll-progress i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #d9a441;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+/* ===== Chibi partikel mengambang (seamless CSS loop) ===== */
+.hero-bg-floats {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-chibi-float {
+  position: absolute;
+  bottom: -140px;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  animation-name: chibiFloat;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(3px 5px 0 rgba(26, 26, 26, 0.15));
+}
+@keyframes chibiFloat {
+  0% {
+    transform: translate3d(var(--drift, 0px), 12vh, 0) rotate(var(--r0, 0deg)) scale(var(--s0, 1));
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--op, 0.55);
+  }
+  88% {
+    opacity: var(--op, 0.55);
+  }
+  100% {
+    transform: translate3d(0px, -125vh, 0) rotate(var(--r1, 0deg)) scale(var(--s0, 1));
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-chibi-float {
+    display: none;
+  }
 }
 
 /* Timeline - sesuai referensi: garis 3px, dot 14px, kartu jarak presisi */

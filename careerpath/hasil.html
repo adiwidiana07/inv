@@ -7,9 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="hasil-combined">
+<div class="scroll-progress" aria-hidden="true"><i id="scrollProgressFill"></i></div>
 
 <!-- Navbar -->
 <nav class="navbar">
@@ -22,10 +24,10 @@
 <!-- ========== SIMULATOR WHAT IF (ATAS - cream) ========== -->
 <section class="sim-top-section">
   <div class="sim-top-inner">
-    <h1 class="sim-hero-title">SIMULATOR WHAT IF</h1>
-    <p class="sim-hero-sub">Geser slider atau pilih untuk melihat perubahan</p>
+    <h1 class="sim-hero-title" data-aos="fade-down">SIMULATOR WHAT IF</h1>
+    <p class="sim-hero-sub" data-aos="fade-up" data-aos-delay="120">Geser slider atau pilih untuk melihat perubahan</p>
 
-    <div class="sim-card">
+    <div class="sim-card" data-aos="fade-up" data-aos-delay="180">
       <div class="sim-header">Perkiraan kenaikan gaji setelah sertifikasi</div>
       <div class="sim-body">
         <div class="slider-wrap">
@@ -35,7 +37,7 @@
       </div>
     </div>
 
-    <div class="sim-card">
+    <div class="sim-card" data-aos="fade-up" data-aos-delay="260">
       <div class="sim-header">Perkiraan kenaikan gaji setelah sertifikasi</div>
       <div class="sim-body">
         <div class="slider-wrap">
@@ -45,7 +47,7 @@
       </div>
     </div>
 
-    <div class="sim-card">
+    <div class="sim-card" data-aos="fade-up" data-aos-delay="340">
       <div class="sim-header">Ambil sertifikasi dulu sebelum kerja?</div>
       <div class="sim-body sim-toggle-body">
         <button class="toggle-btn" id="btnTidak" onclick="setSertifikasi(false)">Tidak, Kerja Dulu</button>
@@ -56,15 +58,20 @@
 </section>
 
 <!-- ========== DASHBOARD HASIL (BAWAH - tan) ========== -->
-<section class="dashboard-section">
+<section class="dashboard-section" data-parallax="hasil">
+  <div class="px-scene">
+    <div class="px-layer px-dot px-dark" data-depth="0.35" style="width:130px;height:130px;margin:36px 0 0 50px;"></div>
+    <div class="px-layer px-box px-yellow" data-depth="0.5" style="width:96px;height:96px;margin:130px 0 0 calc(100% - 180px);"></div>
+    <div class="px-layer px-ring" data-depth="0.25" style="width:150px;height:150px;margin:calc(100% - 190px) 0 0 60px;"></div>
+  </div>
   <div class="dashboard-inner">
-    <h1 class="hasil-title">DASHBOARD HASIL</h1>
+    <h1 class="hasil-title" data-aos="fade-down">DASHBOARD HASIL</h1>
 
     <div class="hasil-top">
-      <div class="hasil-card card-green-hasil">
+      <div class="hasil-card card-green-hasil" data-aos="fade-right" data-aos-delay="100">
         <div class="hasil-card-text">
           <span class="hasil-label">Sisa Gaji Bersih</span>
-          <strong class="hasil-value" id="valSisaGaji">Rp.xxx.xxx.xxx / bln</strong>
+          <strong class="hasil-value count-up" id="valSisaGaji" data-prefix="Rp " data-suffix=" / bln">Rp.xxx.xxx.xxx / bln</strong>
         </div>
         <div class="hasil-icon">
           <svg viewBox="0 0 64 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,10 +81,10 @@
           </svg>
         </div>
       </div>
-      <div class="hasil-card card-yellow-hasil">
+      <div class="hasil-card card-yellow-hasil" data-aos="fade-left" data-aos-delay="180">
         <div class="hasil-card-text">
           <span class="hasil-label">Waktu Balik Modal</span>
-          <strong class="hasil-value" id="valBEP">Rp.xxx.xxx.xxx / bln</strong>
+          <strong class="hasil-value count-up" id="valBEP" data-prefix="" data-suffix=" bulan">Rp.xxx.xxx.xxx / bln</strong>
         </div>
         <div class="hasil-icon">
           <svg viewBox="0 0 64 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +96,7 @@
       </div>
     </div>
 
-    <div class="grafik-card">
+    <div class="grafik-card" data-rise>
       <h3 class="grafik-title">Grafik Financial Runway & ROI</h3>
       <div class="grafik-body">
         <canvas id="grafikCanvas" width="800" height="320" style="width:100%;height:240px;display:block;"></canvas>
@@ -100,7 +107,7 @@
       </div>
     </div>
 
-    <div class="rekom-card">
+    <div class="rekom-card" data-rise>
       <h3 class="rekom-title">Kartu Rekomendasi Rule-Based</h3>
       <div class="rekom-dot" id="rekomDot"></div>
       <p class="rekom-text" id="rekomText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and</p>
@@ -111,12 +118,12 @@
 
 <!-- Alokasi -->
 <section class="alokasi-section">
-  <div class="alokasi-inner">
+  <div class="alokasi-inner" data-rise>
     <h2 class="alokasi-title">Alokasi Tabungan Bertingkat</h2>
     <ul class="alokasi-list">
-      <li>Primer (50%): <span id="alokasiPrimer">Rp X</span></li>
-      <li>Sekunder (30%): <span id="alokasiSekunder">Rp Y</span></li>
-      <li>Tersier (20%): <span id="alokasiTersier">Rp Z</span></li>
+      <li>Primer (50%): <span id="alokasiPrimer" class="count-up" data-prefix="Rp ">Rp X</span></li>
+      <li>Sekunder (30%): <span id="alokasiSekunder" class="count-up" data-prefix="Rp ">Rp Y</span></li>
+      <li>Tersier (20%): <span id="alokasiTersier" class="count-up" data-prefix="Rp ">Rp Z</span></li>
     </ul>
   </div>
 </section>
@@ -127,6 +134,10 @@
   <div class="foot-spacer"></div>
 </footer>
 
+<script src="assets/vendor/anime/anime.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/parallax/parallax.min.js"></script>
+<script src="assets/js/animasi.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/hasil.js"></script>
 </body>

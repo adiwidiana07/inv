@@ -72,13 +72,20 @@ function updateHasil() {
   let bepDisplay = bep;
   if (sertifikasiDulu && extraPerBulan > 0) bepDisplay = bep + 3;
 
-  document.getElementById('valSisaGaji').textContent = fmtRp(sisa) + ' / bln';
-  document.getElementById('valBEP').textContent = bepDisplay >= 99 ? ' >24 bln' : bepDisplay + ' bulan';
+  const elSisa = document.getElementById('valSisaGaji');
+  const elBEP = document.getElementById('valBEP');
+  elSisa.dataset.count = String(sisa);
+  if (bepDisplay >= 99) {
+    elBEP.textContent = '>24 bln';
+    elBEP.dataset.count = '';
+  } else {
+    elBEP.dataset.count = String(bepDisplay);
+  }
 
   const base = sisa > 0 ? sisa : gaji;
-  document.getElementById('alokasiPrimer').textContent = fmtRp(Math.round(base * 0.5));
-  document.getElementById('alokasiSekunder').textContent = fmtRp(Math.round(base * 0.3));
-  document.getElementById('alokasiTersier').textContent = fmtRp(Math.round(base * 0.2));
+  document.getElementById('alokasiPrimer').dataset.count = String(Math.round(base * 0.5));
+  document.getElementById('alokasiSekunder').dataset.count = String(Math.round(base * 0.3));
+  document.getElementById('alokasiTersier').dataset.count = String(Math.round(base * 0.2));
 
   const dot = document.getElementById('rekomDot');
   const txt = document.getElementById('rekomText');
@@ -105,6 +112,8 @@ function updateHasil() {
   txt.textContent = rekomendasi;
   dot.style.background = warna;
   extraBox.innerHTML = `<div class="extra-grid"><span>Gaji baru: <b>${fmtRp(gajiBaru)}</b></span><span>Extra: <b>+${fmtRp(extraPerBulan)}/bln</b></span><span>Cashflow: <b>${fmtRp(cashflowBaru)}/bln</b></span><span>Mode: <b>${sertifikasiDulu ? 'Sertifikasi dulu' : 'Kerja dulu'}</b></span></div>`;
+
+  if (window.karsaSyncCountUp) window.karsaSyncCountUp();
 
   updateGrafik(gaji, biaya, kenaikan, sliderVal);
 }

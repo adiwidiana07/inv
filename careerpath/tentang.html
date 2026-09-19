@@ -7,8 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
 </head>
 <body class="tentang-page">
+<div class="scroll-progress" aria-hidden="true"><i id="scrollProgressFill"></i></div>
 <!-- Navbar -->
 <nav class="navbar">
   <div class="nav-inner">
@@ -17,10 +19,15 @@
   </div>
 </nav>
 
-<main class="tentang-main">
-  <h1 class="tentang-title">TENTANG SISTEM</h1>
+<main class="tentang-main" data-parallax="tentang">
+  <div class="px-scene">
+    <div class="px-layer px-dot px-dark" data-depth="0.4" style="width:150px;height:150px;margin:50px 0 0 50px;"></div>
+    <div class="px-layer px-box px-yellow" data-depth="0.55" style="width:110px;height:110px;margin:140px 0 0 calc(100% - 190px);"></div>
+    <div class="px-layer px-ring" data-depth="0.3" style="width:180px;height:180px;margin:calc(100% - 200px) 0 0 70px;"></div>
+  </div>
+  <h1 class="tentang-title" data-mask>TENTANG SISTEM</h1>
 
-  <div class="tentang-card">
+  <div class="tentang-card" data-rise>
     <p class="desc">CareerPath Simulator dikembangkan sebagai asisten manajemen keuangan untuk memvisualisasikan konsekuensi keputusan karir.</p>
 
     <h3>1. Landasan Teori</h3>
@@ -42,9 +49,13 @@
 </main>
 
 <!-- 16 Footer -->
-<footer class="footer">
+<footer class="footer" data-aos="fade-up">
   <div class="logo foot-logo">Karsa</div>
   <p class="foot-made">Made with <span class="heart">♥</span> by<br>Lebah Ganteng Team</p>
 </footer>
+<script src="assets/vendor/anime/anime.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/parallax/parallax.min.js"></script>
+<script src="assets/js/animasi.js"></script>
 </body>
 </html>
