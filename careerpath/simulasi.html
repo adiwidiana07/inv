@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karsa - Simulasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+</head>
+<body class="hg-body sim-page">
+<nav class="hg-navbar">
+  <div class="hg-nav-inner">
+    <a href="index.html" class="hg-logo">Karsa</a>
+    <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
+    <div class="hg-nav-links">
+      <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
+      <a href="simulasi.html" class="hg-nav-link active" data-nav="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
+      <a href="#" class="hg-login">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Step 1: Persona -->
+<section class="sim-step active" id="step1">
+  <div class="sim-header">
+    <h1>PILIH PERSONA MU</h1>
+  </div>
+  <div class="sim-body">
+    <div class="persona-grid">
+      <button class="persona-card" data-persona="fresh" aria-pressed="false">
+        <span class="persona-check">✓</span>
+        <span class="persona-name">Si Fresh Graduate</span>
+        <span class="persona-icon"><span class="iconify" data-icon="mdi:school" data-width="48" data-height="48"></span></span>
+        <span class="persona-desc">Baru lulus & mau tentuin langkah pertama</span>
+      </button>
+      <button class="persona-card" data-persona="pindah" aria-pressed="false">
+        <span class="persona-check">✓</span>
+        <span class="persona-name">Si Mau Pindah Karier</span>
+        <span class="persona-icon"><span class="iconify" data-icon="mdi:swap-horizontal-bold" data-width="48" data-height="48"></span></span>
+        <span class="persona-desc">Lagi pertimbangin switch bidang / role</span>
+      </button>
+      <button class="persona-card" data-persona="banding" aria-pressed="false">
+        <span class="persona-check">✓</span>
+        <span class="persona-name">Si Bandingin Tawaran</span>
+        <span class="persona-icon"><span class="iconify" data-icon="mdi:scale-balance" data-width="48" data-height="48"></span></span>
+        <span class="persona-desc">Dapat dua tawaran, bingung mana yang worth it</span>
+      </button>
+    </div>
+  </div>
+  <div class="sim-nav">
+    <button class="sim-btn prev" disabled><span class="arr">◀</span> Sebelumnya</button>
+    <div class="sim-progress"><span class="dot active">1</span><i></i><span class="dot">2</span><i></i><span class="dot">3</span></div>
+    <button class="sim-btn next" id="toStep2">Selanjutnya <span class="arr">▶</span></button>
+  </div>
+</section>
+
+<!-- Step 2: Data Wajib -->
+<section class="sim-step" id="step2">
+  <div class="sim-header">
+    <h1>INPUT DATA WAJIB</h1>
+  </div>
+  <div class="sim-body sim-form">
+    <label class="sim-field">
+      <span>Gaji Bulanan</span>
+      <span class="sim-input-wrap">
+        <input type="text" id="gaji" inputmode="numeric" placeholder="Rp 5.000.000" autocomplete="off">
+        <span class="sim-icon green"><span class="iconify" data-icon="mdi:cash" data-width="24"></span></span>
+      </span>
+    </label>
+    <label class="sim-field">
+      <span>Estimasi Biaya Hidup Bulanan</span>
+      <span class="sim-input-wrap">
+        <input type="text" id="biaya" inputmode="numeric" placeholder="Rp 3.000.000" autocomplete="off">
+        <span class="sim-icon yellow"><span class="iconify" data-icon="mdi:calendar-month" data-width="22"></span></span>
+      </span>
+    </label>
+    <label class="sim-field">
+      <span>Target Tabungan Bulanan</span>
+      <span class="sim-input-wrap">
+        <input type="text" id="target" inputmode="numeric" placeholder="Rp 1.000.000" autocomplete="off">
+        <span class="sim-icon red"><span class="iconify" data-icon="mdi:piggy-bank" data-width="22"></span></span>
+      </span>
+    </label>
+    <label class="sim-field">
+      <span>Investasi Karir (Sertifikasi/Kursus)</span>
+      <span class="sim-input-wrap">
+        <input type="text" id="investasi" inputmode="numeric" placeholder="Rp 2.000.000" autocomplete="off">
+        <span class="sim-icon yellow"><span class="iconify" data-icon="mdi:bookmark" data-width="20"></span></span>
+      </span>
+    </label>
+    <label class="sim-field">
+      <span>Proyeksi Kenaikan Gaji / Tahun</span>
+      <span class="sim-input-wrap">
+        <input type="text" id="kenaikan" inputmode="numeric" placeholder="8%" autocomplete="off">
+        <span class="sim-icon green"><span class="iconify" data-icon="mdi:trending-up" data-width="22"></span></span>
+      </span>
+    </label>
+  </div>
+  <div class="sim-nav">
+    <button class="sim-btn prev" id="back1"><span class="arr">◀</span> Sebelumnya</button>
+    <div class="sim-progress"><span class="dot done">1</span><i class="done"></i><span class="dot active">2</span><i></i><span class="dot">3</span></div>
+    <button class="sim-btn next" id="toStep3">Selanjutnya <span class="arr">▶</span></button>
+  </div>
+</section>
+
+<!-- Step 3: Data Tambahan -->
+<section class="sim-step" id="step3">
+  <div class="sim-header">
+    <h1>INPUT DATA TAMBAHAN</h1>
+  </div>
+  <div class="sim-body sim-extra">
+    <div class="sim-extra-fields">
+      <label class="sim-field">
+        <span>Usia</span>
+        <span class="sim-input-wrap">
+          <input type="text" id="usia" inputmode="numeric" placeholder="25 tahun" autocomplete="off">
+          <span class="sim-icon tan"><span class="iconify" data-icon="mdi:account" data-width="20"></span></span>
+        </span>
+      </label>
+      <label class="sim-field">
+        <span>Jumlah Tanggungan (orang)</span>
+        <span class="sim-input-wrap">
+          <input type="text" id="jmlTanggungan" inputmode="numeric" placeholder="0" autocomplete="off">
+          <span class="sim-icon tan"><span class="iconify" data-icon="mdi:account-group" data-width="20"></span></span>
+        </span>
+      </label>
+      <label class="sim-field">
+        <span>Kota / Domisili</span>
+        <span class="sim-input-wrap">
+          <input type="text" id="kota" placeholder="Jakarta" autocomplete="off">
+          <span class="sim-icon tan"><span class="iconify" data-icon="mdi:city" data-width="20"></span></span>
+        </span>
+      </label>
+      <label class="sim-field">
+        <span>Cicilan / Utang Bulanan Berjalan</span>
+        <span class="sim-input-wrap">
+          <input type="text" id="cicilan" inputmode="numeric" placeholder="Rp 0" autocomplete="off">
+          <span class="sim-icon tan"><span class="iconify" data-icon="mdi:credit-card" data-width="20"></span></span>
+        </span>
+      </label>
+      <label class="sim-field">
+        <span>Dana Darurat yang Sudah Ada</span>
+        <span class="sim-input-wrap">
+          <input type="text" id="danaDarurat" inputmode="numeric" placeholder="Rp 0" autocomplete="off">
+          <span class="sim-icon tan"><span class="iconify" data-icon="mdi:safe" data-width="20"></span></span>
+        </span>
+      </label>
+    </div>
+    <div class="sim-extra-grid">
+      <div class="sim-toggle-group">
+        <span class="sim-label">Status Tinggal</span>
+        <button class="sim-toggle" id="toggleTinggal" aria-pressed="false" onclick="toggleSim('tinggal')"><span class="knob"></span></button>
+        <span class="sim-toggle-caption" id="capTinggal">Kos / Sendiri</span>
+      </div>
+      <div class="sim-dropdown-wrap">
+        <button class="sim-dropdown" id="dropdownJob" onclick="toggleJob()">Jenis Pekerjaan <span class="arrow">▼</span></button>
+        <div class="sim-dropdown-list" id="jobList">
+          <div data-value="tetap" onclick="pickJob(this)" class="active">Pekerja Tetap</div>
+          <div data-value="kontrak" onclick="pickJob(this)">Kontrak</div>
+          <div data-value="freelance" onclick="pickJob(this)">Freelance</div>
+          <div data-value="magang" onclick="pickJob(this)">Magang</div>
+          <input type="hidden" id="jenisKerja" value="tetap">
+        </div>
+      </div>
+      <div class="sim-toggle-group">
+        <span class="sim-label">Ada Tanggungan</span>
+        <button class="sim-toggle" id="toggleTanggung" aria-pressed="false" onclick="toggleSim('tanggung')"><span class="knob"></span></button>
+        <span class="sim-toggle-caption" id="capTanggung">Tidak ada</span>
+      </div>
+    </div>
+    <p class="sim-trust">Data kamu nggak disimpan, cuma dipakai untuk hitung proyeksi ini.</p>
+  </div>
+  <div class="sim-nav">
+    <button class="sim-btn prev" id="back2"><span class="arr">◀</span> Sebelumnya</button>
+    <div class="sim-progress"><span class="dot done">1</span><i class="done"></i><span class="dot done">2</span><i class="done"></i><span class="dot active">3</span></div>
+    <button class="sim-btn next primary" id="finishBtn" onclick="finishSim()">Mulai Simulasi <span class="arr">▶</span></button>
+  </div>
+</section>
+
+<footer class="hg-footer">
+  <div class="hg-footer-main">
+    <div class="hg-footer-links">
+      <a href="index.html" class="hg-foot-link" data-foot="beranda">Beranda</a>
+      <a href="simulasi.html" class="hg-foot-link active" data-foot="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
+    </div>
+    <div class="hg-footer-social">
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+    </div>
+  </div>
+  <div class="hg-footer-bar">Copyright © 2025 Adi Emyu. All Right Reserved.</div>
+</footer>
+
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/js/simulasi.js"></script>
+</body>
+</html>

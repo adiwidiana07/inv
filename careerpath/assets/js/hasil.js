@@ -284,3 +284,5 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
 // Init halaman hasil
 syncSliders();
 updateHasil();
+
+function toggleBurger(btn){const l=btn.nextElementSibling; if(!l) return; const o=l.classList.toggle('open'); btn.setAttribute('aria-expanded',String(o))} window.toggleBurger=toggleBurger

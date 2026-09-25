@@ -5,20 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Pegang Kendali Masa Depanmu!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body">
 
 <!-- 00 Navbar -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa<span class="dot">.</span></a>
+    <a href="index.html" class="hg-logo">Karsa</a>
+    <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links">
-      <a href="index.html" class="active">Beranda</a>
-      <a href="tentang.html">Tentang</a>
-      <a href="input-data.html" class="hg-pill">Mulai Simulasi</a>
+      <a href="index.html" class="hg-nav-link active" data-nav="beranda">Beranda</a>
+      <a href="simulasi.html" class="hg-nav-link" data-nav="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
+      <a href="#" class="hg-login">Login</a>
     </div>
   </div>
 </nav>
@@ -26,53 +29,47 @@
 <!-- 01 Hero -->
 <section class="hg-hero" data-aos="fade-up">
   <div class="hg-hero-deco" aria-hidden="true">
-    <div class="blk grey b1"></div>
-    <div class="blk green b2"></div>
-    <div class="blk grey b3"></div>
-    <div class="blk green b4"></div>
+    <img src="assets/img/hero/hero-element-stack.png" alt="" class="deco deco-stripes" width="78" height="78" loading="eager" decoding="async">
+    <img src="assets/img/hero/hero-element-omnitrix.png" alt="" class="deco deco-pie" width="86" height="86" loading="eager" decoding="async">
+    <img src="assets/img/hero/hero-element-star.png" alt="" class="deco deco-diamond" width="66" height="66" loading="eager" decoding="async">
+    <img src="assets/img/hero/hero-element-triangle.png" alt="" class="deco deco-tris" width="88" height="88" loading="eager" decoding="async">
   </div>
   <div class="hg-hero-inner" data-aos="zoom-in" data-aos-delay="120">
-    <h1>Pegang Kendali<br>Masa <span class="accent">Depanmu!</span></h1>
-    <p class="hg-hero-sub">Arahkan karir dan keuanganmu tanpa ragu. Simulasikan dampak finansial dari setiap keputusan besar sebelum kamu mengambilnya.</p>
+    <img src="assets/img/logo/hero-logo.png" alt="Karsa" class="hg-hero-logo-img" width="340" height="220" loading="eager" decoding="async">
+    <p class="hg-hero-tag">Website yang Menggambarkan<br>Keputusan Karirmu</p>
     <div class="hg-hero-btns">
       <a href="#panduan" class="hg-btn hg-btn-cream">Cek Panduan</a>
-      <a href="input-data.html" class="hg-btn hg-btn-red">Mulai Simulasi!</a>
+      <a href="simulasi.html" class="hg-btn hg-btn-red">Mulai Simulasi</a>
     </div>
-    <p class="hg-hero-note">Alat bantu pertimbangan, bukan penentu keputusan.</p>
+    <p class="hg-hero-note">Alat bantu pertimbangan, bukan penentu keputusan!</p>
   </div>
 </section>
 
-<!-- 02 Stats Bar -->
-<section class="hg-stats">
-  <span class="hg-stats-tag">Apakah kamu tau?</span>
-  <div class="hg-stats-grid">
-    <div class="hg-stat" data-aos="fade-up">
-      <b>50%</b>
-      <span>Kebutuhan Primer<br>untuk biaya hidup harian</span>
+<!-- 02 Funfact Strip -->
+<section class="hg-funfact">
+  <div class="hg-funfact-tag">Apakah kamu tau?</div>
+  <div class="hg-funfact-inner">
+    <div class="hg-funfact-big" data-aos="fade-up">
+      <b>4,74%</b>
+      <span>atau 7,35 juta orang Indonesia<br>menganggur (BPS, Nov 2025)</span>
     </div>
-    <div class="hg-stat" data-aos="fade-up" data-aos-delay="100">
-      <b>30%</b>
-      <span>Keinginan Sekunder<br>untuk gaya hidup & hiburan</span>
-    </div>
-    <div class="hg-stat" data-aos="fade-up" data-aos-delay="200">
-      <b>20%</b>
-      <span>Tabungan & Investasi<br>untuk keputusan karirmu</span>
-    </div>
+    <p class="hg-funfact-mid" data-aos="fade-up" data-aos-delay="80">Dan yang paling banyak menganggur?<br>Bukan yang putus sekolah<br>tapi lulusan SMA (28%) dan S1 ke atas (13,9%).</p>
+    <p class="hg-funfact-side" data-aos="fade-up" data-aos-delay="160">Makanya, sebelum ambil keputusan karier, ada baiknya kamu tahu dulu gambarannya.</p>
   </div>
+  <div class="hg-funfact-bars" aria-hidden="true"><i></i><i></i><i></i></div>
 </section>
 
 <!-- 03 Apa Itu Karsa -->
 <section class="hg-apa">
   <div class="hg-apa-inner">
-    <div data-aos="fade-right">
-      <p class="hg-kicker">Apa itu Karsa?</p>
-      <h2 class="hg-h2">Sistem Simulasi Keputusan Karir</h2>
-      <p class="desc">Karsa adalah alat bantu sederhana untuk melihat gambaran dampak finansial keputusan kerjamu - sebelum benar-benar kamu ambil. Bukan penentu keputusan, tapi teman diskusi sebelum kamu memutuskan sendiri dengan lebih percaya diri.</p>
+    <div class="hg-apa-text" data-aos="fade-right">
+      <h2 class="hg-apa-title">APA ITU KARSA?</h2>
+      <p class="hg-apa-desc">Simulator yang mengubah data gaji, pengeluaran, dan target tabunganmu jadi gambaran kelayakan sebuah karir. Bukan penentu keputusan, tapi alat bantu pertimbangan.</p>
     </div>
     <div class="hg-apa-visual" data-aos="fade-left" data-aos-delay="150">
-      <div class="tab t1"></div>
-      <div class="tab t2"></div>
-      <div class="frame">Ilustrasi Simulasi Karir</div>
+      <img src="assets/img/about/about-main-pic.png" alt="Ilustrasi Karsa" class="hg-apa-main-img" width="420" height="320" loading="lazy" decoding="async">
+      <img src="assets/img/about/about-element-frame-up.png" alt="" aria-hidden="true" class="hg-apa-frame hg-apa-frame-up" width="120" height="120" loading="lazy" decoding="async">
+      <img src="assets/img/about/about-element-frame-bottom.png" alt="" aria-hidden="true" class="hg-apa-frame hg-apa-frame-bottom" width="120" height="120" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -80,127 +77,130 @@
 <!-- 04 Kenapa Memilih Kami -->
 <section class="hg-kenapa" id="kenapa">
   <div class="hg-kenapa-head" data-aos="fade-up">
-    <p class="hg-kicker">Kenapa Memilih Kami?</p>
-    <h2 class="hg-h2">Tiga Alasan Utama</h2>
+    <p class="hg-kenapa-kicker">Alasan Kami</p>
+    <h2 class="hg-kenapa-title">KENAPA MEMILIH KAMI?</h2>
   </div>
   <div class="hg-kenapa-grid">
     <div class="hg-card" data-aos="fade-up">
-      <div class="ico red">÷</div>
-      <h3>Berbasis Data Statistik</h3>
-      <p>Estimasi biaya hidup dihitung dari referensi data BPS &amp; Susenas, bukan tebakan semata.</p>
+      <div class="hg-card-ico ico-calc" aria-hidden="true"><span class="iconify" data-icon="mdi:calculator" data-width="48" data-height="48"></span></div>
+      <h3>Bukan Cuma Feeling</h3>
+      <p>Keputusan karier itu berat, jangan cuma modal insting. Karsa hitungin semuanya pakai data yang kamu masukkan sendiri.</p>
     </div>
     <div class="hg-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="ico yellow">⚡</div>
-      <h3>Prinsip Keuangan Teruji</h3>
-      <p>Menggunakan aturan 50/30/20, Life-Cycle Hypothesis, dan Human Capital Theory sebagai dasar perhitungan.</p>
+      <div class="hg-card-ico ico-bolt" aria-hidden="true"><span class="iconify" data-icon="mdi:flash" data-width="48" data-height="48"></span></div>
+      <h3>Nggak Ribet</h3>
+      <p>Nggak perlu bikin akun atau isi form panjang. Tinggal masukkan angka, hasilnya keluar dalam hitungan menit.</p>
     </div>
     <div class="hg-card center" data-aos="fade-up" data-aos-delay="200">
-      <div class="ico green">✓</div>
-      <h3>Hasil Instan &amp; Mudah Dibaca</h3>
-      <p>Rekomendasi langsung muncul saat kamu mengubah angka - lengkap dengan grafik runway dan waktu balik modal.</p>
+      <div class="hg-card-ico ico-chart" aria-hidden="true"><span class="iconify" data-icon="mdi:chart-box" data-width="48" data-height="48"></span></div>
+      <h3>Lihat Masa Depannya</h3>
+      <p>Gaji segitu, cukup nggak buat nabung 5 tahun lagi? Karsa kasih gambaran sebelum kamu beneran ambil keputusan.</p>
     </div>
   </div>
+  <img src="assets/img/choose/choose-element-left.png" alt="" aria-hidden="true" class="hg-choose-deco hg-choose-left" width="100" height="80" loading="lazy">
+  <img src="assets/img/choose/choose-element-right.png" alt="" aria-hidden="true" class="hg-choose-deco hg-choose-right" width="90" height="70" loading="lazy">
 </section>
 
 <!-- 05 Panduan Karsa -->
 <section class="hg-panduan" id="panduan">
-  <div class="hg-panduan-box" data-aos="zoom-in">
-    <div class="hg-panduan-head">
-      <p class="hg-kicker">Panduan Karsa</p>
-      <h2 class="hg-h2">Tiga Langkah Menuju Keputusan</h2>
+  <div class="hg-panduan-inner" data-aos="zoom-in">
+    <div class="hg-panduan-header">
+      <h2>PANDUAN KARSA</h2>
     </div>
-
-    <div class="hg-step" data-aos="fade-up">
-      <span class="num n1">1</span>
-      <h3>Isi Data Kamu</h3>
-      <p>Masukkan gaji bulanan, estimasi biaya hidup, target tabungan, dan rencana investasi karir (sertifikasi / kursus).</p>
+    <div class="hg-panduan-steps">
+      <!-- Step 1 -->
+      <div class="hg-pstep" data-aos="fade-up">
+        <div class="hg-pstep-head"><span class="hg-pnum n1">1</span><span class="hg-pstep-title">Pilih dan Mulai</span></div>
+        <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture1.png" alt="Pilih persona" class="hg-pstep-img" loading="lazy"></div>
+        <div class="hg-pstep-foot">Pilih persona yang paling menggambarkan kamu, lalu klik mulai simulasi.</div>
+      </div>
+      <!-- Step 2 -->
+      <div class="hg-pstep" data-aos="fade-up" data-aos-delay="100">
+        <div class="hg-pstep-head"><span class="hg-pnum n2">2</span><span class="hg-pstep-title">Isi Datamu</span></div>
+        <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture2.png" alt="Isi datamu" class="hg-pstep-img" loading="lazy"></div>
+        <div class="hg-pstep-foot">Masukkan data wajib seperti gaji dan pengeluaran, tambahkan detail personal, lalu sesuaikan sesuai kebutuhanmu.</div>
+      </div>
+      <!-- Step 3 -->
+      <div class="hg-pstep" data-aos="fade-up" data-aos-delay="200">
+        <div class="hg-pstep-head"><span class="hg-pnum n3">3</span><span class="hg-pstep-title">Lihat Hasilnya</span></div>
+        <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture3.png" alt="Lihat hasilnya" class="hg-pstep-img" loading="lazy"></div>
+        <div class="hg-pstep-foot">Karsa langsung menunjukkan proyeksi dan rekomendasi berdasarkan datamu.</div>
+      </div>
     </div>
-
-    <div class="hg-step" data-aos="fade-up" data-aos-delay="100">
-      <span class="num n2">2</span>
-      <h3>Atur Simulasinya</h3>
-      <p>Geser slider perkiraan kenaikan gaji untuk melihat langsung bagaimana dampaknya terhadap cashflow bulananmu.</p>
-    </div>
-
-    <div class="hg-step" data-aos="fade-up" data-aos-delay="200">
-      <span class="num n3">3</span>
-      <h3>Lihat Hasilnya</h3>
-      <p>Dapatkan kartu rekomendasi, waktu balik modal, serta grafik financial runway dan ROI sebelum akhirnya kamu memutuskan.</p>
-    </div>
-
-    <a href="input-data.html" class="hg-panduan-cta" data-aos="fade-up">Mulai Simulasi Sekarang</a>
-    <div class="hg-panduan-meta" aria-hidden="true">
-      <i></i><i></i><i></i><i></i>
-    </div>
+    <a href="simulasi.html" class="hg-panduan-cta" data-aos="fade-up">Mulai Simulasi</a>
   </div>
 </section>
 
-<!-- 06 Komentar Orang-Orang Baik -->
-<section class="hg-testi">
+<!-- 06 Testimoni -->
+<section class="hg-testi" id="testimoni">
   <div class="hg-testi-inner">
-    <button class="hg-nav prev" id="testiPrev" aria-label="Sebelumnya">&lt;</button>
-    <button class="hg-nav next" id="testiNext" aria-label="Berikutnya">&gt;</button>
-
     <div class="hg-testi-head" data-aos="fade-up">
-      <p class="hg-kicker">Komentar Orang-Orang Baik</p>
-      <h2 class="hg-h2">Kata Mereka Tentang Karsa</h2>
+      <p class="hg-testi-kicker">Cerita Pengguna</p>
+      <h2 class="hg-testi-title">APA KATA USER SEBELUMNYA?</h2>
     </div>
-
-    <div class="hg-testi-track" data-aos="fade-up">
-      <div class="hg-slide active">
-        <div class="hg-quote">
-          <div class="ava">W</div>
-          <div class="body">
-            <q>Website ini benar-benar membantu aku mikir ulang soal mau resign untuk sertifikasi. Grafiknya mudah banget dibaca dan hasilnya terasa realistis.</q>
-            <span class="who">Wong Ashley - UI/UX Designer</span>
+    <div class="hg-testi-wrap">
+      <button class="hg-nav prev" id="testiPrev" aria-label="Sebelumnya">&#10094;</button>
+      <div class="hg-testi-track" data-aos="fade-up">
+        <div class="hg-slide active" data-user="1">
+          <div class="hg-quote">
+            <img src="assets/img/testimoni/testimony-user1.png" alt="Wong Ashley" class="hg-quote-img" width="300" height="300" loading="lazy">
+            <div class="hg-quote-body">
+              <q>Simular yang mengubah data gaji, pengeluaran, dan target tabunganmu jadi gambaran kelayakan sebuah career. Bukan penentu keputusan, tapi alat bantu pertimbangan.</q>
+              <span class="who who-red">Wong Ashley</span>
+            </div>
+          </div>
+        </div>
+        <div class="hg-slide" data-user="2">
+          <div class="hg-quote">
+            <img src="assets/img/testimoni/testimony-user2.png" alt="Dewi Anggraini" class="hg-quote-img" width="300" height="300" loading="lazy">
+            <div class="hg-quote-body">
+              <q>Karsa bantu aku ngitung apa pindah karier ke bidang baru itu worth it secara finansial atau enggak. Nggak nyangka simulasinya sedetail ini, padahal cuma butuh beberapa menit buat isi datanya.</q>
+              <span class="who who-yellow">Dewi Anggraini</span>
+            </div>
+          </div>
+        </div>
+        <div class="hg-slide" data-user="3">
+          <div class="hg-quote">
+            <img src="assets/img/testimoni/testimony-user3.png" alt="Farhan Maulana" class="hg-quote-img" width="300" height="300" loading="lazy">
+            <div class="hg-quote-body">
+              <q>Pas dapat dua tawaran kerja bareng, bingung banget mana yang lebih worth it. Karsa bantu bandingin proyeksi keduanya dalam hitungan menit, jadi keputusan lebih tenang.</q>
+              <span class="who who-green">Farhan Maulana</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="hg-slide">
-        <div class="hg-quote">
-          <div class="ava">R</div>
-          <div class="body">
-            <q>Simulasi kenaikan gajinya terasa nyata. Akhirnya aku berani ambil kursus tanpa takut cashflow bulananku jebol. Recommended!</q>
-            <span class="who">Rangga - Data Analyst</span>
-          </div>
-        </div>
-      </div>
-      <div class="hg-slide">
-        <div class="hg-quote">
-          <div class="ava">S</div>
-          <div class="body">
-            <q>Tinggal dengan orang tua ternyata berdampak besar di hasil tabunganku - sekarang aku paham pentingnya menghitung sebelum memutuskan.</q>
-            <span class="who">Salsabila - Fresh Graduate</span>
-          </div>
-        </div>
-      </div>
+      <button class="hg-nav next" id="testiNext" aria-label="Berikutnya">&#10095;</button>
     </div>
   </div>
 </section>
 
 <!-- 07 FAQ -->
-<section class="hg-faq">
+<section class="hg-faq" id="faq">
   <div class="hg-faq-inner">
     <div class="hg-faq-head" data-aos="fade-up">
-      <p class="hg-kicker">Frequently Ask Questions</p>
-      <h2 class="hg-h2">Ada Pertanyaan?</h2>
+      <p class="hg-faq-kicker">Masih Bingung?</p>
+      <h2 class="hg-faq-title">FREQUENTLY ASK QUESTIONS</h2>
     </div>
     <div class="hg-faq-list">
-      <div class="hg-faq-item open" data-aos="fade-up">
-        <button class="hg-faq-q">Apa itu Karsa? <span class="chev">▼</span></button>
-        <div class="hg-faq-a">Karsa adalah simulator keputusan karir yang membantu kamu melihat dampak finansial dari keputusan seperti mengambil sertifikasi, pindah kerja, atau meningkatkan tabungan - sebelum kamu benar-benar melakukannya.</div>
+      <div class="hg-faq-item" data-aos="fade-up">
+        <button class="hg-faq-q">APAKAH KARSA GRATIS DIGUNAKAN? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Ya, Karsa Bisa Dipakai Gratis Tanpa Perlu Bikin Akun Atau Berlangganan Apa Pun.</div>
       </div>
       <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="80">
-        <button class="hg-faq-q">Apakah dataku disimpan? <span class="chev">▼</span></button>
-        <div class="hg-faq-a">Tidak. Semua perhitungan hanya berjalan di browser kamu (localStorage) dan tidak pernah dikirim ke server mana pun. Privasimu tetap aman.</div>
+        <button class="hg-faq-q">APAKAH DATA YANG SAYA MASUKKAN DISIMPAN? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Data Yang Kamu Masukkan Cuma Dipakai Untuk Menghitung Hasil Simulasi Saat Itu Juga, Dan Nggak Dibagikan Ke Pihak Lain.</div>
       </div>
       <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="160">
-        <button class="hg-faq-q">Apakah hasilnya akurat? <span class="chev">▼</span></button>
-        <div class="hg-faq-a">Hasil adalah estimasi berbasis aturan sederhana (rule-based) dengan referensi data statistik. Ini adalah alat bantu pertimbangan, bukan jaminan keputusan.</div>
+        <button class="hg-faq-q">SEBERAPA AKURAT HASIL SIMULASINYA? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Karsa Kasih Proyeksi Berdasarkan Data Yang Kamu Masukkan Sendiri, Jadi Hasilnya Seakurat Data Yang Kamu Isi. Ini Alat Bantu Pertimbangan, Bukan Jaminan Atau Penentu Keputusan Akhir.</div>
       </div>
       <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="240">
-        <button class="hg-faq-q">Siapa yang paling cocok memakai Karsa? <span class="chev">▼</span></button>
-        <div class="hg-faq-a">Siapa saja yang sedang berada di persimpangan karir - mahasiswa, fresh graduate, karyawan yang ingin resign demi sertifikasi, atau yang baru ingin menata keuangan bulanan lebih rapi.</div>
+        <button class="hg-faq-q">APAKAH KARSA BISA MENGGANTIKAN KONSULTASI KARIER PROFESIONAL? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Enggak. Karsa Dirancang Buat Bantu Kamu Lihat Gambaran Awal Secara Finansial, Bukan Pengganti Nasihat Dari Konsultan Karier Atau Perencana Keuangan Profesional.</div>
+      </div>
+      <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="320">
+        <button class="hg-faq-q">BERAPA LAMA WAKTU YANG DIBUTUHKAN UNTUK SIMULASI? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Rata-Rata Cuma Sekitar 2-3 Menit, Tergantung Berapa Banyak Data Tambahan Yang Kamu Isi.</div>
       </div>
     </div>
   </div>
@@ -210,19 +210,17 @@
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
-      <a href="index.html">Beranda</a>
-      <a href="tentang.html">Tentang</a>
-      <a href="input-data.html">Input Data</a>
-      <a href="hasil.html">Hasil</a>
+      <a href="index.html" class="hg-foot-link active" data-foot="beranda">Beranda</a>
+      <a href="#simulasi" class="hg-foot-link" data-foot="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so" href="#" aria-label="Instagram">IG</a>
-      <a class="so" href="#" aria-label="Twitter">TW</a>
-      <a class="so" href="#" aria-label="LinkedIn">IN</a>
-      <a class="so" href="#" aria-label="YouTube">YT</a>
+      <a class="so so-ig" href="#" aria-label="Instagram" data-social="ig"><span class="iconify" data-icon="mdi:instagram" data-width="22" data-height="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook" data-social="fb"><span class="iconify" data-icon="mdi:facebook" data-width="22" data-height="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X" data-social="x"><span class="iconify" data-icon="mdi:close" data-width="20" data-height="20"></span></a>
     </div>
   </div>
-  <div class="hg-footer-bar">© 2026 Karsa - Dibuat dengan hati oleh Lebah Ganteng Team</div>
+  <div class="hg-footer-bar">Copyright © 2025 Adi Emyu. All Right Reserved.</div>
 </footer>
 
 <script src="assets/vendor/anime/anime.min.js"></script>

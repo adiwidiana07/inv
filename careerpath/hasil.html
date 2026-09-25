@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karsa - Hasil Simulasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/aos/aos.css">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+</head>
+<body class="hasil-page">
+<nav class="hg-navbar">
+  <div class="hg-nav-inner">
+    <a href="index.html" class="hg-logo">Karsa</a>
+    <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
+    <div class="hg-nav-links">
+      <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
+      <a href="simulasi.html" class="hg-nav-link active" data-nav="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
+      <a href="#" class="hg-login">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Simulator What If -->
+<section class="whatif">
+  <div class="whatif-header">
+    <h1>SIMULATOR WHAT IF</h1>
+  </div>
+  <p class="whatif-sub">Geser slider atau pilih untuk melihat perubahan</p>
+  <div class="whatif-inner">
+    <div class="whatif-card">
+      <div class="whatif-card-head">Perkiraan kenaikan gaji setelah sertifikasi</div>
+      <div class="whatif-card-body">
+        <div class="slider-wrap">
+          <input type="range" id="sliderGaji" min="0" max="30" value="0" step="1">
+          <div class="slider-labels"><span>0%</span><span>15%</span><span>30%</span></div>
+          <div class="slider-value"><span id="sliderVal">0%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="whatif-card">
+      <div class="whatif-card-head">Ambil sertifikasi dulu sebelum kerja?</div>
+      <div class="whatif-card-body toggle-row">
+        <button class="toggle-btn active" id="btnTidak" onclick="setSertifikasi(false)">Tidak, Kerja Dulu</button>
+        <button class="toggle-btn" id="btnYa" onclick="setSertifikasi(true)">Ya, Sertifikasi dulu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard Hasil -->
+<section class="dashboard">
+  <h2 class="dashboard-title">DASHBOARD HASIL</h2>
+  <div class="dashboard-inner">
+    <div class="dash-top">
+      <div class="dash-card">
+        <div>
+          <span class="dash-label">Sisa Gaji Bersih</span>
+          <b class="dash-value count-up" id="valSisaGaji" data-prefix="Rp " data-suffix=" / bln">Rp 0 / bln</b>
+        </div>
+        <span class="dash-icon"><span class="iconify" data-icon="mdi:layers" data-width="28"></span></span>
+      </div>
+      <div class="dash-card">
+        <div>
+          <span class="dash-label">Waktu balik Modal</span>
+          <b class="dash-value" id="valBEP">- bln</b>
+        </div>
+        <span class="dash-icon"><span class="iconify" data-icon="mdi:credit-card" data-width="28"></span></span>
+      </div>
+    </div>
+    <div class="dash-graph-card">
+      <div class="dash-graph-head">Grafik Financial Runway & ROI</div>
+      <div class="dash-graph-body"><canvas id="grafikCanvas" height="240"></canvas></div>
+    </div>
+    <div class="dash-rekom">
+      <h3>Kartu Rekomendasi Rule-Based</h3>
+      <div class="rekom-dots"><i class="dot red" id="rekomDot"></i><i class="dot yellow"></i><i class="dot green"></i></div>
+      <p id="rekomText" class="rekom-text">Isi simulasi dulu untuk melihat rekomendasi.</p>
+      <div id="rekomExtra" class="rekom-extra"></div>
+    </div>
+  </div>
+</section>
+
+<section class="alokasi">
+  <div class="alokasi-inner">
+    <h3>Alokasi Tabungan Bertingkat <span>(50/30/20 Rule)</span></h3>
+    <div class="alokasi-bar" aria-hidden="true"><span class="bar-primer"></span><span class="bar-sekunder"></span><span class="bar-tersier"></span></div>
+    <div class="alokasi-grid">
+      <div class="alokasi-card primer">
+        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:home" data-width="28"></span></div>
+        <span class="alokasi-pct">50% Primer</span>
+        <b class="count-up" id="alokasiPrimer" data-prefix="Rp ">Rp 0</b>
+        <small>Kebutuhan pokok</small>
+      </div>
+      <div class="alokasi-card sekunder">
+        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:shopping" data-width="28"></span></div>
+        <span class="alokasi-pct">30% Sekunder</span>
+        <b class="count-up" id="alokasiSekunder" data-prefix="Rp ">Rp 0</b>
+        <small>Gaya hidup</small>
+      </div>
+      <div class="alokasi-card tersier">
+        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:piggy-bank" data-width="28"></span></div>
+        <span class="alokasi-pct">20% Tersier</span>
+        <b class="count-up" id="alokasiTersier" data-prefix="Rp ">Rp 0</b>
+        <small>Tabungan & investasi</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="hg-footer">
+  <div class="hg-footer-main">
+    <div class="hg-footer-links">
+      <a href="index.html" class="hg-foot-link" data-foot="beranda">Beranda</a>
+      <a href="simulasi.html" class="hg-foot-link" data-foot="simulasi">Simulasi</a>
+      <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
+    </div>
+    <div class="hg-footer-social">
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+    </div>
+  </div>
+  <div class="hg-footer-bar">Copyright © 2025 Adi Emyu. All Right Reserved.</div>
+</footer>
+
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/js/animasi.js"></script>
+<script src="assets/js/hasil.js"></script>
+<script>
+(function(){
+  const s = document.getElementById('sliderGaji');
+  const v = document.getElementById('sliderVal');
+  if(s && v){
+    s.addEventListener('input', () => {
+      v.textContent = s.value + '%';
+      if(window.updateHasil) updateHasil();
+      const pct = (s.value / 30) * 100;
+      s.style.background = `linear-gradient(to right, ${s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f'} 0%, ${s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f'} ${pct}%, #e8ded2 ${pct}%, #e8ded2 100%)`;
+    });
+    v.textContent = s.value + '%';
+  }
+})();
+</script>
+</body>
+</html>

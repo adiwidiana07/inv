@@ -221,6 +221,40 @@ window.selectJobInput = selectJobInput;
 window.toggleSwitchInput = toggleSwitchInput;
 window.kalkulasiInput = kalkulasiInput;
 
+/* ---------- 8. Navbar active pop animation ---------- */
+(function () {
+  const navLinks = document.querySelectorAll('.hg-nav-link[data-nav]');
+  if (!navLinks.length) return;
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      // allow anchor navigation if hash, otherwise prevent for demo
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) e.preventDefault();
+      navLinks.forEach((l) => {
+        l.classList.remove('active');
+        // reset animation to allow replay
+        l.style.animation = 'none';
+        void l.offsetWidth;
+        l.style.animation = '';
+      });
+      link.classList.add('active');
+    });
+  });
+})();
+
+function toggleBurger(btn){
+  const links = btn.nextElementSibling;
+  if(!links) return;
+  const open = links.classList.toggle('open');
+  btn.setAttribute('aria-expanded', String(open));
+}
+window.toggleBurger = toggleBurger;
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('.hg-navbar')){
+    document.querySelectorAll('.hg-nav-links.open').forEach(el=>{el.classList.remove('open'); const b=el.previousElementSibling; if(b&&b.classList.contains('hg-burger')) b.setAttribute('aria-expanded','false')});
+  }
+});
+
 /* ---------- Init ---------- */
 const firstJob = document.querySelector('#dropdownList div');
 if (firstJob) firstJob.classList.add('active');
