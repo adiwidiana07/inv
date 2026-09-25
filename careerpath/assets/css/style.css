@@ -2094,8 +2094,6 @@ body.tentang-page {
   .hg-panduan-steps { padding: 1.575rem 1.05rem 1.575rem; }
 }
 /* legacy hg-step removed - replaced by hg-pstep above */
-  display: block;
-}
 .hg-panduan-cta:active {
   transform: translate(0.1875rem, 0.1875rem);
   box-shadow: 0 0 0 var(--ink);
