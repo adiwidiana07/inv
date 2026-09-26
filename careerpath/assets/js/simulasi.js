@@ -15,10 +15,11 @@ function showStep(n) {
   document.querySelectorAll('.sim-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step'+n).classList.add('active');
   currentStep = n;
+  if (window.karsaScroll) window.karsaScroll.release();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.getElementById('toStep2')?.addEventListener('click', () => {
-  if (!selectedPersona) { alert('Pilih persona dulu'); return; }
+  if (!selectedPersona) { alert('Pilih persona dulu, baru lanjut'); return; }
   showStep(2);
 });
 document.getElementById('back1')?.addEventListener('click', () => showStep(1));
@@ -26,11 +27,20 @@ document.getElementById('toStep3')?.addEventListener('click', () => {
   const gaji = document.getElementById('gaji').value.trim();
   const biaya = document.getElementById('biaya').value.trim();
   const target = document.getElementById('target').value.trim();
-  if (!gaji || !biaya || !target) { alert('Isi Gaji, Biaya, dan Target dulu'); return; }
+  if (!gaji || !biaya || !target) { alert('Isi dulu Gaji, Biaya, sama Target'); return; }
   saveWajib();
   showStep(3);
 });
 document.getElementById('back2')?.addEventListener('click', () => showStep(2));
+let stepBeforeTour = currentStep;
+document.addEventListener('karsa:tour-start', () => { stepBeforeTour = currentStep; });
+document.addEventListener('karsa:tour-reveal', (e) => {
+  const n = Number(e.detail);
+  if (n >= 1 && n <= 3) showStep(n);
+});
+document.addEventListener('karsa:tour-end', () => {
+  if (currentStep !== stepBeforeTour) showStep(stepBeforeTour);
+});
 function saveWajib() {
   const data = {
     gaji: parseRupiah(document.getElementById('gaji').value),

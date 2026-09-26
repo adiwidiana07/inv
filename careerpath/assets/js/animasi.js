@@ -422,7 +422,7 @@ function initMagnetic() {
 
 /* ---------- hero ikut scroll (fade + rise ala Apple) ---------- */
 function initHeroScroll() {
-  const hero = document.querySelector('.hero-inner');
+  const hero = document.querySelector('.hero-inner, .hg-hero-inner');
   if (!hero) return;
   rail(hero, {
     start: -0.1,

@@ -97,24 +97,24 @@ function updateResult() {
   const breakEven = extra > 0 ? Math.ceil(investasi / extra) : 99;
 
   let personalNote = '';
-  if (status === 'ortu') personalNote = 'Biaya hidup bisa lebih rendah karena tinggal dengan ortu.';
-  if (status === 'keluarga') personalNote = 'Cashflow lebih ketat karena tanggungan keluarga.';
-  if (tanggungan && tanggungan !== '0') personalNote += ' Pertimbangkan dana darurat 3-6x biaya.';
+  if (status === 'ortu') personalNote = 'Biaya hidup bisa lebih ringan karena tinggal sama ortu.';
+  if (status === 'keluarga') personalNote = 'Cashflow lebih ketat karena ada tanggungan keluarga.';
+  if (tanggungan && tanggungan !== '0') personalNote += ' Siapin dana darurat 3-6x biaya.';
 
   let rekomendasi = '';
   let warna = '';
 
   if (cashflowBaru < 0) {
-    rekomendasi = `Cashflow negatif (${formatRp(cashflowBaru)}/bln). Tunda investasi besar, prioritaskan efisiensi biaya atau kenaikan gaji >${sliderVal}%`;
+    rekomendasi = `Cashflow kamu minus ${formatRp(cashflowBaru)}/bln. Tunda investasi gede dulu, atau cari kenaikan gaji di atas ${sliderVal}%.`;
     warna = '#d94e3c';
   } else if (breakEven > 24) {
-    rekomendasi = `Break-even ${breakEven} bulan terlalu lama. Cari sertifikasi lebih murah atau kenaikan gaji minimal ${Math.ceil((investasi / gaji) * 100)}%. ${personalNote}`;
+    rekomendasi = `Balik modal ${breakEven} bulan kelamaan. Cari sertifikasi yang lebih murah, atau kejar kenaikan gaji minimal ${Math.ceil((investasi / gaji) * 100)}%. ${personalNote}`;
     warna = '#e8b84a';
   } else if (cashflowBaru >= target && breakEven <= 12) {
     rekomendasi = `LAYAK! Cashflow +${formatRp(cashflowBaru)}/bln, modal balik ${breakEven} bulan. Extra gaji +${formatRp(extra)}. ${personalNote}`;
     warna = '#2d7d5e';
   } else {
-    rekomendasi = `Cukup prospektif. Cashflow ${formatRp(cashflowBaru)}/bln, BEP ${breakEven} bulan. Pastikan kenaikan ${kenaikan}%/tahun konsisten.`;
+    rekomendasi = `Lumayan prospektif. Cashflow ${formatRp(cashflowBaru)}/bln, balik modal ${breakEven} bulan. Pastikan kenaikan ${kenaikan}%/tahun konsisten.`;
     warna = '#2d7d5e';
   }
 
@@ -178,7 +178,7 @@ function kalkulasiInput() {
   const tanggungan = document.getElementById('switchTanggungan')?.classList.contains('on') ? 'ada' : 'tidak';
 
   if (!gaji || !biaya) {
-    alert('Isi Gaji Bulanan dan Biaya Hidup dulu');
+    alert('Isi dulu Gaji Bulanan sama Biaya Hidupmu');
     return;
   }
 
@@ -187,16 +187,16 @@ function kalkulasiInput() {
   const bep = extra > 0 ? Math.ceil(investasi / extra) : 99;
 
   let personal = '';
-  if (tinggal === 'ortu') personal = ' Biaya hidup lebih ringan (tinggal dengan ortu).';
-  if (tanggungan === 'ada') personal += ' Siapkan dana darurat 3-6x biaya.';
+  if (tinggal === 'ortu') personal = ' Biaya hidup lebih ringan karena tinggal sama ortu.';
+  if (tanggungan === 'ada') personal += ' Siapin dana darurat 3-6x biaya.';
 
   let rekom = '';
   if (cashflow < 0) {
-    rekom = `Cashflow negatif Rp ${cashflow.toLocaleString('id-ID')}/bln. Tunda investasi besar.${personal}`;
+    rekom = `Cashflow kamu minus Rp ${cashflow.toLocaleString('id-ID')}/bln. Tunda investasi gede dulu.${personal}`;
   } else if (bep > 24) {
-    rekom = `BEP ${bep} bulan terlalu lama. Cari sertifikasi lebih murah atau pastikan kenaikan >${kenaikan}%.${personal}`;
+    rekom = `Balik modal ${bep} bulan kelamaan. Cari sertifikasi lebih murah, atau kejar kenaikan di atas ${kenaikan}%.${personal}`;
   } else {
-    rekom = `LAYAK! Cashflow Rp ${cashflow.toLocaleString('id-ID')}/bln • Extra +Rp ${extra.toLocaleString('id-ID')}/bln • BEP ${bep} bulan • Jenis: ${jenis}.${personal}`;
+    rekom = `LAYAK! Cashflow Rp ${cashflow.toLocaleString('id-ID')}/bln • Extra +Rp ${extra.toLocaleString('id-ID')}/bln • Balik modal ${bep} bulan • Jenis: ${jenis}.${personal}`;
   }
 
   const box = document.getElementById('resultBox');
@@ -240,6 +240,56 @@ window.kalkulasiInput = kalkulasiInput;
       link.classList.add('active');
     });
   });
+})();
+
+(function () {
+  const guideSlider = document.querySelector('.hg-panduan-slider');
+  if (!guideSlider) return;
+  const guideTrack = guideSlider.querySelector('.hg-panduan-steps');
+  const guideSteps = Array.from(guideSlider.querySelectorAll('.hg-pstep'));
+  const guideControls = guideSlider.querySelector('.hg-panduan-controls');
+  const guidePrev = guideSlider.querySelector('[data-guide-prev]');
+  const guideNext = guideSlider.querySelector('[data-guide-next]');
+  const guideDots = Array.from(guideSlider.querySelectorAll('[data-guide-dot]'));
+  const guideCurrent = guideSlider.querySelector('[data-guide-current]');
+  if (!guideTrack || !guideSteps.length) return;
+  let guideIndex = 0;
+  function showGuideStep(index) {
+    guideIndex = Math.max(0, Math.min(index, guideSteps.length - 1));
+    guideTrack.style.transform = 'translateX(-' + guideIndex * 100 + '%)';
+    guideSteps.forEach((step, stepIndex) => {
+      const active = stepIndex === guideIndex;
+      step.classList.toggle('active', active);
+      step.setAttribute('aria-hidden', String(!active));
+      step.toggleAttribute('inert', !active);
+    });
+    guideDots.forEach((dot, dotIndex) => {
+      const active = dotIndex === guideIndex;
+      dot.classList.toggle('active', active);
+      if (active) dot.setAttribute('aria-current', 'step');
+      else dot.removeAttribute('aria-current');
+    });
+    if (guideCurrent) guideCurrent.textContent = String(guideIndex + 1);
+    if (guidePrev) guidePrev.disabled = guideIndex === 0;
+    if (guideNext) guideNext.disabled = guideIndex === guideSteps.length - 1;
+  }
+  guidePrev?.addEventListener('click', () => showGuideStep(guideIndex - 1));
+  guideNext?.addEventListener('click', () => showGuideStep(guideIndex + 1));
+  guideDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showGuideStep(index));
+  });
+  guideControls?.addEventListener('keydown', (event) => {
+    let targetIndex = guideIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') targetIndex += 1;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') targetIndex -= 1;
+    else if (event.key === 'Home') targetIndex = 0;
+    else if (event.key === 'End') targetIndex = guideSteps.length - 1;
+    else return;
+    event.preventDefault();
+    showGuideStep(targetIndex);
+    if (event.target.matches('[data-guide-dot]')) guideDots[guideIndex]?.focus();
+  });
+  showGuideStep(0);
 })();
 
 function toggleBurger(btn){

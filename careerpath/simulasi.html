@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+<script src="assets/js/scroll-restore.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body sim-page">
@@ -35,13 +36,13 @@
         <span class="persona-check">✓</span>
         <span class="persona-name">Si Fresh Graduate</span>
         <span class="persona-icon"><span class="iconify" data-icon="mdi:school" data-width="48" data-height="48"></span></span>
-        <span class="persona-desc">Baru lulus & mau tentuin langkah pertama</span>
+        <span class="persona-desc">Baru lulus &amp; mau nentuin langkah pertama</span>
       </button>
       <button class="persona-card" data-persona="pindah" aria-pressed="false">
         <span class="persona-check">✓</span>
         <span class="persona-name">Si Mau Pindah Karier</span>
         <span class="persona-icon"><span class="iconify" data-icon="mdi:swap-horizontal-bold" data-width="48" data-height="48"></span></span>
-        <span class="persona-desc">Lagi pertimbangin switch bidang / role</span>
+        <span class="persona-desc">Lagi pertimbangin pindah bidang / role</span>
       </button>
       <button class="persona-card" data-persona="banding" aria-pressed="false">
         <span class="persona-check">✓</span>
@@ -86,7 +87,7 @@
       </span>
     </label>
     <label class="sim-field">
-      <span>Investasi Karir (Sertifikasi/Kursus)</span>
+      <span>Investasi Karier (Sertifikasi/Kursus)</span>
       <span class="sim-input-wrap">
         <input type="text" id="investasi" inputmode="numeric" placeholder="Rp 2.000.000" autocomplete="off">
         <span class="sim-icon yellow"><span class="iconify" data-icon="mdi:bookmark" data-width="20"></span></span>
@@ -172,7 +173,7 @@
         <span class="sim-toggle-caption" id="capTanggung">Tidak ada</span>
       </div>
     </div>
-    <p class="sim-trust">Data kamu nggak disimpan, cuma dipakai untuk hitung proyeksi ini.</p>
+    <p class="sim-trust">Data kamu nggak disimpan, cuma dipakai buat ngitung proyeksi di halaman ini.</p>
   </div>
   <div class="sim-nav">
     <button class="sim-btn prev" id="back2"><span class="arr">◀</span> Sebelumnya</button>
@@ -197,7 +198,45 @@
   <div class="hg-footer-bar">Copyright © 2025 Adi Emyu. All Right Reserved.</div>
 </footer>
 
+<div class="hg-tour" data-tour-root hidden>
+  <div class="hg-tour-shield" data-tour-shield></div>
+  <div class="hg-tour-spotlight" data-tour-spotlight aria-hidden="true">
+    <svg class="hg-tour-cursor" data-tour-cursor viewBox="0 0 24 32" aria-hidden="true">
+      <path d="M2 2l19 17-9 .8 5 8.5-3.5 2-5-8.6L2 29z" fill="#211D1A" stroke="#FDFCFA" stroke-width="1.6" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <div class="hg-tour-card" data-tour-card role="dialog" aria-modal="true" aria-labelledby="hg-tour-title" aria-describedby="hg-tour-text" data-placement="bottom">
+    <div class="hg-tour-meta">
+      <span class="hg-tour-kicker" data-tour-kicker>Cara Pakai</span>
+      <span class="hg-tour-progress" data-tour-progress>1 / 4</span>
+    </div>
+    <h2 id="hg-tour-title" data-tour-title></h2>
+    <p id="hg-tour-text" data-tour-text></p>
+    <div class="hg-tour-actions">
+      <button class="hg-tour-skip" data-tour-skip type="button">Lewati</button>
+      <div class="hg-tour-nav-group">
+        <button class="hg-tour-nav hg-tour-prev" data-tour-prev type="button">Sebelumnya</button>
+        <button class="hg-tour-nav hg-tour-next" data-tour-next type="button">Mulai</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" data-tour-config>
+{
+  "key": "karsa_sim_tour_v1",
+  "kicker": "Cara Pakai Simulasi",
+  "steps": [
+    { "target": ".persona-grid", "revealStep": 1, "title": "Mulai dari persona", "text": "Pilih dulu siapa kamu hari ini. Persona ini bikin hasil simulasi lebih nyambung dengan posisi dan targetmu sekarang." },
+    { "target": ".sim-form", "revealStep": 2, "title": "Isi data wajib", "text": "Gaji, biaya hidup, sama target tabungan dipakai buat ngitung sisa uang kamu. Formatnya udah otomatis Rp, jadi tinggal ketik angka." },
+    { "target": ".sim-extra", "revealStep": 3, "title": "Lengkapi konteks", "text": "Usia, tanggungan, kota, sama cicilan bikin proyeksinya lebih realistis. Semuanya opsional, tapi hasil jauh lebih akurat." },
+    { "target": "#finishBtn", "revealStep": 3, "title": "Jalankan simulasinya", "text": "Klik Mulai Simulasi buat lihat proyeksinya. Data kamu nggak disimpan di server, cuma diproses langsung di browser ini." }
+  ]
+}
+</script>
+<script src="assets/js/tour.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/js/simulasi.js"></script>
+<script src="assets/js/to-top.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 
 let chartInstance = null;
 let sertifikasiDulu = true;
+let grafikLastArgs = null;
 
 function fmtRp(n) {
   return 'Rp ' + Number(Math.round(n)).toLocaleString('id-ID');
@@ -96,17 +97,17 @@ function updateHasil() {
   let warna = '#D94E3C';
 
   if (cashflowBaru < 0) {
-    rekomendasi = `Cashflow negatif (${fmtRp(cashflowBaru)}/bln). Tunda investasi besar atau cari sertifikasi lebih murah. Dengan kenaikan ${sliderVal}%, gaji baru ${fmtRp(gajiBaru)} belum cukup menutup biaya + target tabungan.`;
+    rekomendasi = `Cashflow kamu minus ${fmtRp(cashflowBaru)}/bln. Tunda investasi gede dulu, atau cari sertifikasi yang ROI-nya lebih tinggi / kenaikan di atas ${sliderVal}%.`;
     warna = '#D94E3C';
   } else if (bepDisplay > 24) {
-    rekomendasi = `Break-even ${bepDisplay} bulan terlalu lama untuk investasi ${fmtRp(investasi)}. Extra gaji hanya +${fmtRp(extraPerBulan)}/bln. Pertimbangkan sertifikasi dengan ROI lebih tinggi atau kenaikan >${sliderVal}%.`;
+    rekomendasi = `Balik modal ${bepDisplay} bulan kelamaan buat investasi ${fmtRp(investasi)}. Extra gaji cuma ${fmtRp(extraPerBln)}/bln. Coba cari investasi yang lebih murah, atau sertifikasi yang lebih worth it.`;
     warna = '#E8B84A';
   } else if (cashflowBaru >= target && bepDisplay <= 12) {
-    rekomendasi = `LAYAK! Cashflow baru ${fmtRp(cashflowBaru)}/bln, modal balik ${bepDisplay} bulan. Extra gaji +${fmtRp(extraPerBulan)}/bln setelah sertifikasi ${sliderVal}%. Strategi ${sertifikasiDulu ? 'sertifikasi dulu' : 'kerja dulu'} prospektif.`;
+    rekomendasi = `LAYAK! Cashflow baru ${fmtRp(cashflowBaru)}/bln, modal balik dalam ${bepDisplay} bulan. Extra gaji ${fmtRp(extraPerBln)}/bln abis ambil ${sertifikasiDulu ? 'sertifikasi dulu' : 'kerja dulu'}. Strategi ini kelihatan worth it.`;
     warna = '#2d7d5e';
   } else {
-    rekomendasi = `Cukup prospektif. Cashflow ${fmtRp(cashflowBaru)}/bln, BEP ${bepDisplay} bulan. Pastikan proyeksi kenaikan ${kenaikan}%/tahun konsisten dan siapkan dana darurat.`;
-    warna = '#4A7C59';
+    rekomendasi = `Lumayan prospektif. Cashflow ${fmtRp(cashflowBaru)}/bln, balik modal ${bepDisplay} bulan. Pastikan kenaikan ${kenaikan}%/tahun konsisten, dan siapin dana darurat.`;
+    warna = '#2d7d5e';
   }
 
   txt.textContent = rekomendasi;
@@ -121,6 +122,7 @@ function updateHasil() {
 function updateGrafik(gaji, biaya, kenaikan, sliderVal) {
   const canvas = document.getElementById('grafikCanvas');
   if (!canvas) return;
+  grafikLastArgs = [gaji, biaya, kenaikan, sliderVal];
 
   const months = 12;
   const labels = Array.from({ length: months }, (_, i) => `B${i + 1}`);
@@ -284,5 +286,18 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
 // Init halaman hasil
 syncSliders();
 updateHasil();
+
+/* Grafik manual digores ulang saat viewport berubah (rotasi / resize),
+   karena ukuran canvas diambil dari getBoundingClientRect saat draw. */
+(function bindGrafikResize() {
+  let raf = 0;
+  const redraw = function () {
+    if (!grafikLastArgs) return;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function () { updateGrafik.apply(null, grafikLastArgs); });
+  };
+  window.addEventListener('resize', redraw);
+  window.addEventListener('orientationchange', redraw);
+})();
 
 function toggleBurger(btn){const l=btn.nextElementSibling; if(!l) return; const o=l.classList.toggle('open'); btn.setAttribute('aria-expanded',String(o))} window.toggleBurger=toggleBurger
