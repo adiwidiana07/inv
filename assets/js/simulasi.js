@@ -1,14 +1,67 @@
 'use strict';
 let currentStep = 1;
 const personaCards = document.querySelectorAll('.persona-card');
+const personaHint = document.getElementById('personaHint');
+const personaPreset = {
+  fresh: { label: 'Si Fresh Graduate', gaji: 4500000, biaya: 2800000, target: 1000000, investasi: 1500000, kenaikan: 15, usia: 23, jmlTanggungan: 0, kota: 'Jakarta', cicilan: 0, danaDarurat: 2000000, tinggal: false, tanggungan: false, jenis: 'tetap' },
+  pindah: { label: 'Si Mau Pindah Karier', gaji: 9000000, biaya: 5500000, target: 2000000, investasi: 8000000, kenaikan: 25, usia: 29, jmlTanggungan: 1, kota: 'Bandung', cicilan: 1500000, danaDarurat: 30000000, tinggal: false, tanggungan: true, jenis: 'tetap' },
+  banding: { label: 'Si Bandingin Tawaran', gaji: 14000000, biaya: 8500000, target: 3000000, investasi: 3000000, kenaikan: 20, usia: 32, jmlTanggungan: 2, kota: 'Surabaya', cicilan: 3000000, danaDarurat: 60000000, tinggal: false, tanggungan: true, jenis: 'kontrak' }
+};
 let selectedPersona = localStorage.getItem('karsa_persona') || null;
+function setRp(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = 'Rp ' + Number(val || 0).toLocaleString('id-ID');
+}
+function setNum(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = String(val);
+}
+function setSimToggle(which, on) {
+  const el = document.getElementById(which === 'tinggal' ? 'toggleTinggal' : 'toggleTanggung');
+  if (!el) return;
+  el.setAttribute('aria-pressed', String(on));
+  const cap = document.getElementById(which === 'tinggal' ? 'capTinggal' : 'capTanggung');
+  if (cap) cap.textContent = which === 'tinggal' ? (on ? 'Dengan Ortu / Keluarga' : 'Kos / Sendiri') : (on ? 'Ada (1+ orang)' : 'Tidak ada');
+}
+function applyPersona(key) {
+  const p = personaPreset[key];
+  if (!p) return;
+  setRp('gaji', p.gaji);
+  setRp('biaya', p.biaya);
+  setRp('target', p.target);
+  setRp('investasi', p.investasi);
+  setNum('kenaikan', p.kenaikan + '%');
+  setNum('usia', p.usia);
+  setNum('jmlTanggungan', p.jmlTanggungan);
+  const kota = document.getElementById('kota');
+  if (kota) kota.value = p.kota;
+  setRp('cicilan', p.cicilan);
+  setRp('danaDarurat', p.danaDarurat);
+  setSimToggle('tinggal', p.tinggal);
+  setSimToggle('tanggung', p.tanggungan);
+  const opt = document.querySelector('#jobList div[data-value="' + p.jenis + '"]');
+  if (opt) pickJob(opt);
+  if (personaHint) {
+    personaHint.textContent = 'Form udah keisi contoh data ' + p.label + '. Semua angka masih bisa diubah di langkah berikutnya.';
+    personaHint.hidden = false;
+  }
+}
 personaCards.forEach(c => {
-  if (c.dataset.persona === selectedPersona) c.classList.add('active');
-  c.addEventListener('click', () => {
-    personaCards.forEach(x => x.classList.remove('active'));
+  if (c.dataset.persona === selectedPersona) {
     c.classList.add('active');
+    c.setAttribute('aria-pressed', 'true');
+  }
+  c.addEventListener('click', () => {
+    personaCards.forEach(x => {
+      x.classList.remove('active');
+      x.setAttribute('aria-pressed', 'false');
+    });
+    c.classList.add('active');
+    c.setAttribute('aria-pressed', 'true');
     selectedPersona = c.dataset.persona;
     localStorage.setItem('karsa_persona', selectedPersona);
+    applyPersona(selectedPersona);
+    saveWajib();
   });
 });
 function showStep(n) {
@@ -132,6 +185,7 @@ if (saved.jmlTanggungan) document.getElementById('jmlTanggungan').value = String
 if (saved.kota) document.getElementById('kota').value = saved.kota;
 if (saved.cicilan) document.getElementById('cicilan').value = 'Rp ' + Number(saved.cicilan).toLocaleString('id-ID');
 if (saved.danaDarurat) document.getElementById('danaDarurat').value = 'Rp ' + Number(saved.danaDarurat).toLocaleString('id-ID');
+if (selectedPersona && !saved.gaji) applyPersona(selectedPersona);
 function toggleBurger(btn){const l=btn.nextElementSibling; if(!l) return; const o=l.classList.toggle('open'); btn.setAttribute('aria-expanded',String(o))}
 window.toggleBurger=toggleBurger;
 document.addEventListener('click', (e)=>{ if(!e.target.closest('.hg-navbar')){ document.querySelectorAll('.hg-nav-links.open').forEach(el=>{el.classList.remove('open'); const b=el.previousElementSibling; if(b&&b.classList.contains('hg-burger')) b.setAttribute('aria-expanded','false')}) }});

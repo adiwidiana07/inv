@@ -8,9 +8,12 @@
    ============================================================ */
 :root {
   /* PRD 2.2 tokens - single source, unused removed */
+  color-scheme: light;
   --tan-100: #A8875A;
   --tan-200: #BDA583;
   --tan-300: #D3C1AB;
+  --tan-400: #A8875A;
+  --tan-600: #55423C;
   --cream: #E8DED2;
   --brown-mid: #866C4B;
   --brown-dark: #55423C;
@@ -22,8 +25,41 @@
   --gray-dark: #595552;
   --green-1: #4C7D5F;
   --green-2: #42654F;
+  /* hijau & merah khusus pill nav - nilainya beda dari green-1/red-orange */
+  --green-nav: #5A7F6A;
+  --red-nav: #E85A3C;
   --gold-1: #E5A93B;
   --gold-2: #B48533;
+  --on-deep: #FDFCFA;
+  --on-accent: #211D1A;
+  --tour-scrim: rgba(33, 29, 26, 0.72);
+  --tour-ring: rgba(216, 90, 67, 0.24);
+  --theme-color: #FDFCFA;
+}
+/* ============================================================
+   DARK MODE - nilai token dibalik, nama token tetap sama.
+   Dipasang lewat data-theme="dark" di <html> oleh assets/js/theme.js
+   (default ikut prefers-color-scheme, pilihan user disimpan di
+   localStorage "karsa_theme"). Warna brand (merah/gold/hijau) sengaja
+   tidak diubah supaya kontras teks di atasnya tetap sama di dua mode.
+   ============================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --white: #1C1917;
+  --cream: #262220;
+  --tan-300: #302A25;
+  --tan-200: #2A2521;
+  --tan-100: #3B332B;
+  --tan-400: #C9A87A;
+  --tan-600: #D6C4B2;
+  --gray-light: #4A443E;
+  --gray-dark: #B3A99E;
+  --brown-mid: #241F1B;
+  --brown-dark: #1A1614;
+  --ink: #F2ECE3;
+  --tour-scrim: rgba(8, 6, 5, 0.86);
+  --tour-ring: rgba(216, 90, 67, 0.34);
+  --theme-color: #1C1917;
 }
 * {
   box-sizing: border-box;
@@ -40,8 +76,8 @@ html.karsa-restoring {
 }
 body {
   font-family: "Space Mono", monospace;
-  background: var(--beige);
-  color: var(--black);
+  background: var(--white);
+  color: var(--ink);
   line-height: 1.5;
   overflow-x: clip;
 }
@@ -210,7 +246,7 @@ select {
 /* spacer beige di antara warning dan checker seperti di screenshot */
 .warning-banner + .hero-gap {
   height: 1.75rem;
-  background: var(--beige);
+  background: var(--cream);
   display: block;
 }
 
@@ -1129,14 +1165,14 @@ input[type="range"] {
 
 /* ===== Tentang Page - Tentang Sistem ===== */
 body.tentang-page {
-  background: #f3ece0;
+  background: var(--cream);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 .tentang-main {
   flex: 1;
-  background: #f3ece0;
+  background: var(--cream);
   padding: 5.6rem 3.5rem 8rem;
   display: flex;
   flex-direction: column;
@@ -1424,7 +1460,53 @@ body.tentang-page {
    -> FAQ -> Footer
    ============================================================ */
 .hg-body {
-  background: #fffdfa;
+  background: var(--white);
+}
+
+/* 00 Navbar - tombol tema disuntik theme.js ke dalam .hg-nav-inner */
+.hg-theme-toggle {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: var(--white);
+  border: 0.125rem solid var(--ink);
+  border-radius: 0;
+  box-shadow: 0.1875rem 0.1875rem 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s, color 0.12s;
+}
+.hg-theme-toggle:hover {
+  background: var(--gold-1);
+  color: var(--on-accent);
+  transform: translate(-0.0625rem, -0.0625rem);
+  box-shadow: 0.3125rem 0.3125rem 0 var(--ink);
+}
+.hg-theme-toggle:active {
+  transform: translate(0.125rem, 0.125rem);
+  box-shadow: 0 0 0 var(--ink);
+}
+.hg-theme-toggle:focus-visible {
+  outline: 0.1875rem solid var(--gold-1);
+  outline-offset: 0.1875rem;
+}
+.hg-theme-toggle svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hg-theme-toggle .ico-moon { display: none; }
+[data-theme="dark"] .hg-theme-toggle .ico-sun { display: none; }
+[data-theme="dark"] .hg-theme-toggle .ico-moon { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .hg-theme-toggle { transition: none; }
 }
 .hg-navbar {
   position: sticky;
@@ -1457,6 +1539,9 @@ body.tentang-page {
   display: flex;
   align-items: center;
   gap: 4rem;
+  /* tombol tema (disuntik theme.js) menyusul .hg-nav-links sebagai anak
+     .hg-nav-inner, jadi margin ini yang menjaga grup link tetap di kanan */
+  margin-left: auto;
 }
 .hg-burger {
   display: none;
@@ -1494,20 +1579,20 @@ body.tentang-page {
   transform: translate(-0.0625rem, -0.0625rem);
 }
 .hg-nav-link[data-nav="beranda"]:hover {
-  background: #5a7f6a;
-  color: var(--white);
+  background: var(--green-nav);
+  color: var(--on-deep);
 }
 .hg-nav-link[data-nav="simulasi"]:hover {
   background: var(--gold-1);
-  color: var(--ink);
+  color: var(--on-accent);
 }
 .hg-nav-link[data-nav="tentang"]:hover {
-  background: #e85a3c;
-  color: var(--ink);
+  background: var(--red-nav);
+  color: var(--on-accent);
 }
 .hg-nav-link.active {
   font-weight: 700;
-  color: var(--white);
+  color: var(--on-deep);
   border: 0.125rem solid var(--ink);
   border-radius: 0;
   box-shadow: 0.25rem 0.25rem 0 var(--ink);
@@ -1520,16 +1605,16 @@ body.tentang-page {
 }
 /* color variations - Beranda = green, Simulasi = yellow, Tentang = red */
 .hg-nav-link[data-nav="beranda"].active {
-  background: #5a7f6a;
-  color: var(--white);
+  background: var(--green-nav);
+  color: var(--on-deep);
 }
 .hg-nav-link[data-nav="simulasi"].active {
   background: var(--gold-1);
-  color: var(--ink);
+  color: var(--on-accent);
 }
 .hg-nav-link[data-nav="tentang"].active {
-  background: #e85a3c;
-  color: var(--ink);
+  background: var(--red-nav);
+  color: var(--on-accent);
 }
 @keyframes navPop {
   0% { transform: scale(0.72); }
@@ -1592,13 +1677,17 @@ body.tentang-page {
   overflow: visible;
   image-rendering: auto;
 }
+/* Wordmark ini digambar dengan tinta --ink di atas transparan. Di dark mode
+   hero juga gelap, jadi dibalik supaya garisnya tetap kelihatan. */
+[data-theme="dark"] .hg-hero-logo-img {
+  filter: invert(1);
+}
 .hg-hero-tag {
   margin: clamp(0.9rem, 3vh, 2.45rem) auto clamp(0.75rem, 2.6vh, 2.1rem);
   font-family: "Space Grotesk", "Space Mono", monospace;
   font-size: clamp(1rem, 1.6vh, 1.1875rem);
   line-height: 1.35;
-  font-weight: 500;
-  color: var(--brown-dark);
+  color: var(--tan-600);
   max-width: 26.25rem;
 }
 .hg-hero-btns {
@@ -1631,7 +1720,7 @@ body.tentang-page {
 }
 .hg-btn-red {
   background: var(--red-orange);
-  color: var(--white);
+  color: var(--on-deep);
 }
 .hg-btn-red:hover { background: var(--red-dark); }
 .hg-btn-cream {
@@ -1739,7 +1828,7 @@ body.tentang-page {
   font-family: "Space Mono", monospace;
   font-weight: 800;
   font-size: 1rem;
-  color: var(--ink);
+  color: var(--on-accent);
   padding: 0.375rem 1.225rem;
   white-space: nowrap;
   z-index: 1;
@@ -2053,11 +2142,11 @@ body.tentang-page {
   font-family: "Archivo Black", sans-serif;
   font-weight: 900;
   font-size: 1.25rem;
-  color: var(--white);
+  color: var(--on-deep);
   border-right: 0.125rem solid var(--ink);
 }
 .hg-pnum.n1 { background: var(--red-orange); }
-.hg-pnum.n2 { background: var(--gold-1); color: var(--ink); }
+.hg-pnum.n2 { background: var(--gold-1); color: var(--on-accent); }
 .hg-pnum.n3 { background: var(--green-1); }
 .hg-pstep-title {
   flex: 1;
@@ -2164,10 +2253,10 @@ body.tentang-page {
 }
 .hg-panduan-cta {
   display: block;
+  margin: 2.1rem auto 0;
   width: fit-content;
-  margin: 1.5rem auto 2rem;
   background: var(--red-orange);
-  color: var(--white);
+  color: var(--on-deep);
   border: 0.125rem solid var(--ink);
   border-radius: 0;
   box-shadow: 0.1875rem 0.1875rem 0 var(--ink);
@@ -2224,7 +2313,7 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   position: fixed;
   z-index: 1;
   border: 0.1875rem solid var(--red-orange);
-  box-shadow: 0 0 0 0.25rem rgba(216, 90, 67, 0.24), 0 0 0 100vmax rgba(33, 29, 26, 0.72);
+  box-shadow: 0 0 0 0.25rem var(--tour-ring), 0 0 0 100vmax var(--tour-scrim);
   opacity: 0;
   pointer-events: none;
   transition: top 0.25s ease, left 0.25s ease, width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
@@ -2362,7 +2451,7 @@ html.hg-tour-lock body { overscroll-behavior: none; }
 }
 .hg-tour-next {
   background: var(--red-orange);
-  color: var(--white);
+  color: var(--on-deep);
 }
 .hg-tour-nav:not(:disabled):hover {
   transform: translate(-0.125rem, -0.125rem);
@@ -2495,10 +2584,10 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   font-weight: 800;
   font-size: 1rem;
   padding: 0.7rem 1.575rem;
-  color: var(--white);
+  color: var(--on-deep);
 }
 .hg-quote .who.who-red { background: var(--red-orange); }
-.hg-quote .who.who-yellow { background: var(--gold-1); color: var(--ink); }
+.hg-quote .who.who-yellow { background: var(--gold-1); color: var(--on-accent); }
 .hg-quote .who.who-green { background: var(--green-1); }
 .hg-quote .hg-quote-body q {
   font-family: "Space Grotesk", sans-serif;
@@ -2620,7 +2709,7 @@ html.hg-tour-lock body { overscroll-behavior: none; }
 /* 08 Footer - ref-footer.png */
 .hg-footer {
   background: var(--brown-mid);
-  color: var(--white);
+  color: var(--on-deep);
   border-top: 0.1875rem solid var(--ink);
 }
 .hg-footer-main {
@@ -2639,19 +2728,19 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   font-size: 1rem;
 }
 .hg-footer-links a {
-  color: var(--white);
+  color: var(--on-deep);
   padding: 0.25rem 0.875rem;
   border: 0.125rem solid transparent;
   border-radius: 0;
   transition: background 0.14s, color 0.14s, border-color 0.14s, box-shadow 0.14s;
 }
-.hg-foot-link.active { background: var(--green-1); color: var(--white); border-color: var(--ink); box-shadow: 0.1875rem 0.1875rem 0 var(--ink); font-weight: 700; }
-.hg-foot-link[data-foot="simulasi"].active { background: var(--gold-1); color: var(--ink); }
-.hg-foot-link[data-foot="tentang"].active { background: var(--red-orange); color: var(--ink); }
+.hg-foot-link.active { background: var(--green-1); color: var(--on-deep); border-color: var(--ink); box-shadow: 0.1875rem 0.1875rem 0 var(--ink); font-weight: 700; }
+.hg-foot-link[data-foot="simulasi"].active { background: var(--gold-1); color: var(--on-accent); }
+.hg-foot-link[data-foot="tentang"].active { background: var(--red-orange); color: var(--on-accent); }
 .hg-foot-link:not(.active):hover { border-color: var(--ink); box-shadow: 0.1875rem 0.1875rem 0 var(--ink); }
-.hg-foot-link[data-foot="beranda"]:hover { background: var(--green-1); color: var(--white); }
-.hg-foot-link[data-foot="simulasi"]:hover { background: var(--gold-1); color: var(--ink); }
-.hg-foot-link[data-foot="tentang"]:hover { background: var(--red-orange); color: var(--ink); }
+.hg-foot-link[data-foot="beranda"]:hover { background: var(--green-1); color: var(--on-deep); }
+.hg-foot-link[data-foot="simulasi"]:hover { background: var(--gold-1); color: var(--on-accent); }
+.hg-foot-link[data-foot="tentang"]:hover { background: var(--red-orange); color: var(--on-accent); }
 .hg-footer-social {
   display: flex;
   justify-content: center;
@@ -2672,9 +2761,9 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   transition: background 0.14s, transform 0.14s, box-shadow 0.14s;
 }
 .hg-footer-social .so:hover { transform: translate(-0.125rem,-0.125rem); box-shadow: 0.3125rem 0.3125rem 0 var(--ink); }
-.hg-footer-social .so.so-ig:hover { background: var(--green-1); color: var(--white); }
-.hg-footer-social .so.so-fb:hover { background: var(--gold-1); }
-.hg-footer-social .so.so-x:hover { background: var(--red-orange); color: var(--white); }
+.hg-footer-social .so.so-ig:hover { background: var(--green-1); color: var(--on-deep); }
+.hg-footer-social .so.so-fb:hover { background: var(--gold-1); color: var(--on-accent); }
+.hg-footer-social .so.so-x:hover { background: var(--red-orange); color: var(--on-deep); }
 .hg-footer-bar {
   background: var(--brown-dark);
   border-top: 0.125rem solid var(--ink);
@@ -2682,7 +2771,7 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   text-align: center;
   font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
-  color: var(--cream);
+  color: var(--on-deep);
   letter-spacing: 0.0187rem;
 }
 
@@ -2698,7 +2787,7 @@ html.hg-tour-lock body { overscroll-behavior: none; }
   display: grid;
   place-items: center;
   background: var(--red-orange);
-  color: var(--white);
+  color: var(--on-deep);
   border: 0.1875rem solid var(--ink);
   border-radius: 0;
   box-shadow: 0.25rem 0.25rem 0 var(--ink);
@@ -3000,7 +3089,7 @@ html.hg-tour-lock .hg-to-top {
   top: -0.5rem; right: -0.5rem;
   width: 1.625rem; height: 1.625rem;
   background: var(--green-1);
-  color: var(--white);
+  color: var(--on-deep);
   border: 0.125rem solid var(--ink);
   border-radius: 0;
   display: none;
@@ -3039,7 +3128,7 @@ html.hg-tour-lock .hg-to-top {
 }
 .sim-btn:disabled { opacity: 0.4; box-shadow: none; cursor: default; }
 .sim-btn.next { background: var(--cream); }
-.sim-btn.next.primary { background: var(--red-orange); color: var(--white); min-width: 12rem; }
+.sim-btn.next.primary { background: var(--red-orange); color: var(--on-deep); min-width: 12rem; }
 .sim-progress { display: flex; align-items: center; gap: 0; }
 .sim-progress .dot {
   width: 2rem; height: 2rem;
@@ -3050,9 +3139,9 @@ html.hg-tour-lock .hg-to-top {
   font-family: "Space Mono", monospace; font-weight: 800; font-size: 1rem;
   color: var(--ink);
 }
-.sim-progress .dot:nth-child(1).active, .sim-progress .dot:nth-child(1).done { background: var(--red-orange); color: var(--ink); }
-.sim-progress .dot:nth-child(3).active, .sim-progress .dot:nth-child(3).done { background: var(--gold-1); color: var(--ink); }
-.sim-progress .dot:nth-child(5).active, .sim-progress .dot:nth-child(5).done { background: var(--green-1); color: var(--ink); }
+.sim-progress .dot:nth-child(1).active, .sim-progress .dot:nth-child(1).done { background: var(--red-orange); color: var(--on-accent); }
+.sim-progress .dot:nth-child(3).active, .sim-progress .dot:nth-child(3).done { background: var(--gold-1); color: var(--on-accent); }
+.sim-progress .dot:nth-child(5).active, .sim-progress .dot:nth-child(5).done { background: var(--green-1); color: var(--on-accent); }
 .sim-progress i { width: 3rem; height: 0.125rem; background: var(--ink); display: block; }
 /* Step2 form */
 .sim-form { display: flex; flex-direction: column; gap: 1.925rem; }
@@ -3080,7 +3169,7 @@ html.hg-tour-lock .hg-to-top {
 .sim-icon.green { background: var(--white); color: var(--green-1); }
 .sim-icon.yellow { background: var(--white); color: var(--gold-1); }
 .sim-icon.red { background: var(--white); color: var(--red-orange); }
-.sim-icon.tan { background: var(--white); color: var(--tan-100); }
+.sim-icon.tan { background: var(--white); color: var(--tan-400); }
 .sim-icon .iconify { display: inline-block; vertical-align: middle; }
 .sim-icon .iconify svg { width: 1.5rem; height: 1.5rem; }
 /* Step3 extra - extended per PRD 4.2.2 */

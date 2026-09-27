@@ -211,11 +211,15 @@ function initParallax() {
 function initHoverGlow() {
   document.querySelectorAll('.btn, .persona, .faq-item, .hasil-card').forEach(function (el) {
     if (!el || typeof anime === 'undefined') return;
+    /* warna bayangan diambil dari token --ink supaya ikut tema */
+    var ink = (getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#1a1a1a');
+    var rest = '4px 4px 0 ' + ink;
+    var lift = '7px 9px 0 ' + ink;
     el.addEventListener('mouseenter', function () {
       anime({
         targets: el,
         translateY: -3,
-        boxShadow: ['4px 4px 0 #1a1a1a', '7px 9px 0 #1a1a1a'],
+        boxShadow: [rest, lift],
         duration: 200,
         easing: 'easeOutQuad'
       });
@@ -224,7 +228,7 @@ function initHoverGlow() {
       anime({
         targets: el,
         translateY: 0,
-        boxShadow: ['7px 9px 0 #1a1a1a', '4px 4px 0 #1a1a1a'],
+        boxShadow: [lift, rest],
         duration: 200,
         easing: 'easeOutQuad'
       });

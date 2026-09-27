@@ -12,6 +12,13 @@ function fmtRp(n) {
   return 'Rp ' + Number(Math.round(n)).toLocaleString('id-ID');
 }
 
+/* Warna kanvas & slider ikut token CSS supaya ikut berubah saat tema
+   light/dark diganti (lihat assets/js/theme.js). */
+function token(name, fallback) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+
 function loadFromStorage() {
   const raw = localStorage.getItem('karsa_input');
   if (raw) {
@@ -53,7 +60,7 @@ function syncSliders() {
 
 function styleRange(el) {
   const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
-  el.style.background = `linear-gradient(to right, #D9A441 0%, #D9A441 ${pct}%, #EDE6D3 ${pct}%, #EDE6D3 100%)`;
+  el.style.background = `linear-gradient(to right, #D9A441 0%, #D9A441 ${pct}%, ${token('--cream', '#EDE6D3')} ${pct}%, ${token('--cream', '#EDE6D3')} 100%)`;
 }
 
 function updateHasil() {
@@ -100,7 +107,7 @@ function updateHasil() {
     rekomendasi = `Cashflow kamu minus ${fmtRp(cashflowBaru)}/bln. Tunda investasi gede dulu, atau cari sertifikasi yang ROI-nya lebih tinggi / kenaikan di atas ${sliderVal}%.`;
     warna = '#D94E3C';
   } else if (bepDisplay > 24) {
-    rekomendasi = `Balik modal ${bepDisplay} bulan kelamaan buat investasi ${fmtRp(investasi)}. Extra gaji cuma ${fmtRp(extraPerBln)}/bln. Coba cari investasi yang lebih murah, atau sertifikasi yang lebih worth it.`;
+    rekomendasi = `Balik modal ${bepDisplay} bulan kelamaan buat investasi ${fmtRp(investasi)}. Extra gaji cuma ${fmtRp(extraPerBulan)}/bln. Coba cari investasi yang lebih murah, atau sertifikasi yang lebih worth it.`;
     warna = '#E8B84A';
   } else if (cashflowBaru >= target && bepDisplay <= 12) {
     rekomendasi = `LAYAK! Cashflow baru ${fmtRp(cashflowBaru)}/bln, modal balik dalam ${bepDisplay} bulan. Extra gaji ${fmtRp(extraPerBln)}/bln abis ambil ${sertifikasiDulu ? 'sertifikasi dulu' : 'kerja dulu'}. Strategi ini kelihatan worth it.`;
@@ -159,8 +166,8 @@ function updateGrafik(gaji, biaya, kenaikan, sliderVal) {
           maintainAspectRatio: false,
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { family: 'Space Mono', size: 9 }, color: '#1a1a1a' } },
-            y: { grid: { color: '#E2E8E0' }, ticks: { font: { family: 'Space Mono', size: 9 }, color: '#1a1a1a' } },
+            x: { grid: { display: false }, ticks: { font: { family: 'Space Mono', size: 9 }, color: token('--ink', '#1a1a1a') } },
+            y: { grid: { color: token('--gray-light', '#E2E8E0') }, ticks: { font: { family: 'Space Mono', size: 9 }, color: token('--ink', '#1a1a1a') } },
           },
         },
       });
@@ -186,7 +193,7 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
   const H = rect.height;
   ctx.clearRect(0, 0, W, H);
 
-  ctx.fillStyle = '#F6F9F6';
+  ctx.fillStyle = token('--white', '#F6F9F6');
   ctx.fillRect(0, 0, W, H);
 
   const padL = 44;
@@ -207,7 +214,7 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
   const xAt = (i) => padL + (i / (labels.length - 1)) * plotW;
   const yAt = (v) => padT + (1 - (v - yMin) / (yMax - yMin)) * plotH;
 
-  ctx.strokeStyle = '#E2E8E0';
+  ctx.strokeStyle = token('--gray-light', '#E2E8E0');
   ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = padT + (i / 4) * plotH;
@@ -216,13 +223,13 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
     ctx.lineTo(W - padR, y);
     ctx.stroke();
     const val = yMax - (i / 4) * (yMax - yMin);
-    ctx.fillStyle = '#555';
+    ctx.fillStyle = token('--gray-dark', '#555');
     ctx.font = '10px Space Mono';
     ctx.textAlign = 'right';
     ctx.fillText(val.toFixed(1) + 'jt', padL - 6, y + 3);
   }
 
-  ctx.fillStyle = '#1a1a1a';
+  ctx.fillStyle = token('--ink', '#1a1a1a');
   ctx.font = '700 9px Space Mono';
   ctx.textAlign = 'center';
   labels.forEach((lb, i) => ctx.fillText(lb, xAt(i), H - 8));
@@ -272,13 +279,13 @@ function drawGrafikManual(canvas, labels, dataA, dataB) {
       ctx.beginPath();
       ctx.arc(x, y, 3.5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = '#1a1a1a';
+      ctx.strokeStyle = token('--ink', '#1a1a1a');
       ctx.lineWidth = 1.2;
       ctx.stroke();
     }
   });
 
-  ctx.strokeStyle = '#1a1a1a';
+  ctx.strokeStyle = token('--ink', '#1a1a1a');
   ctx.lineWidth = 1.2;
   ctx.strokeRect(padL, padT, plotW, plotH);
 }
@@ -298,6 +305,7 @@ updateHasil();
   };
   window.addEventListener('resize', redraw);
   window.addEventListener('orientationchange', redraw);
+  document.addEventListener('karsa:themechange', redraw);
 })();
 
 function toggleBurger(btn){const l=btn.nextElementSibling; if(!l) return; const o=l.classList.toggle('open'); btn.setAttribute('aria-expanded',String(o))} window.toggleBurger=toggleBurger

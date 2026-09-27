@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+<script src="assets/js/theme.js"></script>
 <script src="assets/js/scroll-restore.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
@@ -134,12 +135,14 @@
 (function(){
   const s = document.getElementById('sliderGaji');
   const v = document.getElementById('sliderVal');
+  const track = () => (getComputedStyle(document.documentElement).getPropertyValue('--cream').trim() || '#e8ded2');
   if(s && v){
     s.addEventListener('input', () => {
       v.textContent = s.value + '%';
       if(window.updateHasil) updateHasil();
       const pct = (s.value / 30) * 100;
-      s.style.background = `linear-gradient(to right, ${s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f'} 0%, ${s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f'} ${pct}%, #e8ded2 ${pct}%, #e8ded2 100%)`;
+      const c = s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f';
+      s.style.background = `linear-gradient(to right, ${c} 0%, ${c} ${pct}%, ${track()} ${pct}%, ${track()} 100%)`;
     });
     v.textContent = s.value + '%';
   }
