@@ -163,6 +163,24 @@ function pickJob(el) {
   if(arrow) arrow.textContent = '▼';
 }
 window.pickJob = pickJob;
+function pushHistoryRecord() {
+  try {
+    var sess = JSON.parse(localStorage.getItem('karsa_session') || 'null');
+    if (!sess) return;
+    var input = JSON.parse(localStorage.getItem('karsa_input') || '{}');
+    var gaji = input.gaji || 0, biaya = input.biaya || 0, target = input.target || 0;
+    if (!gaji && !biaya) return;
+    var sisa = gaji - biaya;
+    var cf = sisa - target;
+    var status = cf < 0 ? 'RISIKO' : cf < 1000000 ? 'WASPADA' : 'AMAN';
+    var persona = localStorage.getItem('karsa_persona') || 'fresh';
+    var labels = { fresh: 'Si Fresh Graduate', pindah: 'Si Mau Pindah Karier', banding: 'Si Bandingin Tawaran' };
+    var label = labels[persona] || (localStorage.getItem('karsa_persona_label') || 'Persona Custom');
+    var hist = JSON.parse(localStorage.getItem('karsa_history') || '[]');
+    hist.unshift({ id: 'h' + Date.now(), email: sess.email, label: label, custom: persona === 'custom', gaji: gaji, biaya: biaya, target: target, sisa: sisa, cf: cf, status: status, investasi: input.investasi || 0, kenaikan: input.kenaikan || 0, at: Date.now() });
+    localStorage.setItem('karsa_history', JSON.stringify(hist.slice(0, 100)));
+  } catch (e) {}
+}
 function finishSim() {
   saveWajib();
   const jenis = document.getElementById('jenisKerja').value;
@@ -171,10 +189,15 @@ function finishSim() {
   const persona = localStorage.getItem('karsa_persona') || 'fresh';
   const prev = JSON.parse(localStorage.getItem('karsa_input') || '{}');
   localStorage.setItem('karsa_input', JSON.stringify({ ...prev, jenis, tinggal, tanggungan, persona }));
+  pushHistoryRecord();
   window.location.href = 'hasil.html';
 }
 window.finishSim = finishSim;
-const saved = JSON.parse(localStorage.getItem('karsa_input') || '{}');
+let saved = JSON.parse(localStorage.getItem('karsa_input') || '{}');
+try {
+  const pre = JSON.parse(sessionStorage.getItem('karsa_prefill') || 'null');
+  if (pre) { saved = { ...saved, ...pre }; sessionStorage.removeItem('karsa_prefill'); }
+} catch (e) {}
 if (saved.gaji) document.getElementById('gaji').value = 'Rp ' + Number(saved.gaji).toLocaleString('id-ID');
 if (saved.biaya) document.getElementById('biaya').value = 'Rp ' + Number(saved.biaya).toLocaleString('id-ID');
 if (saved.target) document.getElementById('target').value = 'Rp ' + Number(saved.target).toLocaleString('id-ID');
