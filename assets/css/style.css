@@ -1,13 +1,34 @@
-/* ============================================================
-   Karsa - CareerPath Simulator
-   Lokasi: careerpath/assets/css/style.css
-   Struktur:
-   01 Navbar | 02 Hero | 03 Warning | 04 Checker
-   05-12 Panduan + Timeline | 13 Divider | 14 Kenapa
-   15 FAQ | 16 Footer | Tentang | Input Data | Hasil
-   ============================================================ */
-:root {
-  /* PRD 2.2 tokens - single source, unused removed */
+
+:root,
+[data-theme="dark"] {
+  /* ---------- Dipakai di kedua mode ---------- */
+  --red-orange: #D85A43;
+  --red-dark: #A74333;
+  /* Varian CTA teks kecil: red-orange (#D85A43) hanya 3,75:1 dengan teks putih,
+     di bawah ambang WCAG AA 4,5:1 untuk teks <18,66px bold. #BC4433 = 5,1:1.
+     CTA teks besar (cth. .auth-submit 19,2px bold) tetap --red-orange. */
+  --red-cta: #BC4433;
+  --green-1: #4C7D5F;
+  --green-2: #42654F;
+  /* hijau & merah khusus pill nav - nilainya beda dari green-1/red-orange */
+  --green-nav: #52745F;
+  --red-nav: #E85A3C;
+  --gold-1: #E5A93B;
+  --gold-2: #B48533;
+
+  /* ---------- Timing animasi "selamat datang" (kunjungan pertama) ----------
+     Dipakai blok karsa-welcome-pop di bawah. Sengaja dipisah dari warna
+     karena ini bukan token desain, cuma angka posisi waktu.
+     --pop-step WAJIB >= --pop-dur. Kalau lebih kecil, dua elemen akan
+     mulai sebelum yang sebelumnya selesai dan efeknya bukan 1 per 1 lagi.
+     Ubah keduanya kalau ingin mempercepat/melambat. */
+  --pop-dur: 0.5s;
+  --pop-step: 0.5s;
+  /* Attack cepat + overshoot: kurvanya menembus 1 lalu turun, jadi
+     gerakan terasa menghantam dan bukan pelan. */
+  --pop-ease: cubic-bezier(0.15, 1.25, 0.32, 1);
+
+  /* ---------- Mode terang (default) ---------- */
   color-scheme: light;
   --tan-100: #A8875A;
   --tan-200: #BDA583;
@@ -19,37 +40,17 @@
   --brown-dark: #55423C;
   --white: #FDFCFA;
   --gray-light: #C6C5C1;
-  --red-orange: #D85A43;
-  --red-dark: #A74333;
-  /* Varian CTA teks kecil: red-orange (#D85A43) hanya 3,75:1 dengan teks putih,
-     di bawah ambang WCAG AA 4,5:1 untuk teks <18,66px bold. #BC4433 = 5,1:1.
-     CTA teks besar (cth. .auth-submit 19,2px bold) tetap --red-orange. */
-  --red-cta: #BC4433;
+  --gray-dark: #595552;
   --ink: #211D1A;
+  --on-deep: #FDFCFA;
+  --on-accent: #211D1A;
   /* Bayangan brutalism dikunci gelap: di dark mode --ink membalik terang,
      tapi shadow harus tetap gelap agar tidak jadi glow. */
   --shadow-ink: #211D1A;
-  --gray-dark: #595552;
-  --green-1: #4C7D5F;
-  --green-2: #42654F;
-  /* hijau & merah khusus pill nav - nilainya beda dari green-1/red-orange */
-  --green-nav: #52745F;
-  --red-nav: #E85A3C;
-  --gold-1: #E5A93B;
-  --gold-2: #B48533;
-  --on-deep: #FDFCFA;
-  --on-accent: #211D1A;
   --tour-scrim: rgba(33, 29, 26, 0.72);
   --tour-ring: rgba(216, 90, 67, 0.24);
   --theme-color: #FDFCFA;
 }
-/* ============================================================
-   DARK MODE - nilai token dibalik, nama token tetap sama.
-   Dipasang lewat data-theme="dark" di <html> oleh assets/js/theme.js
-   (default ikut prefers-color-scheme, pilihan user disimpan di
-   localStorage "karsa_theme"). Warna brand (merah/gold/hijau) sengaja
-   tidak diubah supaya kontras teks di atasnya tetap sama di dua mode.
-   ============================================================ */
 [data-theme="dark"] {
   color-scheme: dark;
   --white: #1C1917;
@@ -289,6 +290,16 @@ select {
   border-top: 0.1562rem solid var(--ink);
   border-bottom: 0.1562rem solid var(--ink);
 }
+
+/* ============================================================
+   GAYA YANG SUDAH TIDAK DIPAKAI LAGI
+   Bagian-bagian ini tidak muncul di halaman mana pun sekarang:
+   banner lama, timeline (.tl-*), alasan (.kenapa*) dan FAQ versi
+   awal tanpa awalan hg-, kartu tentang (.tentang-card), isian
+   formulir (.input-*), dan kartu hasil (.hasil-*).
+
+   Masih disimpan di sini sebagai cadangan kalau mau dipakai ulang.
+   ============================================================ */
 
 /* ===== Parallax dekor (px-scene) - dipakai di semua halaman ===== */
 .px-scene {
@@ -1423,7 +1434,7 @@ body.tentang-page {
   background: var(--white);
 }
 
-/* 00 Navbar - tombol tema disuntik theme.js ke dalam .hg-nav-inner */
+/* 00 Navbar - tombol tema disuntik karsa.js bagian 02 ke dalam .hg-nav-inner */
 .hg-theme-toggle {
   flex-shrink: 0;
   width: 2.75rem;
@@ -1557,7 +1568,7 @@ img.logo-dark { display: none; }
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  /* tombol tema (disuntik theme.js) menyusul .hg-nav-links sebagai anak
+  /* tombol tema (disuntik karsa.js bagian 02) menyusul .hg-nav-links sebagai anak
      .hg-nav-inner, jadi margin ini yang menjaga grup link tetap di kanan */
   margin-left: auto;
 }
@@ -1831,6 +1842,85 @@ img.logo-dark { display: none; }
   .deco-pie { left: 17%; top: 30%; width: 4rem; height: 4rem; }
   .deco-diamond { width: 3.25rem; height: 3.25rem; right: 17%; top: 30%; }
   .deco-tris { right: 8%; top: 40%; width: 4.375rem; height: 4.375rem; }
+}
+
+/* ============================================================
+   SELAMAT DATANG (kunjungan pertama saja)
+   ------------------------------------------------------------
+   Dipasang oleh karsa.js bagian 03 yang menandai <html> dengan
+   kelas "karsa-first" HANYA pada kunjungan pertama per browser
+   (localStorage "karsa_welcome_v1"). Kunjungan kedua dan seterusnya
+   tidak mendapat kelas itu, jadi seluruh block di bawah mati total
+   dan halaman tampil seperti biasa.
+
+   Kenapa tidak pakai AOS untuk ini?
+   .hg-hero (fade-up) dan .hg-hero-inner (zoom-in) sudah dianimasikan
+   AOS. Kalau kita tambahkan animasi lain di elemen yang sama, dua
+   animasi bertumpuk dan hasilnya berantakan. Jadi pada kunjungan
+   pertama, AOS dinetralkan khusus untuk hero (lihat blok
+   "karsa-first" di bawah) dan urutan "pop" ini yang menggantikannya.
+
+   Sifat animasi ini:
+   - hanya opacity + transform, TIDAK menyentuh box-shadow/warna,
+     sehingga state akhir dijamin sama persis dengan state natural.
+     Kalau box-shadow ikut dianimasikan, elemen bisa tertinggal dengan
+     bayangan yang salah setelah animasi selesai.
+   - .hg-hero-deco sengaja TIDAK ikut: elemen .deco punya animasi
+     decoSpin tak berujung yang juga memakai transform, dan dua
+     animasi pada properti yang sama akan saling menimpa.
+   - SATU PER SATU, bukan tumpang tindih. Jeda antar elemen diambil dari
+     --pop-step yang nilainya sama dengan --pop-dur, jadi satu elemen
+     selesai muncul dulu baru yang berikutnya mulai. Total 2.4s untuk
+     4 elemen. Fill "both" dipakai, jadi elemen yang gilirannya belum
+     tiba sudah tersembunyi (opacity 0) dan tidak berkedip di tempat.
+   - Angka waktu tidak ditulis langsung di sini, semuanya lewat
+     --pop-dur / --pop-step / --pop-ease di :root, supaya tidak bisa
+     tidak sinkron dan tidak perlu diubah di 4 tempat.
+   - Logo dapat keyframe sendiri (karsa-logo-pop) karena ukurannya besar
+     dan jadi titik fokus pertama, jadi pantulannya boleh lebih tinggi
+     dan kelihatan lebih jelas dibanding elemen teks kecil.
+   - Karakter animasi: KERAS. Elemen naik cepat lalu overshoot melewati
+     ukuran akhir (scale di atas 1), baru turun balik dan diam. Itulah
+     yang bikin terasa menghantam, bukan sekadar nongkat. Sisa pantulan
+     sengaja dibuat kecil supaya tidak goyang-goyang.
+   - Pop di logo dibuat lebih keras dari elemen lain karena ukurannya
+     besar: mulai dari 0.88 dan peak 1.08. Kalau dipaksakan sama,
+     elemen yang kecil jadi tidak terlihat sama sekali.
+   ============================================================ */
+@keyframes karsa-welcome-pop {
+  0%   { opacity: 0; transform: translateY(0.875rem) scale(0.84); }
+  58%  { opacity: 1; transform: translateY(0) scale(1.045); }
+  80%  { transform: scale(0.985); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Logo hero: mulai lebih kecil dan peak lebih tinggi (1.08) karena
+   ukurannya besar, jadi pantulannya kelihatan lebih jelas. */
+@keyframes karsa-logo-pop {
+  0%   { opacity: 0; transform: translateY(0.6rem) scale(0.88); }
+  58%  { opacity: 1; transform: translateY(0) scale(1.08); }
+  80%  { transform: scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+html.karsa-first .hg-hero[data-aos],
+html.karsa-first .hg-hero-inner[data-aos] {
+  /* Netralkan AOS hanya selama kunjungan pertama. !important dipakai
+     karena style AOS (.aos-animate) lebih spesifik. */
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+/* Dua gambar logo (terang + gelap) berbagi satu slot waktu: di mode
+   terang yang .logo-light yang tampil, di mode gelap .logo-dark, jadi
+   keduanya memang muncul bersamaan. */
+html.karsa-first .hg-hero-logo-img { animation: karsa-logo-pop     var(--pop-dur)  var(--pop-ease) calc(var(--pop-step) * 0) both; }
+html.karsa-first .hg-hero-tag      { animation: karsa-welcome-pop var(--pop-dur)  var(--pop-ease) calc(var(--pop-step) * 1) both; }
+html.karsa-first .hg-hero-btns     { animation: karsa-welcome-pop var(--pop-dur)  var(--pop-ease) calc(var(--pop-step) * 2) both; }
+html.karsa-first .hg-hero-note     { animation: karsa-welcome-pop var(--pop-dur)  var(--pop-ease) calc(var(--pop-step) * 3) both; }
+@media (prefers-reduced-motion: reduce) {
+  html.karsa-first .hg-hero-logo-img,
+  html.karsa-first .hg-hero-tag,
+  html.karsa-first .hg-hero-btns,
+  html.karsa-first .hg-hero-note { animation: none !important; }
 }
 @media (max-width: 37.5rem) {
   .hg-hero-inner { padding: clamp(2rem, 6vh, 3.15rem) 1.575rem clamp(1.25rem, 4.5vh, 4.2rem); }
@@ -3972,6 +4062,10 @@ html.hg-tour-lock .hg-to-top {
   z-index: 200;
 }
 .db-modal[hidden] { display: none; }
+/* Animasi buka/tutup: kelas .is-in / .is-out dipasang oleh openModal()/
+   closeModal() di karsa.js bagian 15. */
+.db-modal.is-in { animation: db-modal-backdrop-in 0.18s ease-out both; }
+.db-modal.is-out { animation: db-modal-backdrop-out 0.15s ease-in both; pointer-events: none; }
 .db-modal-card {
   width: min(32rem, 100%);
   max-height: 90vh;
@@ -3980,6 +4074,40 @@ html.hg-tour-lock .hg-to-top {
   border: 0.125rem solid var(--ink);
   box-shadow: 0.375rem 0.375rem 0 var(--shadow-ink);
   padding: 1.5rem;
+}
+.db-modal.is-in .db-modal-card {
+  animation:
+    db-modal-card-in 0.26s cubic-bezier(0.34, 1.42, 0.64, 1) both,
+    db-modal-shadow-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+.db-modal.is-out .db-modal-card {
+  animation:
+    db-modal-card-out 0.15s ease-in both,
+    db-modal-shadow-out 0.15s ease-in both;
+}
+@keyframes db-modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes db-modal-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes db-modal-card-in {
+  from { opacity: 0; transform: translateY(0.5rem) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes db-modal-card-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(0.25rem) scale(0.995); }
+}
+@keyframes db-modal-shadow-in {
+  from { box-shadow: 0.75rem 0.75rem 0 var(--shadow-ink); }
+  to { box-shadow: 0.375rem 0.375rem 0 var(--shadow-ink); }
+}
+@keyframes db-modal-shadow-out {
+  from { box-shadow: 0.375rem 0.375rem 0 var(--shadow-ink); }
+  to { box-shadow: 0.125rem 0.125rem 0 var(--shadow-ink); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .db-modal.is-in,
+  .db-modal.is-out,
+  .db-modal.is-in .db-modal-card,
+  .db-modal.is-out .db-modal-card { animation: none; }
 }
 .db-modal-card h3 {
   font-family: "Archivo Narrow", sans-serif;
@@ -4043,7 +4171,7 @@ html.hg-tour-lock .hg-to-top {
   outline-offset: 0.1875rem;
 }
 
-/* ===== Metodologi - kartu rumus (no.1) ===== */
+/* ===== Metodologi - grid kartu rumus (no.1): 3 kolom statis ===== */
 .meto-lede {
   font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
@@ -4252,7 +4380,7 @@ html.hg-tour-lock .hg-to-top {
 .meto-figures { display: grid; gap: 1.25rem; margin: 0 0 2rem; }
 .meto-figures.fig-3 { grid-template-columns: repeat(3, 1fr); }
 .meto-figures.fig-2 { grid-template-columns: repeat(2, 1fr); max-width: 46rem; }
-.meto-fig { background: var(--white); border-radius: 0; overflow: hidden; margin: 0; width: ; }
+.meto-fig { background: var(--white); border-radius: 0; overflow: hidden; margin: 0; width: 100%; }
 .meto-fig img { width: 100%; height: auto; display: block; border-bottom: 0.125rem solid var(--ink); background: var(--white); }
 .meto-fig figcaption {
   padding: 0.9rem 1rem;
@@ -4371,7 +4499,8 @@ section.meto-band:last-of-type { border-bottom: none; }
   .hg-cta-wrap { padding: 2.2rem 1rem 3rem; }
 }
 
-/* ===== Metodologi - accordion kartu rumus (T4) ===== */
+/* ===== Metodologi - accordion kartu rumus (T4): expandable, melengkap
+       blok "grid kartu rumus" di atas (beda fitur, sama .meto-card) ===== */
 .meto-card-head {
   width: 100%;
   display: flex;
@@ -4428,7 +4557,8 @@ section.meto-band:last-of-type { border-bottom: none; }
   color: var(--gray-dark);
 }
 
-/* ===== Metodologi - alur cara kerja (no.2) ===== */
+/* ===== Metodologi - alur proses: data masuk, dihitung, diproyeksi,
+   lalu keluar rekomendasi ===== */
 .meto-flow {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -1,4 +1,44 @@
 <!DOCTYPE html>
+<!--
+  Karsa - signup.html
+  Form pendaftaran. Pasangan dari login.html; memakai komponen .auth-* yang
+  sama. Akun disimpan di localStorage per-browser (bukan server).
+
+  STRUKTUR
+    head ............ meta, font, style.css, karsa.js, iconify
+    Navbar ......... .hg-navbar
+    #konten ......... header .auth-hero (target skip-link)
+    main ........... <form id="signupForm">
+    footer ......... .hg-footer
+    script ......... aos.js
+
+  SKRIP
+    Seluruh interaksi situs ada di assets/js/karsa.js, dimuat di <head>
+    supaya tema dan posisi scroll sudah beres sebelum halaman digambar.
+    Bagian yang dipakai halaman ini: 01 scroll, 02 tema, 03 kunjungan
+    pertama, 04 ikon, 05 auth, 06 animasi, 07 tombol atas, 10 navbar.
+    Modul yang tidak relevan dilewati sendiri lewat penjaga di dalamnya.
+
+  URUTAN FIELD (penting - karsa.js bagian 05 membacanya sesuai urutan ini)
+    1 #suEmail ..... Gmail
+    2 #suName ...... Username
+    3 #suPassword .. Password, min 8 karakter (lebih ketat dari login)
+    4 #suConfirm .... Konfirmasi, harus sama dengan #suPassword
+
+  CATATAN FORM
+    - novalidate: pesan error sendiri lewat #signupErr (role="alert"),
+      bukan bubble browser.
+    - Dua tombol "Lihat" (#peekBtn1 dan #peekBtn2) - satu per field
+      password. karsa.js bagian 05 mengikat keduanya; jangan samarkan id-nya.
+    - Perbandingan kedua password dilakukan di karsa.js bagian 05, bukan lewat
+      atribut pattern di HTML - satu atribut hanya bisa_validate satu
+      input, sedangkan di sini ada dua field yang harus dibandingkan.
+    - Tidak ada checkbox syarat/privasi di form ini.
+
+  PERBEDAAN vs login.html
+    Field lebih banyak (lihat daftar di atas), tidak ada #forgotLink.
+    Komponen .auth-* yang dipakai keduanya harus tetap sama.
+-->
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -11,14 +51,16 @@
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body auth-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
-<!-- Navbar (pola login.html, disinkron via auth.js setelah login) -->
+<!-- Navbar (pola login.html, disinkron via karsa.js bagian 05 setelah login) -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -55,6 +97,9 @@
         placeholder="Pilih username" required>
     </label>
 
+    <!-- Dua field password, masing-masing punya tombol "Lihat" sendiri
+         (#peekBtn1, #peekBtn2). Keduanya di-bind di karsa.js bagian 05. min 8 karakter
+         di sini, sedangkan login.html cukup min 6 (akunya sudah dibuat). -->
     <label class="auth-field" for="suPassword">
       <span>Password</span>
       <span class="auth-pass-wrap">
@@ -65,8 +110,10 @@
     </label>
     <p class="auth-hint">Minimal 8 karakter.</p>
 
+    <!-- Konfirmasi: dibandingkan dengan #suPassword di karsa.js bagian 05. -->
     <label class="auth-field" for="suConfirm">
       <span>Konfirmasi Password</span>
+
       <span class="auth-pass-wrap">
         <input type="password" id="suConfirm" name="confirm" autocomplete="new-password"
           placeholder="Ulangi password" required minlength="8">
@@ -74,6 +121,8 @@
       </span>
     </label>
 
+    <!-- Satu-satunya tempat error pendaftaran ditampilkan; hidden di awal,
+         karsa.js bagian 05 yang menampilkannya (role="alert" supaya diumumkan). -->
     <p class="auth-err" id="signupErr" role="alert" hidden></p>
 
     <button type="submit" class="auth-submit">Buat Akun</button>
@@ -99,11 +148,7 @@
   <div class="hg-footer-bar">Copyright &copy; 2026 Karsa. All Right Reserved.</div>
 </footer>
 
+<!-- Pustaka animasi AOS untuk halaman daftar. -->
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/animasi.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

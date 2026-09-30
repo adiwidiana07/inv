@@ -5,17 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Simulasi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
+<!-- Seluruh gaya situs (semua halaman) dalam satu file. Token warna & tema
+     terang/gelap didefinisikan di sini, bukan per halaman. -->
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- AOS (Animate On Scroll) untuk elemen berdata data-aos. -->
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body sim-page">
+<!-- Skip-link diarahkan ke #step1, bukan ke <main> - tidak ada
+     <main> di halaman ini, formnya adalah 3 section .sim-step. -->
 <a class="hg-skip" href="#step1">Lewati ke konten utama</a>
+<!-- Navbar: sama seperti halaman lain. Catatan: toggleBurger() didefinisikan
+     dua kali di karsa.js (bagian 10 dan bagian 13) - versi bagian 13 yang
+     menang karena dimuat belakangan. Jangan tambah definisi ketiga. -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -29,7 +40,10 @@
   </div>
 </nav>
 
-<!-- Step 1: Persona -->
+<!-- ===== Step 1: Persona =====
+     Satu-satunya step yang punya kelas .active saat halaman pertama dibuka.
+     Klik .persona-card memanggil applyPersona() di karsa.js bagian 13, yang mengisi
+     seluruh field step 2 & 3 sekaligus (lihat personaPreset di sana). -->
 <section class="sim-step active" id="step1" tabindex="-1">
   <div class="sim-header">
     <h1>PILIH PERSONA MU</h1>
@@ -66,7 +80,10 @@
   </div>
 </section>
 
-<!-- Step 2: Data Wajib -->
+<!-- ===== Step 2: Data Wajib =====
+     Step yang pertama benar-benar dipakai simulator: gaji, biaya hidup,
+     target tabungan. Field uang disimpan sebagai teks berformat Rupiah
+     (parseRupiah() di karsa.js bagian 13 yang mengubahnya jadi angka). -->
 <section class="sim-step" id="step2">
   <div class="sim-header">
     <h2 class="sim-h2">INPUT DATA WAJIB</h2>
@@ -116,7 +133,10 @@
   </div>
 </section>
 
-<!-- Step 3: Data Tambahan -->
+<!-- ===== Step 3: Data Tambahan =====
+     Masukan pelengkap: investasi/sertifikasi, cicilan, dana darurat, kota,
+     usia, jenis kerja, dan status tinggal. Tidak semuanya masuk rumus inti -
+     yang sudah dipakai simulator disebut di metodologi.html bagian 6. -->
 <section class="sim-step" id="step3">
   <div class="sim-header">
     <h2 class="sim-h2">INPUT DATA TAMBAHAN</h2>
@@ -193,7 +213,12 @@
 
       <div class="sim-dropdown-wrap">
         <span class="sim-label" id="labelJob">Jenis Pekerjaan</span>
+        <!-- Dropdown kustom (bukan <select>): tombol .sim-dropdown membuka
+             #jobList, lalu pickJob() menulis nilainya ke <input type="hidden"
+             id="jenisKerja"> dan menandai .active. Fungsi keduanya ada di
+             karsa.js bagian 13 dan harus di-export ke window (dipakai inline onclick). -->
         <button class="sim-dropdown" id="dropdownJob" aria-labelledby="labelJob dropdownJob" onclick="toggleJob()">Pekerja Tetap <span class="arrow">▼</span></button>
+
         <div class="sim-dropdown-list" id="jobList">
           <div data-value="tetap" onclick="pickJob(this)" class="active">Pekerja Tetap</div>
           <div data-value="kontrak" onclick="pickJob(this)">Kontrak</div>
@@ -207,11 +232,18 @@
   </div>
   <div class="sim-nav">
     <button class="sim-btn prev" id="back2"><span class="arr">◀</span> Sebelumnya</button>
+    <!-- .sim-progress: 3 salinan (satu per step). Menandai langkah
+         selesai lewat .done, langkah aktif lewat .active. Ditulis ulang
+         setiap showStep() - kalau tambah step, ubah juga 3 salinan ini. -->
     <div class="sim-progress"><span class="sim-step-unit"><span class="dot done">1</span><span class="dot-label">Persona</span></span><i class="done" aria-hidden="true"></i><span class="sim-step-unit"><span class="dot done">2</span><span class="dot-label">Data Wajib</span></span><i class="done" aria-hidden="true"></i><span class="sim-step-unit"><span class="dot active">3</span><span class="dot-label">Data Tambahan</span></span></div>
+    <!-- finishSim() memvalidasi form, menulis sessionStorage "karsa_input"
+         lalu navigasi ke hasil.html. Ada juga pushHistoryRecord() yang
+         menyimpan riwayat ke localStorage untuk dashboard.html. -->
     <button class="sim-btn next primary" id="finishBtn" onclick="finishSim()">Lihat Hasil <span class="arr">▶</span></button>
   </div>
 </section>
 
+<!-- Footer: pola hg-footer sama di semua halaman. -->
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
@@ -228,6 +260,14 @@
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
 </footer>
 
+<!-- ===== Guided tour (overlay spotlight) =====
+     Shell-nya statis di HTML; konten langkahnya dibaca dari JSON di bawah.
+     Semua hook ditandai data-tour-* supaya karsa.js bagian 12 tidak perlu querySelector
+     berdasarkan urutan elemen:
+       root/shield/spotlight/cursor .... lapisan overlay & kursor
+       card + title/text/kicker/progress  isi dialog
+       skip/prev/next ................... tombol aksi
+     Awalnya hidden - karsa.js bagian 12 yang menampilkannya. -->
 <div class="hg-tour" data-tour-root hidden>
   <div class="hg-tour-shield" data-tour-shield></div>
   <div class="hg-tour-spotlight" data-tour-spotlight aria-hidden="true">
@@ -251,8 +291,20 @@
     </div>
   </div>
 </div>
-
+<!-- Konfigurasi tour dalam JSON (bukan JS) supaya isinya tetap data, bukan
+     kode yang dieksekusi browser.
+       key ......... id localStorage penanda "sudah pernah lihat" (Naikkan
+                    versinya kalau isi/urutan langkahnya berubah, supaya user
+                    lama tidak melihat tour versi lama).
+       kicker ..... label kecil di kartu
+       steps[].target ..... selector elemen yang disorot
+       steps[].revealStep . karsa.js bagian 12 tidak membuka step-nya sendiri: dia
+                    memancarkan event "karsa:tour-reveal" dengan angka ini,
+                    dan karsa.js bagian 13 yang menangkapnya lalu showStep().
+                    Nilai = nomor step (1-3). Waktu tour selesai,
+                    karsa.js bagian 13 mengembalikan user ke step asal. -->
 <script type="application/json" data-tour-config>
+
 {
   "key": "karsa_sim_tour_v1",
   "kicker": "Cara Pakai Simulasi",
@@ -264,11 +316,8 @@
   ]
 }
 </script>
-<script src="assets/js/tour.js"></script>
+<!-- AOS ikut dimuat agar seragam dengan halaman lain. Halaman ini
+     tidak punya elemen data-aos, jadi tidak ada efek visual dari AOS. -->
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/simulasi.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

@@ -1,19 +1,63 @@
 <!DOCTYPE html>
+<!--
+  Karsa - metodologi.html
+  Penjelasan metode: landasan teori, cara kerja, contoh kasus, rumus, batas
+  model, glosarium. Halaman ini statis - semua isi di dalam HTML, tidak ada
+  data yang diambil dari server.
+
+  STRUKTUR
+    head ............ meta, font, style.css, karsa.js
+    Navbar ......... .hg-navbar (sama di 8 halaman; toggleBurger -> karsa.js bagian 10)
+    #konten ........ judul + TOC anchor (.meto-toc)
+    main ........... 8 section .meto-band (7 bernomor + 1 CTA penutup)
+    footer ......... .hg-footer
+    script ......... iconify
+
+  SKRIP
+    Seluruh interaksi situs ada di assets/js/karsa.js, dimuat di <head>.
+    Bagian yang dipakai halaman ini: 01 scroll, 02 tema, 03 kunjungan
+    pertama, 04 ikon, 05 auth, 06 animasi, 07 tombol atas, 08 akordeon
+    rumus, 10 navbar. Bagian 08 yang mengisi akordeon .meto-rumus.
+
+  BAND (urutan di main)
+    1 band-cream ......... Landasan Teori
+    2 band-white ......... Sumber Data Statis
+    3 band-white ......... Cara Kerja Karsa
+    4 band-white ......... Contoh Kasus
+    5 band-white ......... Rumus (accordion .meto-rumus, expandable)
+    6 band-white ......... Batas & Asumsi Model
+    7 band-cream ......... Glosarium
+    8 band-tan300 ........ Catatan penting + CTA
+
+  CATATAN
+    - id="konten" ada di .tentang-header, bukan di <main>. Skip-link
+      (.hg-skip) menunjuk ke sana, dan tiap <h2> punya id sendiri untuk
+      anchor TOC - jangan diubah tanpa adjusting .meto-toc.
+    - class body "tentang-page" dipakai bersama dengan tentang.html.
+    - Halaman ini me-load aos.css tapi tidak punya data-aos dan tidak
+      me-load aos.js, jadi AOS tidak berefek di sini.
+-->
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Metodologi</title>
+<!-- Font ringkas: halaman ini tidak butuh Archivo Narrow & Poppins. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 </head>
 <body class="tentang-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
+<!-- Navbar identik di semua halaman; toggleBurger() ada di karsa.js bagian 10.
+     Link "Metodologi" memakai data-nav="tentang" (nilai yang sama dengan
+     halaman tentang.html) supaya karsa.js bagian 05 menandainya aktif di dua file ini. -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -27,6 +71,8 @@
   </div>
 </nav>
 
+<!-- Target skip-link; tabindex="-1" supaya bisa difokuskan tanpa masuk
+     urutan tab. .meto-toc memakai anchor ke id setiap <h2> di bawah. -->
 <div class="tentang-header" id="konten" tabindex="-1">
   <h1>METODOLOGI</h1>
   <nav class="meto-toc" aria-label="Daftar isi Metodologi">
@@ -40,6 +86,8 @@
 </div>
 
 <main class="tentang-main metodologi-main">
+<!-- ===== 1 Landasan Teori ===== -->
+<!-- Tiga teori acuan. Teori yang sama diringkas di tentang.html. -->
 <section class="meto-band band-cream"><div class="meto-band-inner">
   <p class="tentang-intro">Karsa dibikin buat bantu kamu lihat akibatnya sendiri kalau ambil keputusan karier. Anggap ini catatan buat mikirin, bukan perintah.</p>
 
@@ -59,6 +107,9 @@
     </figure>
   </div>
 
+  <!-- ===== 2 Sumber Data Statis ===== -->
+  <!-- Rujukan angka tetap. Nilai yang dipakai simulator ada di
+       assets/js/karsa.js bagian 14; yang di sini dokumentasi, bukan input hitungan. -->
   <h2>2. Sumber Data Statis</h2>
   <div class="meto-figures fig-2">
     <figure class="meto-fig static-box">
@@ -71,6 +122,11 @@
     </figure>
   </div>
 </div></section>
+<!-- ===== 3 Cara Kerja Karsa ===== -->
+<!-- Alur 4 langkah. .meto-flow di-scroll horizontal di layar kecil
+     (lihat blok responsive di style.css), bukan dipecah jadi kolom.
+     Ikon step pakai data-kicon (atribut kustom, bagian 04 di karsa.js),
+     bukan data-icon milik iconify - jangan ditukar. -->
 <section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
 
   <h2 id="cara-kerja">3. Cara Kerja Karsa</h2>
@@ -103,6 +159,14 @@
   </div>
   </div>
 </section>
+<!-- ===== 4 Contoh Kasus (Dinda) ===== -->
+<!-- Walkthrough satu kasus dari form sampai rekomendasi. Konsisten dengan
+     section 5 Rumus di bawah dan preview di index.html - angkanya sama.
+
+     PENTING: angka di sini BUKAN preset persona di karsa.js bagian 13.
+     Dinda = gaji 5jt / biaya 3jt / target 1jt / investasi 2jt / kenaikan 8%.
+     Preset "fresh" di karsa.js bagian 13 = 4,5jt / 2,8jt / 1,5jt / kenaikan 15%.
+    Jadi contoh ini sengaja terpisah dari preset - jangan disamakan. -->
 <section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
 
   <h2 id="contoh-kasus">4. Contoh Kasus: Dinda</h2>
@@ -131,6 +195,18 @@
   </div>
   </div>
 </section>
+<!-- ===== 5 Rumus yang Dipakai ===== -->
+<!-- Accordion. .meto-card = grid statis (no.1) + versi expandable (no.2) di
+     style.css - dua fitur berbeda yang sama-sama memakai .meto-card.
+
+     Struktur tiap kartu:
+       .meto-card-head  <button aria-expanded> - trigger, diikat ke id panel
+       .meto-card-always ... rumus + hitungan Dinda, selalu terlihat
+       .meto-card-detail ... penjelasan, disembunyikan saat tertutup
+
+     Aturan wajib: aria-expanded di head HARUS ikut class .open di .meto-card,
+     dan aria-controls harus sama dengan id panel. Logikanya di
+     assets/js/karsa.js bagian 08 - bukan <details> native. -->
 <section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
 
   <h2 id="rumus">5. Rumus yang Dipakai</h2>
@@ -217,6 +293,9 @@
   </div>
   </div>
 </section>
+<!-- ===== 6 Batas & Asumsi Model ===== -->
+<!-- Disclaimer metode: hal yang TIDAK dimodelkan. Bagian dari kejujuran
+     metodologi - jangan disederhanakan atau dihapus. -->
 <section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
 
   <h2 id="batas-model">6. Batas &amp; Asumsi Model</h2>
@@ -230,6 +309,9 @@
     <li class="static-box"><b>Bukan nasihat profesional.</b> Ini alat pertimbangan finansial awal, bukan pengganti konsultan karier atau perencana keuangan.</li>
   </ul>
 </div></section>
+<!-- ===== 7 Glosarium ===== -->
+<!-- Istilah yang muncul di dashboard hasil. <dl> dengan pembungkus .static-box
+     per pasangan dt/dd supaya tiap baris bisa diberi gaya kartu. -->
 <section class="meto-band band-cream"><div class="meto-band-inner">
   <h2 id="glosarium">7. Glosarium</h2>
   <p class="meto-lede">Istilah yang muncul di dashboard, dijelaskan satu kalimat.</p>
@@ -242,6 +324,9 @@
     <div class="static-box"><dt>ROI</dt><dd>Extra yang terkumpul dikurangi investasi; positif berarti sudah untung.</dd></div>
   </dl>
 </div></section>
+<!-- ===== 8 Catatan Penting + CTA ===== -->
+<!-- Penutup: disclaimer lalu CTA ke simulasi.html. Band terakhir, tidak
+     punya <h2> bernomor (dipakai .meto-cta, bukan .meto-band-inner biasa). -->
 <section class="meto-band band-tan300"><div class="meto-band-inner">
   <div>
     <p style="margin-bottom: 1rem;"> <b>Catatan Penting: </b> Alat ini buat nambah pertimbangan, bukan buat nentuin. Semua keputusan karier dan finansial tetap di tangan kamu, 100%.</p>
@@ -255,6 +340,7 @@
 </div></section>
 </main>
 
+<!-- Footer: pola hg-footer sama di semua halaman. -->
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
@@ -270,11 +356,7 @@
   </div>
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
 </footer>
+<!-- Ikon dari Iconify: <span class="iconify"> diganti jadi <svg>. -->
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/metodologi.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

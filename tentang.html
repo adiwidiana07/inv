@@ -1,22 +1,55 @@
 <!DOCTYPE html>
+<!--
+  Karsa - tentang.html
+  Halaman statis "Tentang Kami": landasan teori, sumber data, dan disclaimer.
+
+  STRUKTUR
+    head ............ meta, font, style.css, karsa.js
+    Navbar ......... .hg-navbar (pola sama di 8 halaman; toggleBurger -> karsa.js bagian 10)
+    #konten ........ target skip-link
+    main ........... .tentang-main (landasan teori, sumber data, catatan)
+    footer ......... .hg-footer
+    script ......... iconify
+
+  SKRIP
+    Seluruh interaksi situs ada di assets/js/karsa.js, dimuat di <head>.
+    Bagian yang dipakai halaman ini: 01 scroll, 02 tema, 03 kunjungan
+    pertama, 04 ikon, 05 auth, 06 animasi, 07 tombol atas, 10 navbar.
+
+  CATATAN
+    - Halaman ini me-load aos.css tapi tidak punya elemen data-aos dan tidak
+      me-load aos.js, jadi AOS tidak berefek di sini. Boleh dihapus nanti.
+    - Tidak ada <section class="meto-*"> di halaman ini; gaya halaman datang
+      dari body.tentang-page + .tentang-* di assets/css/style.css.
+    - Body memakai class "tentang-page" (bukan "hg-body" seperti halaman lain).
+      Jangan diubah tanpa cek CSS-nya: .tentang-page punya background sendiri.
+-->
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Tentang Kami</title>
+<!-- Font halaman ini lebih ringan dari index.html: tanpa Archivo Narrow & Poppins.
+     Semua style tetap dari style.css yang sama (token :root). -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
+<!-- Satu stylesheet untuk seluruh situs; token warna ada di :root -->
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 </head>
 <body class="tentang-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
+<!-- Navbar: markup-nya identik di semua halaman. Ubah sekali di semua file
+     atau lewat karsa.js - jangan didesain ulang per halaman.
+     toggleBurger() ada di bagian 10 karsa.js. -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/hero-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
@@ -27,6 +60,8 @@
   </div>
 </nav>
 
+<!-- Target skip-link. tabindex="-1" supaya bisa difokuskan programatis
+     (dikirim oleh .hg-skip) tanpa masuk urutan tab. -->
 <div class="tentang-header" id="konten" tabindex="-1">
   <h1>TENTANG KAMI</h1>
 </div>
@@ -34,6 +69,8 @@
 <main class="tentang-main">
   <p class="tentang-intro">Karsa dibikin buat bantu kamu lihat akibatnya sendiri kalau ambil keputusan karier. Anggap ini catatan buat mikirin, bukan perintah.</p>
 
+  <!-- 1 Landasan teori - daftar acuan yang dipakai simulator.
+       Teorinya di fleshed out di metodologi.html. -->
   <h2>1. Landasan Teori</h2>
   <ul>
     <li>- 50/30/20 Rule (Elizabeth Warren)</li>
@@ -41,16 +78,22 @@
     <li>- Human Capital Theory (Gary Becker, 1964)</li>
   </ul>
 
+  <!-- 2 Sumber angka tetap. Semua koefisien ada di bagian 14 karsa.js;
+       tidak ada angka yang dikirim dari server. -->
   <h2>2. Sumber Data Statis</h2>
   <ul>
     <li>- BPS &amp; Susenas (estimasi biaya hidup)</li>
     <li>- Standar industri (estimasi ROI sertifikasi)</li>
   </ul>
 
+  <!-- 3 Disclaimer - wajib ada, jangan dihapus: persyaratan kesetaraan
+       layanan menyatakan Karsa hanya alat bantu, bukan penasihat. -->
   <h2>Catatan Penting</h2>
   <p>Alat ini cuma buat nambah pertimbangan, bukan buat nentuin. Semua keputusan karier dan finansial tetap di tangan kamu, 100%.</p>
 </main>
 
+<!-- Footer: pola hg-footer sama di semua halaman. Ikon social pakai
+     iconify (data-icon) - dimuat di akhir body. -->
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
@@ -66,10 +109,8 @@
   </div>
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
 </footer>
+
+<!-- Ikon dari Iconify: <span class="iconify"> diganti jadi <svg>. -->
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

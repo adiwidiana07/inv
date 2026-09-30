@@ -4,17 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Hasil Simulasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
+<!-- Seluruh gaya situs (semua halaman) dalam satu file. Token warna & tema
+     terang/gelap didefinisikan di sini, bukan per halaman. -->
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- AOS (Animate On Scroll) untuk elemen berdata data-aos. -->
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hasil-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
+<!-- Navbar identik dengan halaman lain. -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -28,7 +36,8 @@
   </div>
 </nav>
 
-<!-- Simulator What If -->
+<!-- Simulator What-If: slider 0-30% (maks dibatasi sesuai metodologi).
+     Section ini sekaligus jadi target skip-link #konten. -->
 <section class="meto-band band-cream" id="konten" tabindex="-1">
   <div class="meto-band-inner">
   <h1 class="dashboard-title">HASIL KALKULASI</h1>
@@ -54,7 +63,8 @@
   </div>
 </section>
 
-<!-- Dashboard Hasil -->
+<!-- Dashboard Hasil: semua kartu diisi runtime oleh karsa.js bagian 14 dari
+     sessionStorage "karsa_input". Nilai di HTML hanya kerangka/label. -->
 <section class="meto-band band-white meto-band-roomy">
   <div class="meto-band-inner">
   <h2 class="dashboard-title">DASHBOARD HASIL</h2>
@@ -116,12 +126,21 @@
       <div class="dash-graph-body"><canvas id="grafikCanvas" height="240" role="img" aria-label="Grafik proyeksi 12 bulan"></canvas></div>
       <div class="dash-legend"><span><i class="leg-runway"></i>Runway Kumulatif (jt)</span><span><i class="leg-roi"></i>ROI vs Investasi (jt)</span></div>
     </div>
+    <!-- Rekomendasi: aturan if/else di karsa.js bagian 14 yang memilih teks + warna
+         lampunya. .rekom-dots purely dekoratif (indikator level), bukan
+         kontrol interaktif. Teks standarnya ditulis di sini supaya halaman
+         tidak kosong sebelum JS jalan. -->
     <div class="dash-rekom">
       <h3>Kartu Rekomendasi Rule-Based</h3>
       <div class="rekom-dots"><i class="dot red" id="rekomDot"></i><i class="dot yellow"></i><i class="dot green"></i></div>
       <p id="rekomText" class="rekom-text">Isi simulasi dulu buat lihat rekomendasinya.</p>
       <div id="rekomExtra" class="rekom-extra"></div>
     </div>
+    <!-- Aksi hasil:
+         "Ubah Data"  -> kembali ke simulasi.html?step=2 (form terisi ulang)
+         "Mulai Ulang"-> resetSimulasi() di karsa.js bagian 14, bersihkan sessionStorage
+         "Simpan Hasil"-> window.print(); jangan ganti dengan library PDF,
+                         sudah ada @media print di style.css -->
     <div class="hasil-actions">
       <a href="simulasi.html?step=2" class="db-btn">Ubah Data</a>
       <button class="db-btn db-btn-danger" type="button" onclick="resetSimulasi()">Mulai Ulang</button>
@@ -130,7 +149,17 @@
   </div>
   </div>
 </section>
+
+<!-- Alokasi 50/30/20: lebar tiap batang .alokasi-bar di-set runtime oleh
+     karsa.js bagian 14. Nilai nominal memakai .count-up, yang dianimasikan oleh
+     karsa.js bagian 06 lewat window.karsaSyncCountUp().
+
+     CATATAN: halaman ini TIDAK memuat anime.min.js, jadi countUp() di
+     karsa.js bagian 06 memakai jalur fallback (tulis angka final langsung). Angka
+     tetap tampil benar, hanya tidak beranimasi. Kalau ingin animasinya,
+     tambahkan assets/vendor/anime/anime.min.js sebelum karsa.js bagian 06. -->
 <section class="meto-band band-tan300">
+
   <div class="meto-band-inner">
   <div class="alokasi-inner">
     <h3>Alokasi Tabungan Bertingkat <span>(50/30/20 Rule)</span></h3>
@@ -175,38 +204,8 @@
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
 </footer>
 
+<!-- AOS ikut dimuat agar seragam dengan halaman lain. Halaman ini
+     tidak punya elemen data-aos, jadi tidak ada efek visual dari AOS. -->
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/animasi.js"></script>
-<script src="assets/js/hasil.js"></script>
-<script>
-(function(){
-  const s = document.getElementById('sliderGaji');
-  const v = document.getElementById('sliderVal');
-  const cssVar = (n, f) => (getComputedStyle(document.documentElement).getPropertyValue(n) || f).trim();
-  /* Fill diukur dari posisi tengah thumb (26px = 1.625rem) supaya sejajar. */
-  function paint() {
-    if (!s) return;
-    const min = parseFloat(s.min) || 0;
-    const max = parseFloat(s.max) || 30;
-    const val = parseFloat(s.value) || 0;
-    const p = Math.min(1, Math.max(0, (val - min) / (max - min)));
-    const w = s.offsetWidth || 1;
-    const tw = 26;
-    const x = (p * (w - tw) + tw / 2) / w * 100;
-    const ink = cssVar('--ink', '#211D1A');
-    const base = cssVar('--cream', '#e8ded2');
-    s.style.background = 'linear-gradient(to right, ' + ink + ' 0%, ' + ink + ' ' + x.toFixed(2) + '%, ' + base + ' ' + x.toFixed(2) + '%, ' + base + ' 100%)';
-    if (v) v.textContent = s.value + '%';
-  }
-  if (s) {
-    s.addEventListener('input', () => { paint(); if (window.updateHasil) updateHasil(); });
-    paint();
-    window.addEventListener('resize', paint);
-  }
-})();
-</script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

@@ -1,4 +1,40 @@
 <!DOCTYPE html>
+<!--
+  Karsa - login.html
+  Form masuk. Pasangan dari signup.html; keduanya memakai komponen .auth-*
+  yang sama. Akun disimpan di localStorage per-browser (bukan server).
+
+  STRUKTUR
+    head ............ meta, font, style.css, karsa.js, iconify
+    Navbar ......... .hg-navbar
+    #konten ......... header .auth-hero (target skip-link)
+    main ........... <form id="loginForm">
+    footer ......... .hg-footer
+    script ......... aos.js
+
+  SKRIP
+    Seluruh interaksi situs ada di assets/js/karsa.js, dimuat di <head>
+    supaya tema dan posisi scroll sudah beres sebelum halaman digambar.
+    Bagian yang dipakai halaman ini: 01 scroll, 02 tema, 03 kunjungan
+    pertama, 04 ikon, 05 auth, 06 animasi, 07 tombol atas, 10 navbar.
+    Modul yang tidak relevan dilewati sendiri lewat penjaga di dalamnya.
+
+  CATATAN FORM
+    - novalidate: validasi pakai pesan sendiri (#loginErr) dari karsa.js bagian 05,
+      bukan bubble bawaan browser - supaya gaya dan posisinya konsisten.
+    - Setiap <label> memakai .auth-field yang membungkus input-nya, lalu
+      ditautkan lewat atribut for. Kalau memisahkan label dari input,
+      fokus keyboard jadi tidak terlihat.
+    - #loginErr memakai role="alert" supaya screen reader membacanya
+      seketika setelah diisi. Jangan dihapus atributnya.
+    - Password tidak pernah disimpan di sessionStorage; hanya hash/ringkasan
+      di localStorage. Jangan diubah tanpa melihat karsa.js bagian 05.
+
+  PERBEDAAN vs signup.html
+    signup.html menambah field Username dan Konfirmasi Password, serta
+    tidak punya #forgotLink. Komponen .auth-* yang dipakai keduanya harus
+    tetap sama supaya tampilannya tidak berbeda.
+-->
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -11,14 +47,16 @@
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body auth-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
-<!-- Navbar (pola index.html, disinkron via auth.js setelah login) -->
+<!-- Navbar (pola index.html, disinkron via karsa.js bagian 05 setelah login) -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -32,12 +70,13 @@
   </div>
 </nav>
 
-<!-- Hero MASUK -->
+<!-- Hero MASUK: target skip-link, bukan <main>. -->
 <header class="auth-hero" id="konten" tabindex="-1" data-aos="fade-up">
   <h1>MASUK</h1>
 </header>
 
-<!-- Form card -->
+<!-- Form card. novalidate -> pesan errorowo #loginErr (role="alert")
+     yang dibuat karsa.js bagian 05, bukan bubble bawaan browser. -->
 <main class="auth-wrap">
   <form class="auth-card" id="loginForm" data-aos="zoom-in" novalidate>
     <h2>Selamat datang kembali</h2>
@@ -51,6 +90,8 @@
 
     <label class="auth-field" for="loginPassword">
       <span>Password</span>
+      <!-- #peekBtn type="button" (bukan submit) supaya tidak memicu
+           validasi form. Tampil/sembunyikan password di-bind di karsa.js bagian 05. -->
       <span class="auth-pass-wrap">
         <input type="password" id="loginPassword" name="password" autocomplete="current-password"
           placeholder="Masukkan password" required minlength="6">
@@ -58,6 +99,8 @@
       </span>
     </label>
 
+    <!-- Satu-satunya tempat error auth ditampilkan. hidden di awal;
+         karsa.js bagian 05 menghapus atributnya saat perlu menampilkan pesan. -->
     <p class="auth-err" id="loginErr" role="alert" hidden></p>
 
     <div class="auth-row">
@@ -88,11 +131,7 @@
   <div class="hg-footer-bar">Copyright &copy; 2026 Karsa. All Right Reserved.</div>
 </footer>
 
+<!-- Pustaka animasi AOS untuk halaman masuk. -->
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/animasi.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

@@ -9,17 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
+<!-- Seluruh gaya situs (semua halaman) dalam satu file. Token warna & tema
+     terang/gelap didefinisikan di sini, bukan per halaman. -->
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- AOS (Animate On Scroll) untuk elemen berdata data-aos. -->
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body db-page">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
-<!-- Navbar (Dashboard di-highlight saat login via auth.js) -->
+<!-- Navbar (Dashboard di-highlight saat login via karsa.js bagian 05) -->
 <nav class="hg-navbar">
+
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
@@ -40,7 +46,8 @@
 
 <main class="db-wrap db-vertical-spacing">
 
-  <!-- Statistik -->
+  <!-- Statistik: 3 kartu ringkas. Nilai default di HTML sengaja "0"/"-",
+       karsa.js bagian 15 yang mengisinya dari localStorage saat halaman dimuat. -->
   <section class="db-stats" data-aos="fade-up">
     <div class="db-stat static-box">
       <b id="statTotal">0</b>
@@ -70,7 +77,9 @@
     </div>
   </section>
 
-  <!-- Riwayat simulasi -->
+  <!-- Riwayat simulasi: .db-list dikosongkan di HTML, diisi karsa.js bagian 15
+       dari riwayat yang ditulis karsa.js bagian 13. #compareBtn tetap disabled
+       sampai ada minimal 2 baris yang dicentang. -->
   <section class="db-panel" data-aos="fade-up">
     <div class="db-panel-head db-head-split">
       <h2>RIWAYAT SIMULASI</h2>
@@ -86,7 +95,8 @@
     <button class="db-add" id="addPersonaBtn" type="button"><span aria-hidden="true">+</span> Buat Persona Baru</button>
   </section>
 
-  <!-- Testimoni -->
+  <!-- Testimoni: maks 200 karakter ditegakkan dua kali - atribut maxlength
+       (untuk user) dan #testiCount (untuk penghitung). -->
   <section class="db-panel" data-aos="fade-up">
     <div class="db-panel-head"><h2>TESTIMONI</h2></div>
     <div class="db-testi">
@@ -113,7 +123,13 @@
 
 </main>
 
-<!-- Modal generik -->
+<!-- Modal generik: SATU modal dipakai untuk semua aksi (edit profil, ganti
+     password, konfirmasi hapus data). Shell-nya statis di sini, isi dan
+     tombolnya di-built openModal() di karsa.js bagian 15 - jangan tambah modal
+     kedua tanpa alasan, satu ini sudah cukup.
+
+     Animasi buka/tutup (.is-in / .is-out) dikendalikan style.css; kelasnya
+     dipasang JS, bukan lewat atribut HTML. -->
 <div class="db-modal" id="dbModal" hidden>
   <div class="db-modal-card" role="dialog" aria-modal="true" aria-labelledby="dbModalTitle">
     <h3 id="dbModalTitle"></h3>
@@ -139,12 +155,7 @@
   <div class="hg-footer-bar">Copyright &copy; 2026 Karsa. All Right Reserved.</div>
 </footer>
 
+<!-- Pustaka animasi AOS untuk elemen beranda. -->
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/animasi.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/dashboard.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/to-top.js"></script>
 </body>
 </html>

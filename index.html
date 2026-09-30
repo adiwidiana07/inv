@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karsa - Pegang Kendali Masa Depanmu!</title>
+<title>Karsa - Beranda</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
 <link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
+<!-- Seluruh gaya situs (semua halaman) dalam satu file. Token warna & tema
+     terang/gelap didefinisikan di sini, bukan per halaman. -->
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- AOS (Animate On Scroll) untuk elemen berdata data-aos. -->
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/scroll-restore.js"></script>
+<!-- Seluruh interaksi situs dalam satu file: tema terang/gelap, posisi awal
+     scroll, animasi kunjungan pertama, dan fitur tiap halaman. Dimuat di sini
+     supaya tema sudah tampil benar sebelum halaman digambar. -->
+<script src="assets/js/karsa.js"></script>
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body">
 <a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
-<!-- 00 Navbar -->
+<!-- 01 Navigasi utama: tautan ke seluruh halaman, tombol masuk/daftar,
+     dan tombol ganti tema. Di layar sempit berubah jadi menu hamburger. -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
     <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
@@ -31,7 +38,9 @@
   </div>
 </nav>
 
-<!-- 01 Hero -->
+<!-- 02 Hero: bagian pembuka. Logo Karsa, satu kalimat ajakan, dan dua
+     tombol pintu masuk - ke Metodologi (kenapa angka Karsa bisa
+     dipercaya) dan ke Simulasi (langsung coba). -->
 <section class="hg-hero" id="konten" tabindex="-1" data-aos="fade-up">
   <div class="hg-hero-deco" aria-hidden="true">
     <img src="assets/img/hero/hero-element-stack.png" alt="" class="deco deco-stripes" width="78" height="78" loading="eager" decoding="async">
@@ -51,7 +60,9 @@
   </div>
 </section>
 
-<!-- 02 Funfact Strip -->
+<!-- 03 Angka pengangguran: tiga data dari BPS (Nov 2025) sebagai latar
+     belakang kenapa keputusan karier perlu dipertimbangkan dengan angka,
+     bukan sekadar perasaan. Sumber dicantumkan di bawah angka. -->
 <section class="hg-funfact">
   <div class="hg-funfact-tag">KAMU TAU Nggak?</div>
   <div class="hg-funfact-stats" data-aos="fade-up">
@@ -64,7 +75,9 @@
   <div class="hg-funfact-bars" aria-hidden="true"><i></i><i></i><i></i></div>
 </section>
 
-<!-- 03 Apa Itu Karsa -->
+<!-- 04 Apa itu Karsa: penjelasan singkat produk ini. Poin pentingnya ada
+     di kalimat "bukan penentu keputusan" - Karsa disajikan sebagai alat
+     bantu berpikir, bukan pengganti nasihat. -->
 <section class="hg-apa">
   <div class="hg-apa-inner">
     <div class="hg-apa-text" data-aos="fade-right">
@@ -79,7 +92,9 @@
   </div>
 </section>
 
-<!-- 04 Kenapa Memilih Kami -->
+<!-- 05 Kenapa memilih Karsa: empat keunggulan - berbasis angka, cepat,
+     bisa lihat proyeksi jangka panjang, dan pakai data BPS. Kartu
+     keempat mengarahkan ke halaman Metodologi. -->
 <section class="hg-kenapa" id="kenapa">
   <div class="hg-kenapa-head" data-aos="fade-up">
     <p class="hg-kenapa-kicker">Alasan Kami</p>
@@ -111,7 +126,9 @@
   <img src="assets/img/choose/choose-element-right.png" alt="" aria-hidden="true" class="hg-choose-deco hg-choose-right" width="90" height="70" loading="lazy">
 </section>
 
-<!-- 05 Untuk Siapa Karsa Cocok? -->
+<!-- 06 Untuk siapa: tiga tipe pengguna. Tiap kartu sekaligus jadi pintasan
+     ke Simulasi dengan persona yang sudah terisi, jadi pengunjung bisa
+     langsung melihat kondisi yang paling mirip dengan miliknya. -->
 <section class="hg-cocok" id="untuk-siapa">
   <div class="hg-cocok-inner">
     <div class="hg-cocok-head" data-aos="fade-up">
@@ -141,7 +158,9 @@
   </div>
 </section>
 
-<!-- 06 Preview Hasil -->
+<!-- 07 Contoh hasil: cuplikan hasil simulasi Dinda, fresh graduate di
+     Jakarta dengan tawaran gaji Rp5.000.000. Menampilkan sisa gaji,
+     cashflow, status, waktu balik modal, dan alokasi 50/30/20. -->
 <section class="hg-preview" id="preview-hasil">
   <div class="hg-preview-inner">
     <div class="hg-preview-head" data-aos="fade-up">
@@ -165,7 +184,9 @@
   </div>
 </section>
 
-<!-- 07 Coba Cepat -->
+<!-- 08 Coba cepat: kalkulator mini untuk cek kondisi mendadak tanpa
+     daftar akun. Isi tiga angka saja, hasilnya langsung tampil di bawah
+     form sebagai kartu status. -->
 <section class="hg-cepat" id="coba-cepat">
   <div class="hg-cepat-inner">
     <div class="hg-cepat-head" data-aos="fade-up">
@@ -188,7 +209,8 @@
   </div>
 </section>
 
-<!-- 08 Testimoni -->
+<!-- 09 Testimoni: komentar pengguna. Daftar kartu diulang dua kali agar
+     baris berjalan mulus tanpa jeda di ujung. -->
 <section class="hg-testi" id="testimoni">
   <div class="hg-testi-inner">
     <div class="hg-testi-head" data-aos="fade-up">
@@ -211,16 +233,16 @@
             <div class="hg-mq-body"><q>Dua tawaran dibandingin sekaligus, keputusan jadi tenang.</q><span class="hg-mq-name">Farhan Maulana</span></div>
           </article>
           <article class="hg-mq-card static-box">
-            <img src="assets/img/testimoni/testimony-user4.png" alt="Sinta Prabowo" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Prabowo</span></div>
+            <img src="assets/img/testimoni/testimony-user4.png" alt="Sinta Darmayanti" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Darmayanti</span></div>
           </article>
           <article class="hg-mq-card static-box">
             <img src="assets/img/testimoni/testimony-user5.png" alt="Rizky Pratama" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
             <div class="hg-mq-body"><q>Slider what-if-nya nagih. Geser dikit, langsung kelihatan bedanya.</q><span class="hg-mq-name">Rizky Pratama</span></div>
           </article>
           <article class="hg-mq-card static-box">
-            <img src="assets/img/testimoni/testimony-user6.png" alt="Maya Kusuma" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name">Maya Kusuma</span></div>
+            <img src="assets/img/testimoni/testimony-user6.png" alt=" Kusuma" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name"> Kusuma</span></div>
           </article>
           <article class="hg-mq-card static-box">
             <img src="assets/img/testimoni/testimony-user7.png" alt="Bagas Wijaya" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
@@ -240,7 +262,7 @@
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
             <img src="assets/img/testimoni/testimony-user4.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Prabowo</span></div>
+            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Darmayanti</span></div>
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
             <img src="assets/img/testimoni/testimony-user5.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
@@ -248,7 +270,7 @@
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
             <img src="assets/img/testimoni/testimony-user6.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name">Maya Kusuma</span></div>
+            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name">Kusuma</span></div>
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
             <img src="assets/img/testimoni/testimony-user7.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
@@ -259,12 +281,12 @@
       <div class="hg-mq-viewport">
         <div class="hg-mq-track mq-right">
           <article class="hg-mq-card static-box">
-            <img src="assets/img/testimoni/testimony-user8.png" alt="Intan Permata" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Intan Permata</span></div>
+            <img src="assets/img/testimoni/testimony-user8.png" alt="Rama" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Rama</span></div>
           </article>
           <article class="hg-mq-card static-box">
-            <img src="assets/img/testimoni/testimony-user9.png" alt="Dimas Saputra" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Dimas Saputra</span></div>
+            <img src="assets/img/testimoni/testimony-user9.png" alt="Anggraeni" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Anggraeni</span></div>
           </article>
           <article class="hg-mq-card static-box">
             <img src="assets/img/testimoni/testimony-user10.png" alt="Ratna Sari" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
@@ -287,12 +309,12 @@
             <div class="hg-mq-body"><q>Status WASPADA bikin aku mikir dua kali. Untung cek dulu.</q><span class="hg-mq-name">Fitri Handayani</span></div>
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
-            <img src="assets/img/testimoni/testimony-user8.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Intan Permata</span></div>
+            <img src="assets/img/testimoni/testimony-user8.png" alt="Rama" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Rama</span></div>
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
-            <img src="assets/img/testimoni/testimony-user9.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
-            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Dimas Saputra</span></div>
+            <img src="assets/img/testimoni/testimony-user9.png" alt="Anggraeni" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Anggraeni</span></div>
           </article>
           <article class="hg-mq-card static-box" aria-hidden="true">
             <img src="assets/img/testimoni/testimony-user10.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
@@ -320,7 +342,9 @@
   </div>
 </section>
 
-<!-- 09 FAQ -->
+<!-- 10 FAQ: enam pertanyaan yang paling sering masuk - soal gratisnya,
+     privasi data, seberapa akurat hasilnya, batasnya terhadap konsultasi
+     karier, durasi simulasi, dan arti badge AMAN/WASPADA/RISIKO. -->
 <section class="hg-faq" id="faq">
   <div class="hg-faq-inner">
     <div class="hg-faq-head" data-aos="fade-up">
@@ -356,7 +380,8 @@
   </div>
 </section>
 
-<!-- 10 CTA Penutup -->
+<!-- 11 Ajakan penutup: satu tombol ke Simulasi. Muncul setelah pengunjung
+     sudah membaca seluruh isi halaman. -->
 <section class="hg-cta-wrap">
   <div class="meto-cta" data-aos="zoom-in">
     <h2>Siap lihat gambaran kariermu?</h2>
@@ -365,7 +390,7 @@
   </div>
 </section>
 
-<!-- 11 Footer -->
+<!-- 12 Footer: tautan ke seluruh halaman, catatan privasi data, dan kredit. -->
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
@@ -385,65 +410,6 @@
 <script src="assets/vendor/anime/anime.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/parallax/parallax.min.js"></script>
-<script src="assets/js/animasi.js"></script>
-<script src="assets/js/script.js"></script>
-<script>
-/* Index page - FAQ accordion + smooth anchor (hg- namespace, testimonial marquee murni CSS) */
-(function () {
-
-  /* Funfact count-up desimal: angka final sudah tertulis di HTML;
-     anime.js hanya menganimasikan saat masuk viewport. */
-  (function () {
-    var els = Array.prototype.slice.call(document.querySelectorAll('[data-fun-count]'));
-    if (!els.length) return;
-    function fmt(el, v) {
-      var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
-      return v.toLocaleString('id-ID', { minimumFractionDigits: dec, maximumFractionDigits: dec });
-    }
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    function play(el) {
-      if (typeof anime === 'undefined') return;
-      var target = parseFloat(el.getAttribute('data-fun-count')) || 0;
-      var o = { v: 0 };
-      anime({ targets: o, v: target, duration: 1400, easing: 'easeOutExpo', update: function () { el.textContent = fmt(el, o.v); } });
-    }
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { play(en.target); io.unobserve(en.target); }
-        });
-      }, { threshold: 0.4 });
-      els.forEach(function (el) { io.observe(el); });
-    } else {
-      els.forEach(play);
-    }
-  })();
-
-  document.querySelectorAll('.hg-faq-item').forEach(function (item) {
-    var btn = item.querySelector('.hg-faq-q');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.hg-faq-item').forEach(function (i) { i.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
-    });
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var t = document.querySelector(a.getAttribute('href'));
-      if (t) {
-        e.preventDefault();
-        if (window.karsaScroll) window.karsaScroll.release();
-        t.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-})();
-</script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/karsa-icons.js"></script>
-<script src="assets/js/coba-cepat.js"></script>
-<script src="assets/js/to-top.js"></script>
+<script src="assets/js/karsa.js"></script>
 </body>
 </html>
