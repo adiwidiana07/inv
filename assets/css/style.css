@@ -2104,6 +2104,10 @@ html.karsa-first .hg-hero-note     { animation: karsa-welcome-pop var(--pop-dur)
   .hg-apa-frame { width: 5.25rem; height: 5.25rem; }
   .hg-apa-frame-up { top: -0.625rem; right: -0.625rem; }
   .hg-apa-frame-bottom { bottom: -0.625rem; left: -0.625rem; }
+  /* Setelah jadi satu kolom, geser horizontal AOS (100px) tidak lagi punya
+     alasan: teks terpotong 100px di kiri selama belum masuk viewport. */
+  .hg-apa [data-aos="fade-left"],
+  .hg-apa [data-aos="fade-right"] { transform: none; }
 }
 @media (max-width: 37.5rem) {
   .hg-apa { padding: 5.6rem 1.575rem 5.6rem; }
@@ -3611,7 +3615,7 @@ html.hg-tour-lock .hg-to-top {
   .sim-btn { min-width: 7rem; font-size: 0.85rem; padding: 0.6rem 0.8rem; }
   .sim-progress .dot { width: 1.8rem; height: 1.8rem; font-size: 0.75rem; }
   .sim-progress i { margin-top: 0.84rem; }
-  .dot-label { font-size: 0.7rem; }
+  .dot-label { font-size: 0.75rem; }
   .sim-progress i { width: 1.5rem; }
   .whatif-inner, .dashboard-inner { padding: 0 1rem 1.5rem; }
   .dash-top { grid-template-columns: 1fr; }
@@ -3641,7 +3645,9 @@ html.hg-tour-lock .hg-to-top {
   .hg-foot-link { padding: 0.7rem 0.875rem; }
   .hg-logo { padding: 0.5rem 0; }
 
-
+  /* Link inline yang hanya 22px tinggi (WCAG 2.2 AA butuh >= 24px) */
+  .meto-toc a { display: inline-block; padding-block: 0.2rem; }
+  .auth-switch a { display: inline-block; padding-block: 0.2rem; }
 
   /* slider What-If: track aslinya 10px, terlalu kecil buat jari */
   .slider-wrap input[type="range"] { height: 1.75rem; background: transparent; }
@@ -3653,6 +3659,21 @@ html.hg-tour-lock .hg-to-top {
     height: 0.625rem; background: var(--cream); border-radius: 0;
   }
   .slider-wrap input[type="range"]::-moz-range-thumb { margin-top: -0.5rem; }
+  /* Slider "Coba Cepat" di homepage tidak di dalam .slider-wrap, jadi
+     tetap setinggi 6px - sama-sama diperbesar di sini. Tingginya 2.75rem
+     karena Chrome memotong ~16px dari kotak range (40px -> 24px). */
+  .hg-cepat-field input[type="range"] { height: 2.75rem; background: transparent; }
+  .hg-cepat-field input[type="range"]::-webkit-slider-runnable-track {
+    height: 0.625rem; background: var(--cream); border-radius: 0;
+  }
+  .hg-cepat-field input[type="range"]::-webkit-slider-thumb { margin-top: -0.5rem; }
+  .hg-cepat-field input[type="range"]::-moz-range-track {
+    height: 0.625rem; background: var(--cream); border-radius: 0;
+  }
+  .hg-cepat-field input[type="range"]::-moz-range-thumb { margin-top: -0.5rem; }
+
+  /* Kicker tour: 0.7rem = 11.2px, di bawah batas baca comfortable. */
+  .hg-tour-kicker { font-size: 0.75rem; }
 }
 
 /* ===== Auth (login / signup) - PRD tokens + desain MASUK ===== */
@@ -4185,6 +4206,9 @@ html.hg-tour-lock .hg-to-top {
   gap: 1.25rem;
   margin: 0 0 2.5rem;
 }
+@media (max-width: 42.5rem) {
+  .meto-rumus { grid-template-columns: 1fr; }
+}
 .meto-card {
   background: var(--white);
   border: 0.1875rem solid var(--ink);
@@ -4271,11 +4295,16 @@ html.hg-tour-lock .hg-to-top {
   gap: 0.9rem;
   counter-reset: meto;
 }
+/* li bukan flex: tiap <b> dan potongan teks di dalamnya akan jadi item flex
+   terpisah (jarak 0.9rem nyasar di tiap pergantian, teks tidak wrap normal,
+   min-content melebar sampai 385px lalu meluber di layar sempit). Block +
+   ::before absolut memberi hasil gambar yang sama persis. */
 .meto-checks li {
   counter-increment: meto;
-  display: flex;
-  gap: 0.9rem;
-  align-items: flex-start;
+  position: relative;
+  display: block;
+  padding-left: 2.65rem;   /* 1.75rem kotak nomor + 0.9rem jarak */
+  min-height: 1.75rem;     /* isi baris pertama tetap setinggi kotak nomor */
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.95rem;
   line-height: 1.65;
@@ -4283,7 +4312,9 @@ html.hg-tour-lock .hg-to-top {
 }
 .meto-checks li::before {
   content: counter(meto);
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 1.75rem;
   height: 1.75rem;
   display: grid;
@@ -4464,10 +4495,8 @@ html:has(body.tentang-page) { scroll-behavior: smooth; }
 }
 
 /* Band section Metodologi: ritme selang-seling ala homepage */
-main.metodologi-main { max-width: none; padding: 0; }
+main.metodologi-main { max-width: none; padding: 0; width: 100%; margin-inline: 0; }
 .meto-band {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   padding: 4.2rem 3.5rem 5rem;
   border-bottom: 0.125rem solid var(--ink);
 }
