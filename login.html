@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
+<link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="assets/js/theme.js"></script>
@@ -14,23 +16,24 @@
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body auth-page">
+<a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
 <!-- Navbar (pola index.html, disinkron via auth.js setelah login) -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa</a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
       <a href="simulasi.html" class="hg-nav-link" data-nav="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
-      <a href="login.html" class="hg-login" data-auth-btn>Login</a>
     </div>
+    <a href="login.html" class="hg-login" data-auth-btn>Login</a>
   </div>
 </nav>
 
 <!-- Hero MASUK -->
-<header class="auth-hero" data-aos="fade-up">
+<header class="auth-hero" id="konten" tabindex="-1" data-aos="fade-up">
   <h1>MASUK</h1>
 </header>
 
@@ -77,9 +80,9 @@
       <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
-      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
-      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="tabler:brand-instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="tabler:brand-facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="tabler:brand-x" data-width="20"></span></a>
     </div>
   </div>
   <div class="hg-footer-bar">Copyright &copy; 2026 Karsa. All Right Reserved.</div>
@@ -89,6 +92,7 @@
 <script src="assets/js/animasi.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/karsa-icons.js"></script>
 <script src="assets/js/to-top.js"></script>
 </body>
 </html>

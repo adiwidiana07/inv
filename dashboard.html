@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
+<link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="assets/js/theme.js"></script>
@@ -14,41 +16,41 @@
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body db-page">
+<a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
 <!-- Navbar (Dashboard di-highlight saat login via auth.js) -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa</a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
       <a href="simulasi.html" class="hg-nav-link" data-nav="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
-      <a href="dashboard.html" class="hg-nav-link active" data-nav="dashboard" data-auth-dash>Dashboard</a>
-      <a href="login.html" class="hg-login" data-auth-btn>Login</a>
     </div>
+    <a href="login.html" class="hg-login" data-auth-btn>Login</a>
   </div>
 </nav>
 
 <!-- Hero -->
-<header class="db-hero" data-aos="fade-up">
+<header class="db-hero" id="konten" tabindex="-1" data-aos="fade-up">
   <h1>DASHBOARD</h1>
   <p id="dbGreet">Halo,</p>
 </header>
 
-<main class="db-wrap">
+<main class="db-wrap db-vertical-spacing">
 
   <!-- Statistik -->
   <section class="db-stats" data-aos="fade-up">
-    <div class="db-stat">
+    <div class="db-stat static-box">
       <b id="statTotal">0</b>
       <span>Total simulasi</span>
     </div>
-    <div class="db-stat">
+    <div class="db-stat static-box">
       <b id="statCustom">0</b>
       <span>Persona custom</span>
     </div>
-    <div class="db-stat">
+    <div class="db-stat static-box">
       <b id="statLast">-</b>
       <span>Simulasi terakhir</span>
     </div>
@@ -84,10 +86,26 @@
     <button class="db-add" id="addPersonaBtn" type="button"><span aria-hidden="true">+</span> Buat Persona Baru</button>
   </section>
 
+  <!-- Testimoni -->
+  <section class="db-panel" data-aos="fade-up">
+    <div class="db-panel-head"><h2>TESTIMONI</h2></div>
+    <div class="db-testi">
+      <p class="db-muted">Punya cerita pakai Karsa? Kirim testimoni singkatmu.</p>
+      <label class="db-testi-label" for="testiInput">Testimonimu (maks 200 karakter)</label>
+      <textarea id="testiInput" rows="3" maxlength="200" placeholder="Ceritain pengalaman kamu pakai Karsa..."></textarea>
+      <div class="db-testi-foot">
+        <span class="db-testi-count" id="testiCount">0 / 200</span>
+        <button class="db-btn" id="testiBtn" type="button">Kirim Testimoni</button>
+      </div>
+      <p class="db-testi-ok" id="testiOk" role="status" hidden>Terima kasih! Testimonimu akan ditinjau tim Karsa.</p>
+    </div>
+  </section>
+
   <!-- Pengaturan akun -->
   <section class="db-panel" data-aos="fade-up">
     <div class="db-panel-head"><h2>PENGATURAN AKUN</h2></div>
     <div class="db-account">
+      <button class="db-btn" id="logoutBtn" type="button" data-action="logout">Keluar</button>
       <button class="db-btn" id="changePassBtn" type="button">Ubah Password</button>
       <button class="db-btn db-btn-danger" id="wipeBtn" type="button">Hapus Semua Data</button>
     </div>
@@ -113,9 +131,9 @@
       <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
-      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
-      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="tabler:brand-instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="tabler:brand-facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="tabler:brand-x" data-width="20"></span></a>
     </div>
   </div>
   <div class="hg-footer-bar">Copyright &copy; 2026 Karsa. All Right Reserved.</div>
@@ -126,6 +144,7 @@
 <script src="assets/js/script.js"></script>
 <script src="assets/js/auth.js"></script>
 <script src="assets/js/dashboard.js"></script>
+<script src="assets/js/karsa-icons.js"></script>
 <script src="assets/js/to-top.js"></script>
 </body>
 </html>

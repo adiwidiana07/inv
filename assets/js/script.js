@@ -242,55 +242,7 @@ window.kalkulasiInput = kalkulasiInput;
   });
 })();
 
-(function () {
-  const guideSlider = document.querySelector('.hg-panduan-slider');
-  if (!guideSlider) return;
-  const guideTrack = guideSlider.querySelector('.hg-panduan-steps');
-  const guideSteps = Array.from(guideSlider.querySelectorAll('.hg-pstep'));
-  const guideControls = guideSlider.querySelector('.hg-panduan-controls');
-  const guidePrev = guideSlider.querySelector('[data-guide-prev]');
-  const guideNext = guideSlider.querySelector('[data-guide-next]');
-  const guideDots = Array.from(guideSlider.querySelectorAll('[data-guide-dot]'));
-  const guideCurrent = guideSlider.querySelector('[data-guide-current]');
-  if (!guideTrack || !guideSteps.length) return;
-  let guideIndex = 0;
-  function showGuideStep(index) {
-    guideIndex = Math.max(0, Math.min(index, guideSteps.length - 1));
-    guideTrack.style.transform = 'translateX(-' + guideIndex * 100 + '%)';
-    guideSteps.forEach((step, stepIndex) => {
-      const active = stepIndex === guideIndex;
-      step.classList.toggle('active', active);
-      step.setAttribute('aria-hidden', String(!active));
-      step.toggleAttribute('inert', !active);
-    });
-    guideDots.forEach((dot, dotIndex) => {
-      const active = dotIndex === guideIndex;
-      dot.classList.toggle('active', active);
-      if (active) dot.setAttribute('aria-current', 'step');
-      else dot.removeAttribute('aria-current');
-    });
-    if (guideCurrent) guideCurrent.textContent = String(guideIndex + 1);
-    if (guidePrev) guidePrev.disabled = guideIndex === 0;
-    if (guideNext) guideNext.disabled = guideIndex === guideSteps.length - 1;
-  }
-  guidePrev?.addEventListener('click', () => showGuideStep(guideIndex - 1));
-  guideNext?.addEventListener('click', () => showGuideStep(guideIndex + 1));
-  guideDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => showGuideStep(index));
-  });
-  guideControls?.addEventListener('keydown', (event) => {
-    let targetIndex = guideIndex;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') targetIndex += 1;
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') targetIndex -= 1;
-    else if (event.key === 'Home') targetIndex = 0;
-    else if (event.key === 'End') targetIndex = guideSteps.length - 1;
-    else return;
-    event.preventDefault();
-    showGuideStep(targetIndex);
-    if (event.target.matches('[data-guide-dot]')) guideDots[guideIndex]?.focus();
-  });
-  showGuideStep(0);
-})();
+
 
 function toggleBurger(btn){
   const links = btn.nextElementSibling;

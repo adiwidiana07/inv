@@ -6,6 +6,8 @@
 <title>Karsa - Pegang Kendali Masa Depanmu!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@700;800;900&family=Space+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
+<link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="assets/js/theme.js"></script>
@@ -13,23 +15,24 @@
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hg-body">
+<a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 
 <!-- 00 Navbar -->
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa</a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link active" data-nav="beranda">Beranda</a>
       <a href="simulasi.html" class="hg-nav-link" data-nav="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
-      <a href="login.html" class="hg-login" data-auth-btn>Login</a>
     </div>
+    <a href="login.html" class="hg-login" data-auth-btn>Login</a>
   </div>
 </nav>
 
 <!-- 01 Hero -->
-<section class="hg-hero" data-aos="fade-up">
+<section class="hg-hero" id="konten" tabindex="-1" data-aos="fade-up">
   <div class="hg-hero-deco" aria-hidden="true">
     <img src="assets/img/hero/hero-element-stack.png" alt="" class="deco deco-stripes" width="78" height="78" loading="eager" decoding="async">
     <img src="assets/img/hero/hero-element-omnitrix.png" alt="" class="deco deco-pie" width="86" height="86" loading="eager" decoding="async">
@@ -37,10 +40,11 @@
     <img src="assets/img/hero/hero-element-triangle.png" alt="" class="deco deco-tris" width="88" height="88" loading="eager" decoding="async">
   </div>
   <div class="hg-hero-inner" data-aos="zoom-in" data-aos-delay="120">
-    <img src="assets/img/logo/hero-logo.png" alt="Karsa" class="hg-hero-logo-img" width="295" height="341" loading="eager" decoding="async">
+    <img src="assets/img/logo/karsa-logo.svg" alt="Logo Karsa" class="hg-hero-logo-img logo-light" width="480" height="480" loading="eager" decoding="async">
+    <img src="assets/img/logo/karsa-logo-dark.svg" alt="" aria-hidden="true" class="hg-hero-logo-img logo-dark" width="480" height="480" loading="eager" decoding="async">
     <p class="hg-hero-tag">Website yang Nunjukin<br>Keputusan Karirmu</p>
     <div class="hg-hero-btns">
-      <a href="#panduan" class="hg-btn hg-btn-cream">Cek Panduan</a>
+      <a href="metodologi.html" class="hg-btn hg-btn-cream">Metodologi</a>
       <a href="simulasi.html" class="hg-btn hg-btn-red">Mulai Simulasi</a>
     </div>
     <p class="hg-hero-note">Alat bantu kamu mikirin, bukan alat yang mutusin!</p>
@@ -50,14 +54,13 @@
 <!-- 02 Funfact Strip -->
 <section class="hg-funfact">
   <div class="hg-funfact-tag">KAMU TAU Nggak?</div>
-  <div class="hg-funfact-inner">
-    <div class="hg-funfact-big" data-aos="fade-up">
-      <b>4,74%</b>
-      <span>atau 7,35 juta orang Indonesia<br>menganggur (BPS, Nov 2025)</span>
-    </div>
-    <p class="hg-funfact-mid" data-aos="fade-up" data-aos-delay="80">Dan yang paling banyak menganggur?<br>Bukan yang putus sekolah<br>tapi lulusan SMA (28%) dan S1 ke atas (13,9%).</p>
-    <p class="hg-funfact-side" data-aos="fade-up" data-aos-delay="160">Makanya, sebelum ambil keputusan karier, ada bagusnya kamu tau dulu kondisinya.</p>
+  <div class="hg-funfact-stats" data-aos="fade-up">
+    <div class="hg-fstat static-box"><b><span class="hg-fstat-dec" data-fun-count="7.35" data-dec="2">7,35</span> <span class="hg-fstat-unit">jt</span></b><span>orang Indonesia menganggur</span></div>
+    <div class="hg-fstat static-box"><b><span class="hg-fstat-dec" data-fun-count="28" data-dec="0">28</span><span class="hg-fstat-unit">%</span></b><span>penganggur lulusan SMA</span></div>
+    <div class="hg-fstat static-box"><b><span class="hg-fstat-dec" data-fun-count="13.9" data-dec="1">13,9</span><span class="hg-fstat-unit">%</span></b><span>penganggur lulusan S1 ke atas</span></div>
   </div>
+  <p class="hg-funfact-src" data-aos="fade-up">Sumber: BPS, Nov 2025.</p>
+  <p class="hg-funfact-bridge" data-aos="fade-up">Makanya, sebelum ambil keputusan karier, ada bagusnya kamu tau dulu kondisinya.</p>
   <div class="hg-funfact-bars" aria-hidden="true"><i></i><i></i><i></i></div>
 </section>
 
@@ -83,109 +86,241 @@
     <h2 class="hg-kenapa-title">KENAPA MEMILIH KAMI?</h2>
   </div>
   <div class="hg-kenapa-grid">
-    <div class="hg-card" data-aos="fade-up">
-      <div class="hg-card-ico ico-calc" aria-hidden="true"><span class="iconify" data-icon="mdi:calculator" data-width="48" data-height="48"></span></div>
+    <div class="hg-card static-box" data-aos="fade-up">
+      <div class="hg-card-ico ico-calc" aria-hidden="true"><span class="iconify" data-kicon="calculator" data-width="64" data-height="64"></span></div>
       <h3>Bukan Cuma Feeling</h3>
       <p>Keputusan karier itu berat, jangan cuma modal insting. Karsa hitungin semuanya dari data yang kamu isi sendiri.</p>
     </div>
-    <div class="hg-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="hg-card-ico ico-bolt" aria-hidden="true"><span class="iconify" data-icon="mdi:flash" data-width="48" data-height="48"></span></div>
+    <div class="hg-card static-box" data-aos="fade-up" data-aos-delay="100">
+      <div class="hg-card-ico ico-bolt" aria-hidden="true"><span class="iconify" data-kicon="bolt" data-width="64" data-height="64"></span></div>
       <h3>Nggak Ribet</h3>
       <p>Nggak perlu bikin akun atau isi form panjang. Tinggal ketik angka, hasilnya keluar dalam hitungan menit.</p>
     </div>
-    <div class="hg-card center" data-aos="fade-up" data-aos-delay="200">
-      <div class="hg-card-ico ico-chart" aria-hidden="true"><span class="iconify" data-icon="mdi:chart-box" data-width="48" data-height="48"></span></div>
+      <div class="hg-card static-box" data-aos="fade-up" data-aos-delay="200">
+      <div class="hg-card-ico ico-chart" aria-hidden="true"><span class="iconify" data-kicon="chart-bar" data-width="64" data-height="64"></span></div>
       <h3>Lihat Masa Depannya</h3>
-      <p>Gaji segitu, cukup nggak buat nabung 5 tahun lagi? Karsa kasih gambaran sebelum kamu beneran ambil keputusan.</p>
-    </div>
+        <p>Gaji segitu, cukup nggak buat nabung 5 tahun lagi? Karsa kasih gambaran sebelum kamu beneran ambil keputusan.</p>
+      </div>
+      <div class="hg-card static-box" data-aos="fade-up" data-aos-delay="300">
+        <div class="hg-card-ico ico-school" aria-hidden="true"><span class="iconify" data-kicon="school" data-width="64" data-height="64"></span></div>
+        <h3>Berbasis Data &amp; Teori</h3>
+        <p>Hitungannya dari teori ekonomi dan data BPS. <a href="metodologi.html">Lihat rumusnya di Metodologi.</a></p>
+      </div>
   </div>
   <img src="assets/img/choose/choose-element-left.png" alt="" aria-hidden="true" class="hg-choose-deco hg-choose-left" width="100" height="80" loading="lazy">
   <img src="assets/img/choose/choose-element-right.png" alt="" aria-hidden="true" class="hg-choose-deco hg-choose-right" width="90" height="70" loading="lazy">
 </section>
 
-<!-- 05 Panduan Karsa -->
-<section class="hg-panduan" id="panduan">
-  <div class="hg-panduan-inner" data-aos="zoom-in">
-    <div class="hg-panduan-header">
-      <h2>PANDUAN KARSA</h2>
+<!-- 05 Untuk Siapa Karsa Cocok? -->
+<section class="hg-cocok" id="untuk-siapa">
+  <div class="hg-cocok-inner">
+    <div class="hg-cocok-head" data-aos="fade-up">
+      <p class="hg-cocok-eyebrow">Cocok Buat Kamu yang...</p>
+      <h2 class="hg-cocok-title">UNTUK SIAPA KARSA COCOK?</h2>
     </div>
-    <div class="hg-panduan-slider" role="region" aria-roledescription="carousel" aria-label="Panduan Karsa">
-      <div class="hg-panduan-steps" aria-live="polite">
-        <div class="hg-pstep active" role="group" aria-roledescription="slide" aria-label="Langkah 1 dari 3">
-          <div class="hg-pstep-head"><span class="hg-pnum n1">1</span><span class="hg-pstep-title">Pilih dan Mulai</span></div>
-          <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture1.png" alt="Pilih persona" class="hg-pstep-img" loading="lazy"></div>
-          <div class="hg-pstep-foot">Pilih persona yang paling nxain kamu, terus klik mulai simulasi.</div>
-        </div>
-        <div class="hg-pstep" role="group" aria-roledescription="slide" aria-label="Langkah 2 dari 3" aria-hidden="true">
-          <div class="hg-pstep-head"><span class="hg-pnum n2">2</span><span class="hg-pstep-title">Isi Datamu</span></div>
-          <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture2.png" alt="Isi datamu" class="hg-pstep-img" loading="lazy"></div>
-          <div class="hg-pstep-foot">Isi data wajib kayak gaji sama pengeluaran, tambahin detail personal, terus sesuaiin sama kebutuhanmu.</div>
-        </div>
-        <div class="hg-pstep" role="group" aria-roledescription="slide" aria-label="Langkah 3 dari 3" aria-hidden="true">
-          <div class="hg-pstep-head"><span class="hg-pnum n3">3</span><span class="hg-pstep-title">Lihat Hasilnya</span></div>
-          <div class="hg-pstep-body"><img src="assets/img/panduan/panduan-picture3.png" alt="Lihat hasilnya" class="hg-pstep-img" loading="lazy"></div>
-          <div class="hg-pstep-foot">Karsa langsung nampilin proyeksi sama rekomendasi berdasarkan datamu.</div>
-        </div>
-      </div>
-      <div class="hg-panduan-controls" role="group" aria-label="Kontrol Panduan">
-        <button class="hg-panduan-control" type="button" data-guide-prev aria-label="Tampilkan langkah sebelumnya">&#10094;</button>
-        <div class="hg-panduan-dots" aria-label="Pilih langkah">
-          <button class="hg-panduan-dot active" type="button" data-guide-dot aria-label="Tampilkan langkah 1" aria-current="step"></button>
-          <button class="hg-panduan-dot" type="button" data-guide-dot aria-label="Tampilkan langkah 2"></button>
-          <button class="hg-panduan-dot" type="button" data-guide-dot aria-label="Tampilkan langkah 3"></button>
-        </div>
-        <span class="hg-panduan-count" aria-live="polite" aria-atomic="true"><span data-guide-current>1</span> / 3</span>
-        <button class="hg-panduan-control" type="button" data-guide-next aria-label="Tampilkan langkah berikutnya">&#10095;</button>
-      </div>
+    <div class="hg-cocok-grid">
+      <a href="simulasi.html?persona=fresh" class="hg-cocok-card" data-aos="fade-up" aria-label="Mulai simulasi sebagai Si Fresh Graduate">
+        <span class="hg-cocok-ico" aria-hidden="true"><span class="iconify" data-kicon="school" data-width="64" data-height="64"></span></span>
+        <span class="hg-cocok-name">Si Fresh Graduate</span>
+        <span class="hg-cocok-desc">Baru lulus dan dapat tawaran pertama. Cukup nggak gajinya buat hidup dan mulai nabung?</span>
+        <span class="hg-cocok-go" aria-hidden="true">Pilih persona ini →</span>
+      </a>
+      <a href="simulasi.html?persona=pindah" class="hg-cocok-card" data-aos="fade-up" data-aos-delay="100" aria-label="Mulai simulasi sebagai Si Mau Pindah Karier">
+        <span class="hg-cocok-ico" aria-hidden="true"><span class="iconify" data-kicon="switch-horizontal" data-width="64" data-height="64"></span></span>
+        <span class="hg-cocok-name">Si Mau Pindah Karier</span>
+        <span class="hg-cocok-desc">Lagi mikir banting setir ke bidang baru. Worth it nggak secara finansial?</span>
+        <span class="hg-cocok-go" aria-hidden="true">Pilih persona ini →</span>
+      </a>
+      <a href="simulasi.html?persona=banding" class="hg-cocok-card" data-aos="fade-up" data-aos-delay="200" aria-label="Mulai simulasi sebagai Si Bandingin Dua Tawaran">
+        <span class="hg-cocok-ico" aria-hidden="true"><span class="iconify" data-kicon="scale" data-width="64" data-height="64"></span></span>
+        <span class="hg-cocok-name">Si Bandingin Dua Tawaran</span>
+        <span class="hg-cocok-desc">Simulasikan tawaran satu per satu, lalu bandingkan hasilnya.</span>
+        <span class="hg-cocok-go" aria-hidden="true">Pilih persona ini →</span>
+      </a>
     </div>
-    <a href="simulasi.html" class="hg-panduan-cta" data-aos="fade-up">Mulai Simulasi</a>
   </div>
 </section>
 
-<!-- 06 Testimoni -->
+<!-- 06 Preview Hasil -->
+<section class="hg-preview" id="preview-hasil">
+  <div class="hg-preview-inner">
+    <div class="hg-preview-head" data-aos="fade-up">
+      <p class="hg-preview-eyebrow">Contoh Hasil</p>
+      <h2 class="hg-preview-title">KAYAK GINI HASILNYA</h2>
+      <p class="hg-preview-sub">Contoh dari Dinda, fresh graduate di Jakarta dengan tawaran gaji Rp5.000.000.</p>
+    </div>
+    <div class="hg-preview-card" data-aos="zoom-in">
+      <div class="hg-preview-row"><span>Sisa Gaji Bersih</span><b>Rp2.000.000/bln</b></div>
+      <div class="hg-preview-row"><span>Cashflow</span><b>Rp1.000.000/bln</b></div>
+      <div class="hg-preview-row"><span>Status</span><span class="db-badge b-aman">AMAN</span></div>
+      <div class="hg-preview-row"><span>Waktu Balik Modal</span><b>7 bulan</b></div>
+      <div class="hg-preview-alloc"><span>Alokasi 50/30/20</span><b>Rp1.000.000 / Rp600.000 / Rp400.000</b></div>
+    </div>
+    <ul class="hg-preview-legend" data-aos="fade-up">
+      <li><span class="db-badge b-aman">AMAN</span><span>Cashflow Rp1 juta ke atas — kondisi keuanganmu relatif sehat.</span></li>
+      <li><span class="db-badge b-waspada">WASPADA</span><span>Cashflow di bawah Rp1 juta — pertimbangkan baik-baik sebelum jalan.</span></li>
+      <li><span class="db-badge b-risiko">RISIKO</span><span>Cashflow minus — tunda dulu keputusan besarnya.</span></li>
+    </ul>
+    <p class="hg-preview-note" data-aos="fade-up">Ini contoh ilustrasi, bukan prediksi pasti.</p>
+  </div>
+</section>
+
+<!-- 07 Coba Cepat -->
+<section class="hg-cepat" id="coba-cepat">
+  <div class="hg-cepat-inner">
+    <div class="hg-cepat-head" data-aos="fade-up">
+      <p class="hg-cepat-eyebrow">Coba Sebentar</p>
+      <h2 class="hg-cepat-title">GESER GAJINYA, LIHAT STATUSNYA</h2>
+    </div>
+    <div class="hg-cepat-card" data-aos="zoom-in">
+      <label class="hg-cepat-field" for="cepatGaji">
+        <span>Gaji bulanan: <b id="cepatGajiVal">Rp5.000.000</b></span>
+        <input type="range" id="cepatGaji" min="3000000" max="15000000" step="500000" value="5000000" aria-describedby="cepatFixed">
+      </label>
+      <p class="hg-cepat-fixed" id="cepatFixed">Biaya hidup Rp3.000.000 · Target tabungan Rp1.000.000</p>
+      <div class="hg-cepat-out" aria-live="polite">
+        <div class="hg-cepat-stat"><span>Sisa</span><b id="cepatSisa">Rp2.000.000</b></div>
+        <div class="hg-cepat-stat"><span>Cashflow</span><b id="cepatCf">Rp1.000.000</b></div>
+        <div class="hg-cepat-stat"><span>Status</span><span class="db-badge b-aman" id="cepatBadge">AMAN</span></div>
+      </div>
+      <a href="simulasi.html" class="hg-cepat-cta">Lanjut ke Simulasi Lengkap</a>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Testimoni -->
 <section class="hg-testi" id="testimoni">
   <div class="hg-testi-inner">
     <div class="hg-testi-head" data-aos="fade-up">
       <p class="hg-testi-kicker">Cerita Pengguna</p>
       <h2 class="hg-testi-title">APA KATA USER SEBELUMNYA?</h2>
     </div>
-    <div class="hg-testi-wrap">
-      <button class="hg-nav prev" id="testiPrev" aria-label="Sebelumnya">&#10094;</button>
-      <div class="hg-testi-track" data-aos="fade-up">
-        <div class="hg-slide active" data-user="1">
-          <div class="hg-quote">
-            <img src="assets/img/testimoni/testimony-user1.png" alt="Wong Ashley" class="hg-quote-img" width="300" height="300" loading="lazy">
-            <div class="hg-quote-body">
-              <q>Simulator yang ngubah data gaji, pengeluaran, sama target tabunganmu jadi gambaran kelayakan sebuah karier. Bukan penentu keputusan, tapi alat bantu kamu mikirin.</q>
-              <span class="who who-red">Wong Ashley</span>
-            </div>
-          </div>
-        </div>
-        <div class="hg-slide" data-user="2">
-          <div class="hg-quote">
-            <img src="assets/img/testimoni/testimony-user2.png" alt="Dewi Anggraini" class="hg-quote-img" width="300" height="300" loading="lazy">
-            <div class="hg-quote-body">
-              <q>Karsa bantu aku ngitung apa pindah karier ke bidang baru itu worth it secara finansial atau enggak. Nggak nyangka simulasinya sedetail ini, padahal cuma butuh beberapa menit buat isi datanya.</q>
-              <span class="who who-yellow">Dewi Anggraini</span>
-            </div>
-          </div>
-        </div>
-        <div class="hg-slide" data-user="3">
-          <div class="hg-quote">
-            <img src="assets/img/testimoni/testimony-user3.png" alt="Farhan Maulana" class="hg-quote-img" width="300" height="300" loading="lazy">
-            <div class="hg-quote-body">
-              <q>Pas dapat dua tawaran kerja bareng, bingung banget mana yang lebih worth it. Karsa bantu bandingin proyeksi keduanya dalam hitungan menit, jadi keputusan lebih tenang.</q>
-              <span class="who who-green">Farhan Maulana</span>
-            </div>
-          </div>
+    <div class="hg-testi-marquee" data-aos="fade-up">
+      <div class="hg-mq-viewport">
+        <div class="hg-mq-track mq-left">
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user1.png" alt="Wong Ashley" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Galau milih startup atau S2, Karsa bikin gambarannya jelas. Sekarang aku tau harus negosiasi apa.</q><span class="hg-mq-name">Wong Ashley</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user2.png" alt="Dewi Anggraini" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Pindah karier worth it atau enggak, kehitung dalam beberapa menit.</q><span class="hg-mq-name">Dewi Anggraini</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user3.png" alt="Farhan Maulana" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Dua tawaran dibandingin sekaligus, keputusan jadi tenang.</q><span class="hg-mq-name">Farhan Maulana</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user4.png" alt="Sinta Prabowo" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Prabowo</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user5.png" alt="Rizky Pratama" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Slider what-if-nya nagih. Geser dikit, langsung kelihatan bedanya.</q><span class="hg-mq-name">Rizky Pratama</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user6.png" alt="Maya Kusuma" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name">Maya Kusuma</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user7.png" alt="Bagas Wijaya" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>BEP 7 bulan? Oke, sertifikasinya jadi worth it. Gas.</q><span class="hg-mq-name">Bagas Wijaya</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user1.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Galau milih startup atau S2, Karsa bikin gambarannya jelas. Sekarang aku tau harus negosiasi apa.</q><span class="hg-mq-name">Wong Ashley</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user2.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Pindah karier worth it atau enggak, kehitung dalam beberapa menit.</q><span class="hg-mq-name">Dewi Anggraini</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user3.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Dua tawaran dibandingin sekaligus, keputusan jadi tenang.</q><span class="hg-mq-name">Farhan Maulana</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user4.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Baru lulus, nggak ngerti gaji segitu cukup atau enggak. Sekarang ngerti.</q><span class="hg-mq-name">Sinta Prabowo</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user5.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Slider what-if-nya nagih. Geser dikit, langsung kelihatan bedanya.</q><span class="hg-mq-name">Rizky Pratama</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user6.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Akhirnya ada gambaran brutal: gaji sekarang lawan target nabungku.</q><span class="hg-mq-name">Maya Kusuma</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user7.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>BEP 7 bulan? Oke, sertifikasinya jadi worth it. Gas.</q><span class="hg-mq-name">Bagas Wijaya</span></div>
+          </article>
         </div>
       </div>
-      <button class="hg-nav next" id="testiNext" aria-label="Berikutnya">&#10095;</button>
+      <div class="hg-mq-viewport">
+        <div class="hg-mq-track mq-right">
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user8.png" alt="Intan Permata" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Intan Permata</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user9.png" alt="Dimas Saputra" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Dimas Saputra</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user10.png" alt="Ratna Sari" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Buat bandingin kontrak vs tetap, ini ngebantu banget.</q><span class="hg-mq-name">Ratna Sari</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user11.png" alt="Yoga Firmansyah" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Grafik runway-nya bikin nabung kerasa nyata, bukan angan.</q><span class="hg-mq-name">Yoga Firmansyah</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user12.png" alt="Putri Lestari" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Rumusnya dibuka semua di Metodologi. Transparan, suka.</q><span class="hg-mq-name">Putri Lestari</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user13.png" alt="Andi Nugraha" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cuma 3 menit isi data, dapat proyeksi setahun. Gila sih.</q><span class="hg-mq-name">Andi Nugraha</span></div>
+          </article>
+          <article class="hg-mq-card static-box">
+            <img src="assets/img/testimoni/testimony-user14.png" alt="Fitri Handayani" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Status WASPADA bikin aku mikir dua kali. Untung cek dulu.</q><span class="hg-mq-name">Fitri Handayani</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user8.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cashflow minus ketahuan sebelum nyesel ambil kerjaan.</q><span class="hg-mq-name">Intan Permata</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user9.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Alokasi 50/30/20-nya ngebuka mataku soal gaya hidup.</q><span class="hg-mq-name">Dimas Saputra</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user10.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Buat bandingin kontrak vs tetap, ini ngebantu banget.</q><span class="hg-mq-name">Ratna Sari</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user11.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Grafik runway-nya bikin nabung kerasa nyata, bukan angan.</q><span class="hg-mq-name">Yoga Firmansyah</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user12.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Rumusnya dibuka semua di Metodologi. Transparan, suka.</q><span class="hg-mq-name">Putri Lestari</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user13.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Cuma 3 menit isi data, dapat proyeksi setahun. Gila sih.</q><span class="hg-mq-name">Andi Nugraha</span></div>
+          </article>
+          <article class="hg-mq-card static-box" aria-hidden="true">
+            <img src="assets/img/testimoni/testimony-user14.png" alt="" class="hg-mq-img" width="168" height="168" loading="lazy" decoding="async">
+            <div class="hg-mq-body"><q>Status WASPADA bikin aku mikir dua kali. Untung cek dulu.</q><span class="hg-mq-name">Fitri Handayani</span></div>
+          </article>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 07 FAQ -->
+<!-- 09 FAQ -->
 <section class="hg-faq" id="faq">
   <div class="hg-faq-inner">
     <div class="hg-faq-head" data-aos="fade-up">
@@ -199,7 +334,7 @@
       </div>
       <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="80">
         <button class="hg-faq-q">DATA SAYA BAKAL DISIMPAN Nggak? <span class="chev">›</span></button>
-        <div class="hg-faq-a">Data Yang Kamu Isi Cuma Dipakai Buat Ngitung Hasil Simulasi Saat Itu Juga, Dan Nggak Dibagikan Ke Siapa Pun.</div>
+        <div class="hg-faq-a">Data Yang Kamu Isi Cuma Dipakai Buat Ngitung Hasil Simulasi Saat Itu Juga, Dan Nggak Dibagikan Ke Siapa Pun. Bikin Akun Itu Opsional — Cuma Buat Nyimpen Riwayat Dan Persona Custom, Tanpa Akun Pun Simulasinya Tetap Jalan.</div>
       </div>
       <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="160">
         <button class="hg-faq-q">HASILNYA SEBAIK ITU AJA? <span class="chev">›</span></button>
@@ -213,22 +348,35 @@
         <button class="hg-faq-q">BERAPA LAMANYA SIMULASINYA? <span class="chev">›</span></button>
         <div class="hg-faq-a">Rata-Rata Cuma 2-3 Menit, Tergantung Seberapa Banyak Data Tambahan Yang Kamu Isi.</div>
       </div>
+      <div class="hg-faq-item" data-aos="fade-up" data-aos-delay="400">
+        <button class="hg-faq-q">BADGE AMAN, WASPADA, DAN RISIKO ITU APA? <span class="chev">›</span></button>
+        <div class="hg-faq-a">Itu Ringkasan Cashflow-Mu: AMAN Kalau Cashflow Rp1 Juta Ke Atas, WASPADA Kalau Di Bawah Itu, Dan RISIKO Kalau Cashflow-Mu Minus. Rumus Lengkapnya Ada Di Halaman Metodologi.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 08 Footer -->
+<!-- 10 CTA Penutup -->
+<section class="hg-cta-wrap">
+  <div class="meto-cta" data-aos="zoom-in">
+    <h2>Siap lihat gambaran kariermu?</h2>
+    <p>Angka-angkamu, dihitung dengan metode yang transparan, gratis dan tanpa perlu akun.</p>
+    <a class="meto-cta-btn" href="simulasi.html">Mulai Simulasi</a>
+  </div>
+</section>
+
+<!-- 11 Footer -->
 <footer class="hg-footer">
   <div class="hg-footer-main">
     <div class="hg-footer-links">
       <a href="index.html" class="hg-foot-link active" data-foot="beranda">Beranda</a>
-      <a href="#simulasi" class="hg-foot-link" data-foot="simulasi">Simulasi</a>
+      <a href="simulasi.html" class="hg-foot-link" data-foot="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so so-ig" href="#" aria-label="Instagram" data-social="ig"><span class="iconify" data-icon="mdi:instagram" data-width="22" data-height="22"></span></a>
-      <a class="so so-fb" href="#" aria-label="Facebook" data-social="fb"><span class="iconify" data-icon="mdi:facebook" data-width="22" data-height="22"></span></a>
-      <a class="so so-x" href="#" aria-label="X" data-social="x"><span class="iconify" data-icon="mdi:close" data-width="20" data-height="20"></span></a>
+      <a class="so so-ig" href="#" aria-label="Instagram" data-social="ig"><span class="iconify" data-icon="tabler:brand-instagram" data-width="22" data-height="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook" data-social="fb"><span class="iconify" data-icon="tabler:brand-facebook" data-width="22" data-height="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X" data-social="x"><span class="iconify" data-icon="tabler:brand-x" data-width="20" data-height="20"></span></a>
     </div>
   </div>
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
@@ -240,20 +388,36 @@
 <script src="assets/js/animasi.js"></script>
 <script src="assets/js/script.js"></script>
 <script>
-/* Index page - testimonial slider + FAQ accordion (hg- namespace) */
+/* Index page - FAQ accordion + smooth anchor (hg- namespace, testimonial marquee murni CSS) */
 (function () {
-  var slides = document.querySelectorAll('.hg-slide');
-  var idx = 0;
-  function show(i) {
-    idx = (i + slides.length) % slides.length;
-    slides.forEach(function (s, n) {
-      s.classList.toggle('active', n === idx);
-    });
-  }
-  var prev = document.getElementById('testiPrev');
-  var next = document.getElementById('testiNext');
-  if (prev && slides.length) prev.addEventListener('click', function () { show(idx - 1); });
-  if (next && slides.length) next.addEventListener('click', function () { show(idx + 1); });
+
+  /* Funfact count-up desimal: angka final sudah tertulis di HTML;
+     anime.js hanya menganimasikan saat masuk viewport. */
+  (function () {
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-fun-count]'));
+    if (!els.length) return;
+    function fmt(el, v) {
+      var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      return v.toLocaleString('id-ID', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function play(el) {
+      if (typeof anime === 'undefined') return;
+      var target = parseFloat(el.getAttribute('data-fun-count')) || 0;
+      var o = { v: 0 };
+      anime({ targets: o, v: target, duration: 1400, easing: 'easeOutExpo', update: function () { el.textContent = fmt(el, o.v); } });
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { play(en.target); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.4 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(play);
+    }
+  })();
 
   document.querySelectorAll('.hg-faq-item').forEach(function (item) {
     var btn = item.querySelector('.hg-faq-q');
@@ -278,6 +442,8 @@
 })();
 </script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/karsa-icons.js"></script>
+<script src="assets/js/coba-cepat.js"></script>
 <script src="assets/js/to-top.js"></script>
 </body>
 </html>

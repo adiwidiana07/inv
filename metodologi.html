@@ -5,47 +5,254 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Metodologi</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
+<link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/scroll-restore.js"></script>
 </head>
 <body class="tentang-page">
+<a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa</a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
       <a href="simulasi.html" class="hg-nav-link" data-nav="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-nav-link active" data-nav="tentang">Metodologi</a>
-      <a href="login.html" class="hg-login" data-auth-btn>Login</a>
     </div>
+    <a href="login.html" class="hg-login" data-auth-btn>Login</a>
   </div>
 </nav>
 
-<div class="tentang-header">
+<div class="tentang-header" id="konten" tabindex="-1">
   <h1>METODOLOGI</h1>
+  <nav class="meto-toc" aria-label="Daftar isi Metodologi">
+    <a href="#landasan-teori">Landasan Teori</a><span aria-hidden="true">·</span>
+    <a href="#cara-kerja">Cara Kerja</a><span aria-hidden="true">·</span>
+    <a href="#contoh-kasus">Contoh Kasus</a><span aria-hidden="true">·</span>
+    <a href="#rumus">Rumus</a><span aria-hidden="true">·</span>
+    <a href="#batas-model">Batas Model</a><span aria-hidden="true">·</span>
+    <a href="#glosarium">Glosarium</a>
+  </nav>
 </div>
 
-<main class="tentang-main">
+<main class="tentang-main metodologi-main">
+<section class="meto-band band-cream"><div class="meto-band-inner">
   <p class="tentang-intro">Karsa dibikin buat bantu kamu lihat akibatnya sendiri kalau ambil keputusan karier. Anggap ini catatan buat mikirin, bukan perintah.</p>
 
-  <h2>1. Landasan Teori</h2>
-  <ul>
-    <li>- 50/30/20 Rule (Elizabeth Warren)</li>
-    <li>- Life-Cycle Hypothesis (Modigliani)</li>
-    <li>- Human Capital Theory (Gary Becker, 1964)</li>
-  </ul>
+  <h2 id="landasan-teori">1. Landasan Teori</h2>
+  <div class="meto-figures fig-3">
+    <figure class="meto-fig static-box">
+      <img src="assets/img/metodologi/ElizabethWarren.png" alt="Elizabeth Warren" loading="lazy" decoding="async">
+      <figcaption>50/30/20 Rule (Elizabeth Warren)</figcaption>
+    </figure>
+    <figure class="meto-fig static-box">
+      <img src="assets/img/metodologi/Modigliani.png" alt="Franco Modigliani" loading="lazy" decoding="async">
+      <figcaption>Life-Cycle Hypothesis (Modigliani)</figcaption>
+    </figure>
+    <figure class="meto-fig static-box">
+      <img src="assets/img/metodologi/GaryBecker.png" alt="Gary Becker" loading="lazy" decoding="async">
+      <figcaption>Human Capital Theory (Gary Becker, 1964)</figcaption>
+    </figure>
+  </div>
 
   <h2>2. Sumber Data Statis</h2>
-  <ul>
-    <li>- BPS &amp; Susenas (estimasi biaya hidup)</li>
-    <li>- Standar industri (estimasi ROI sertifikasi)</li>
-  </ul>
+  <div class="meto-figures fig-2">
+    <figure class="meto-fig static-box">
+      <img src="assets/img/metodologi/bds.jpg" alt="Data BPS dan Susenas" loading="lazy" decoding="async">
+      <figcaption>BPS &amp; Susenas (estimasi biaya hidup)</figcaption>
+    </figure>
+    <figure class="meto-fig static-box">
+      <img src="assets/img/metodologi/roi.jpg" alt="Standar industri" loading="lazy" decoding="async">
+      <figcaption>Standar industri (estimasi ROI sertifikasi)</figcaption>
+    </figure>
+  </div>
+</div></section>
+<section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
 
-  <h2>Catatan Penting</h2>
-  <p>Alat ini cuma buat nambah pertimbangan, bukan buat nentuin. Semua keputusan karier dan finansial tetap di tangan kamu, 100%.</p>
+  <h2 id="cara-kerja">3. Cara Kerja Karsa</h2>
+  <p class="meto-lede">Dari angka yang kamu isi sampai rekomendasi keluar, alurnya empat langkah ini. Geser ke samping kalau layarmu kecil.</p>
+  <div class="meto-flow">
+    <article class="meto-step">
+      <span class="meto-step-num" aria-hidden="true">1</span>
+      <span class="meto-step-ico" aria-hidden="true"><span class="iconify" data-kicon="select" data-width="28" data-height="28"></span></span>
+      <h3>Isi datamu</h3>
+      <p>Gaji, biaya hidup, target tabungan, plus data tambahan kayak cicilan dan kota. Datanya cuma diproses di browser-mu.</p>
+    </article>
+    <article class="meto-step">
+      <span class="meto-step-num" aria-hidden="true">2</span>
+      <span class="meto-step-ico" aria-hidden="true"><span class="iconify" data-kicon="calculator" data-width="28" data-height="28"></span></span>
+      <h3>Karsa ngitung</h3>
+      <p>Sisa (gaji dikurangi biaya), cashflow (arus kas bulanan), dan status AMAN / WASPADA / RISIKO dihitung seketika dari Rumus 1–2 di bawah.</p>
+    </article>
+    <article class="meto-step">
+      <span class="meto-step-num" aria-hidden="true">3</span>
+      <span class="meto-step-ico" aria-hidden="true"><span class="iconify" data-kicon="chart-line" data-width="28" data-height="28"></span></span>
+      <h3>Proyeksi 12 bulan</h3>
+      <p>Gaji diproyeksikan naik tiap bulan, lalu runway (tumpukan sisa dana) dan ROI (untung dibanding modal) digambar di grafik (Rumus 6 di bawah).</p>
+    </article>
+    <article class="meto-step">
+      <span class="meto-step-num" aria-hidden="true">4</span>
+      <span class="meto-step-ico" aria-hidden="true"><span class="iconify" data-kicon="adjustments" data-width="28" data-height="28"></span></span>
+      <h3>Rekomendasi + What-If</h3>
+      <p>Kartu rekomendasi keluar (Rumus 4–5 di bawah). Geser slider buat eksplor skenario kenaikan gaji lain.</p>
+    </article>
+  </div>
+  </div>
+</section>
+<section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
+
+  <h2 id="contoh-kasus">4. Contoh Kasus: Dinda</h2>
+  <p class="meto-lede">Ini contoh yang sama dengan preview di homepage — sekarang kita bedah rumusnya satu-satu.</p>
+  <p class="meto-lede">Biar rumusnya kebayang, ikuti Dinda — 23 tahun, fresh graduate di Jakarta, dapat tawaran gaji Rp5.000.000 dengan biaya hidup Rp3.000.000 dan target nabung Rp1.000.000 tanpa cicilan berjalan. Ia pertimbangkan sertifikasi Rp2.000.000 yang diproyeksi menaikkan gaji 10%, dengan kenaikan tahunan 8%. Datanya sama dengan contoh di section Rumus di bawah.</p>
+  <div class="meto-story">
+    <div class="meto-persona">
+      <span class="meto-avatar" aria-hidden="true">D</span>
+      <div>
+        <b>Dinda · Si Fresh Graduate</b>
+        <span>Gaji Rp5.000.000 · Biaya Rp3.000.000 · Target Rp1.000.000</span>
+      </div>
+    </div>
+    <div class="meto-story-rows">
+      <div><span>Sisa</span><b>Rp2.000.000/bln</b></div>
+      <div><span>Cashflow</span><b>Rp1.000.000/bln</b></div>
+      <div><span>Status</span><span class="db-badge b-aman">AMAN</span></div>
+      <div><span>Balik Modal</span><b>7 bulan</b></div>
+    </div>
+    <ol class="meto-checks">
+      <li><b>Isi data</b> — Dinda memilih persona fresh graduate, mengisi angka di atas, lalu menandai akan ambil sertifikasi dulu sebelum kerja.</li>
+      <li><b>Hitung</b> — Sisa Rp2.000.000, cashflow Rp1.000.000. Statusnya <b>AMAN</b> karena cashflow pas di ambang Rp1.000.000.</li>
+      <li><b>Proyeksi</b> — Di bulan ke-12 gajinya diproyeksi ≈ Rp5.917.000, runway kumulatif ≈ Rp32,5 jt, dan ROI sertifikasi sudah +Rp4.000.000.</li>
+      <li><b>Rekomendasi</b> — Kartu keluar: <b>LAYAK</b>, modal balik dalam 7 bulan, alokasi Rp1.000.000 / Rp600.000 / Rp400.000. Dinda jadi punya bahan buat negosiasi — keputusannya tetap di tangannya.</li>
+      </ol>
+  </div>
+  </div>
+</section>
+<section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
+
+  <h2 id="rumus">5. Rumus yang Dipakai</h2>
+  <p class="meto-lede">Contoh memakai data Dinda: gaji Rp5 juta, biaya Rp3 juta, target Rp1 juta, cicilan Rp0, investasi Rp2 juta, kenaikan 8%/tahun, slider 10%. Klik tiap kartu buat lihat penjelasan singkatnya.</p>
+  <div class="meto-rumus">
+    <article class="meto-card open">
+      <button class="meto-card-head" type="button" aria-expanded="true" aria-controls="rumus1">
+        <span class="meto-card-title">1. Sisa Gaji Bersih</span>
+        <span class="meto-card-ico" aria-hidden="true">−</span>
+      </button>
+      <div class="meto-card-always">
+      <p class="meto-formula">Sisa = Gaji − Biaya Hidup − Cicilan</p>
+      <p class="meto-num">Rp5.000.000 − Rp3.000.000 − Rp0 (cicilan) = <b>Rp2.000.000/bln</b></p>
+      </div>
+      <div class="meto-card-detail" id="rumus1">
+        <p>Basis alokasi 50/30/20; kalau sisa nol atau minus, basisnya pakai gaji.</p>
+      </div>
+    </article>
+    <article class="meto-card">
+      <button class="meto-card-head" type="button" aria-expanded="false" aria-controls="rumus2">
+        <span class="meto-card-title">2. Cashflow &amp; Status</span>
+        <span class="meto-card-ico" aria-hidden="true">+</span>
+      </button>
+      <div class="meto-card-always">
+        <p class="meto-formula">Cashflow = Sisa − Target Tabungan</p>
+        <p class="meto-num">Rp2.000.000 − Rp1.000.000 = <b>Rp1.000.000/bln</b></p>
+      </div>
+      <div class="meto-card-detail" id="rumus2">
+        <p>Minus berarti RISIKO, di bawah Rp1.000.000 berarti WASPADA, selebihnya AMAN.</p>
+      </div>
+    </article>
+    <article class="meto-card">
+      <button class="meto-card-head" type="button" aria-expanded="false" aria-controls="rumus3">
+        <span class="meto-card-title">3. Gaji Baru &amp; Extra (What-If)</span>
+        <span class="meto-card-ico" aria-hidden="true">+</span>
+      </button>
+      <div class="meto-card-always">
+        <p class="meto-formula">Gaji Baru = Gaji × (1 + Slider%)</p>
+        <p class="meto-num">Rp5.000.000 × (1 + 10%) = <b>Rp5.500.000</b>, extra (tambahan gaji) <b>Rp500.000/bln</b></p>
+      </div>
+      <div class="meto-card-detail" id="rumus3">
+        <p>Slider what-if cuma mengubah satu variabel ini; semua kartu lain ikut ngitung ulang.</p>
+      </div>
+    </article>
+    <article class="meto-card">
+      <button class="meto-card-head" type="button" aria-expanded="false" aria-controls="rumus4">
+        <span class="meto-card-title">4. BEP (Balik Modal)</span>
+        <span class="meto-card-ico" aria-hidden="true">+</span>
+      </button>
+      <div class="meto-card-always">
+        <p class="meto-formula">BEP = Investasi ÷ Extra per Bulan</p>
+        <p class="meto-num">Rp2.000.000 ÷ Rp500.000 = <b>4 bulan</b> (+3 bulan bila sertifikasi dulu)</p>
+      </div>
+      <div class="meto-card-detail" id="rumus4">
+        <p>Selalu dibulatkan ke atas; kalau extra-nya nol, ditampilkan &gt;24 bulan.</p>
+      </div>
+    </article>
+    <article class="meto-card">
+      <button class="meto-card-head" type="button" aria-expanded="false" aria-controls="rumus5">
+        <span class="meto-card-title">5. Alokasi 50/30/20</span>
+        <span class="meto-card-ico" aria-hidden="true">+</span>
+      </button>
+      <div class="meto-card-always">
+        <p class="meto-formula">Primer 50% · Sekunder 30% · Tersier 20%</p>
+        <p class="meto-num">Dari sisa Rp2.000.000 → <b>Rp1.000.000 / Rp600.000 / Rp400.000</b></p>
+      </div>
+      <div class="meto-card-detail" id="rumus5">
+        <p>Aturan Elizabeth Warren: kebutuhan pokok, gaya hidup, tabungan.</p>
+      </div>
+    </article>
+    <article class="meto-card">
+      <button class="meto-card-head" type="button" aria-expanded="false" aria-controls="rumus6">
+        <span class="meto-card-title">6. Proyeksi 12 Bulan</span>
+        <span class="meto-card-ico" aria-hidden="true">+</span>
+      </button>
+      <div class="meto-card-always">
+        <p class="meto-formula">Gaji<sub>bulan-i</sub> = Gaji Baru × (1 + Kenaikan%/12)<sup>i</sup></p>
+        <p class="meto-num">Bulan ke-1 ≈ Rp5.537.000 · Runway kumulatif ≈ Rp2,5 jt · ROI ≈ −Rp1,5 jt</p>
+      </div>
+      <div class="meto-card-detail" id="rumus6">
+        <p>Digambar sebagai grafik dalam juta rupiah supaya gampang dibaca.</p>
+      </div>
+    </article>
+  </div>
+  </div>
+</section>
+<section class="meto-band band-white meto-band-tight"><div class="meto-band-inner">
+
+  <h2 id="batas-model">6. Batas &amp; Asumsi Model</h2>
+  <p class="meto-lede">Supaya ekspektasimu pas: ini yang modelnya <b>tidak</b> lakukan. Mengakui batasnya bagian dari kejujuran metode.</p>
+  <ul class="meto-limits">
+    <li class="static-box"><b>Kenaikan dianggap konstan.</b> Proyeksi memakai persen kenaikan yang kamu isi, berbunga tiap bulan selama 12 bulan penuh. Kenyataannya kenaikan bisa telat, dicicil, atau tidak terjadi sama sekali.</li>
+    <li class="static-box"><b>Tanpa inflasi &amp; pajak.</b> Biaya hidup dianggap flat 12 bulan. Kenaikan harga dan potongan pajak tidak dimodelkan, jadi daya beli proyeksi sedikit over-optimistis.</li>
+    <li class="static-box"><b>BEP versi sederhana.</b> Modal dibagi extra bulan pertama; pertumbuhan gaji antar bulan tidak diikutkan, dan jeda sertifikasi disederhanakan jadi +3 bulan — bukan simulasi arus kas penuh.</li>
+    <li class="static-box"><b>Sebagian data tambahan belum masuk rumus inti.</b> Cicilan/utang mengurangi sisa dan cashflow, dana darurat dihitung jadi ketahanan bulan di kartu Konteks Kamu; kota, usia, dan jenis pekerjaan masih tersimpan sebagai konteks.</li>
+    <li class="static-box"><b>Jendela 12 bulan, slider maks 30%.</b> Model tidak mengklaim valid di luar itu; skenario di atas 30% sengaja tidak disediakan supaya tidak mengada-ada.</li>
+    <li class="static-box"><b>Bukan nasihat profesional.</b> Ini alat pertimbangan finansial awal, bukan pengganti konsultan karier atau perencana keuangan.</li>
+  </ul>
+</div></section>
+<section class="meto-band band-cream"><div class="meto-band-inner">
+  <h2 id="glosarium">7. Glosarium</h2>
+  <p class="meto-lede">Istilah yang muncul di dashboard, dijelaskan satu kalimat.</p>
+  <dl class="meto-glos">
+    <div class="static-box"><dt>Sisa</dt><dd>Gaji dikurangi biaya hidup tiap bulan; basis semua hitungan.</dd></div>
+    <div class="static-box"><dt>Cashflow</dt><dd>Sisa dikurangi target tabungan; negatif berarti tekor.</dd></div>
+    <div class="static-box"><dt>Extra</dt><dd>Tambahan gaji per bulan setelah kenaikan atau slider what-if.</dd></div>
+    <div class="static-box"><dt>BEP</dt><dd>Balik modal: berapa bulan extra menutup investasi; +3 bulan bila sertifikasi diambil dulu.</dd></div>
+    <div class="static-box"><dt>Runway</dt><dd>Tumpukan sisa dari bulan ke bulan selama 12 bulan proyeksi; makin menanjak makin aman.</dd></div>
+    <div class="static-box"><dt>ROI</dt><dd>Extra yang terkumpul dikurangi investasi; positif berarti sudah untung.</dd></div>
+  </dl>
+</div></section>
+<section class="meto-band band-tan300"><div class="meto-band-inner">
+  <div>
+    <p style="margin-bottom: 1rem;"> <b>Catatan Penting: </b> Alat ini buat nambah pertimbangan, bukan buat nentuin. Semua keputusan karier dan finansial tetap di tangan kamu, 100%.</p>
+  </div>
+
+  <div class="meto-cta">
+    <h2>Siap lihat gambaran kariermu?</h2>
+    <p>Angka-angkamu, dihitung dengan metode di atas — gratis, tanpa perlu akun.</p>
+    <a class="meto-cta-btn" href="simulasi.html">Mulai Simulasi</a>
+  </div>
+</div></section>
 </main>
 
 <footer class="hg-footer">
@@ -56,9 +263,9 @@
       <a href="metodologi.html" class="hg-foot-link active" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
-      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
-      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="tabler:brand-instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="tabler:brand-facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="tabler:brand-x" data-width="20"></span></a>
     </div>
   </div>
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
@@ -66,6 +273,8 @@
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/metodologi.js"></script>
+<script src="assets/js/karsa-icons.js"></script>
 <script src="assets/js/to-top.js"></script>
 </body>
 </html>

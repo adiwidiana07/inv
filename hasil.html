@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karsa - Hasil Simulasi</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo/karsa-logo-512.png">
+<link rel="apple-touch-icon" href="assets/img/logo/karsa-logo-512.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/vendor/aos/aos.css">
 <script src="assets/js/theme.js"></script>
@@ -12,69 +14,107 @@
 <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 <body class="hasil-page">
+<a class="hg-skip" href="#konten">Lewati ke konten utama</a>
 <nav class="hg-navbar">
   <div class="hg-nav-inner">
-    <a href="index.html" class="hg-logo">Karsa</a>
+    <a href="index.html" class="hg-logo" aria-label="Karsa - Beranda"><img src="assets/img/logo/karsa-logo.svg" alt="" class="hg-logo-img logo-light" width="200" height="200"><img src="assets/img/logo/karsa-logo-dark.svg" alt="" class="hg-logo-img logo-dark" width="200" height="200"><span class="hg-logo-text" aria-hidden="true">KARSA</span></a>
     <button class="hg-burger" aria-label="Menu" aria-expanded="false" onclick="toggleBurger(this)"><span></span><span></span><span></span></button>
     <div class="hg-nav-links" data-auth-links>
       <a href="index.html" class="hg-nav-link" data-nav="beranda">Beranda</a>
       <a href="simulasi.html" class="hg-nav-link active" data-nav="simulasi">Simulasi</a>
       <a href="metodologi.html" class="hg-nav-link" data-nav="tentang">Metodologi</a>
-      <a href="login.html" class="hg-login" data-auth-btn>Login</a>
     </div>
+    <a href="login.html" class="hg-login" data-auth-btn>Login</a>
   </div>
 </nav>
 
 <!-- Simulator What If -->
-<section class="whatif">
-  <div class="whatif-header">
-    <h1>SIMULATOR WHAT IF</h1>
-  </div>
+<section class="meto-band band-cream" id="konten" tabindex="-1">
+  <div class="meto-band-inner">
+  <h1 class="dashboard-title">HASIL KALKULASI</h1>
   <p class="whatif-sub">Geser slider atau pilih dulu buat lihat perubahannya</p>
   <div class="whatif-inner">
     <div class="whatif-card">
-      <div class="whatif-card-head">Perkiraan naiknya gaji setelah sertifikasi</div>
+      <div class="whatif-card-head"><span>Perkiraan naiknya gaji setelah sertifikasi</span><span class="whatif-badge" id="sliderVal">10%</span></div>
       <div class="whatif-card-body">
         <div class="slider-wrap">
-          <input type="range" id="sliderGaji" min="0" max="30" value="0" step="1">
-          <div class="slider-labels"><span>0%</span><span>15%</span><span>30%</span></div>
-          <div class="slider-value"><span id="sliderVal">0%</span></div>
+          <input type="range" id="sliderGaji" min="0" max="30" value="10" step="1" aria-label="Perkiraan kenaikan gaji setelah sertifikasi dalam persen">
+          <div class="slider-labels" aria-hidden="true"><span>0%</span><span>15%</span><span>30%</span></div>
         </div>
       </div>
     </div>
     <div class="whatif-card">
       <div class="whatif-card-head">Ambil sertifikasi dulu sebelum kerja?</div>
       <div class="whatif-card-body toggle-row">
-        <button class="toggle-btn active" id="btnTidak" onclick="setSertifikasi(false)">Tidak, Kerja Dulu</button>
-        <button class="toggle-btn" id="btnYa" onclick="setSertifikasi(true)">Ya, Sertifikasi dulu</button>
+        <button class="toggle-btn" id="btnTidak" onclick="setSertifikasi(false)">Tidak, Kerja Dulu</button>
+        <button class="toggle-btn active" id="btnYa" onclick="setSertifikasi(true)">Ya, Sertifikasi dulu</button>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
 <!-- Dashboard Hasil -->
-<section class="dashboard">
+<section class="meto-band band-white meto-band-roomy">
+  <div class="meto-band-inner">
   <h2 class="dashboard-title">DASHBOARD HASIL</h2>
   <div class="dashboard-inner">
+    <div class="dash-verdict">
+      <span class="db-badge b-aman dash-verdict-badge" id="verdictBadge">AMAN</span>
+      <p class="dash-verdict-text" id="verdictText">Menghitung verdict...</p>
+      <p class="dash-verdict-cash">Cashflow <b id="verdictCash">Rp0/bln</b></p>
+    </div>
+    <p class="dash-disclaimer">Alat bantu pertimbangan, bukan penentu keputusan.</p>
     <div class="dash-top">
-      <div class="dash-card">
+      <div class="dash-card static-box">
         <div>
           <span class="dash-label">Sisa Gaji Bersih</span>
           <b class="dash-value count-up" id="valSisaGaji" data-prefix="Rp " data-suffix=" / bln">Rp 0 / bln</b>
         </div>
-        <span class="dash-icon"><span class="iconify" data-icon="mdi:layers" data-width="28"></span></span>
+        <span class="dash-icon"><span class="iconify" data-icon="lucide:layers" data-width="44"></span></span>
       </div>
-      <div class="dash-card">
+      <div class="dash-card static-box">
         <div>
           <span class="dash-label">Waktu balik Modal</span>
           <b class="dash-value" id="valBEP">- bln</b>
         </div>
-        <span class="dash-icon"><span class="iconify" data-icon="mdi:credit-card" data-width="28"></span></span>
+        <span class="dash-icon"><span class="iconify" data-icon="tabler:credit-card" data-width="44"></span></span>
+      </div>
+    </div>
+    <div class="dash-trio">
+      <div class="dash-card static-box">
+        <div>
+          <span class="dash-label">Cashflow</span>
+          <b class="dash-value count-up" id="valCashflow" data-prefix="Rp " data-suffix=" / bln">Rp 0 / bln</b>
+        </div>
+        <span class="dash-icon"><span class="iconify" data-icon="tabler:cash" data-width="44"></span></span>
+      </div>
+      <div class="dash-card static-box">
+        <div>
+          <span class="dash-label">Runway 12 Bulan</span>
+          <b class="dash-value count-up" id="valRunway" data-prefix="Rp " data-suffix="">Rp 0</b>
+        </div>
+        <span class="dash-icon"><span class="iconify" data-icon="tabler:chart-line" data-width="44"></span></span>
+      </div>
+      <div class="dash-card static-box">
+        <div>
+          <span class="dash-label">ROI</span>
+          <b class="dash-value count-up" id="valRoi" data-prefix="Rp " data-suffix="">Rp 0</b>
+        </div>
+        <span class="dash-icon"><span class="iconify" data-icon="tabler:trending-up" data-width="44"></span></span>
+      </div>
+    </div>
+    <div class="dash-graph-card">
+      <div class="dash-graph-head">Konteks Kamu</div>
+      <div class="dash-konteks">
+        <div class="dash-konteks-stat"><span>Dana darurat cukup untuk</span><b id="valDanaBulan">- bulan</b></div>
+        <div class="dash-konteks-stat"><span>Cicilan dari gaji</span><b id="valCicilPct">-</b></div>
       </div>
     </div>
     <div class="dash-graph-card">
       <div class="dash-graph-head">Grafik Financial Runway & ROI</div>
-      <div class="dash-graph-body"><canvas id="grafikCanvas" height="240"></canvas></div>
+      <div class="dash-graph-body"><canvas id="grafikCanvas" height="240" role="img" aria-label="Grafik proyeksi 12 bulan"></canvas></div>
+      <div class="dash-legend"><span><i class="leg-runway"></i>Runway Kumulatif (jt)</span><span><i class="leg-roi"></i>ROI vs Investasi (jt)</span></div>
     </div>
     <div class="dash-rekom">
       <h3>Kartu Rekomendasi Rule-Based</h3>
@@ -82,33 +122,40 @@
       <p id="rekomText" class="rekom-text">Isi simulasi dulu buat lihat rekomendasinya.</p>
       <div id="rekomExtra" class="rekom-extra"></div>
     </div>
+    <div class="hasil-actions">
+      <a href="simulasi.html?step=2" class="db-btn">Ubah Data</a>
+      <button class="db-btn db-btn-danger" type="button" onclick="resetSimulasi()">Mulai Ulang</button>
+      <button class="db-btn db-btn-red" type="button" onclick="window.print()">Simpan Hasil</button>
+    </div>
+  </div>
   </div>
 </section>
-
-<section class="alokasi">
+<section class="meto-band band-tan300">
+  <div class="meto-band-inner">
   <div class="alokasi-inner">
     <h3>Alokasi Tabungan Bertingkat <span>(50/30/20 Rule)</span></h3>
     <div class="alokasi-bar" aria-hidden="true"><span class="bar-primer"></span><span class="bar-sekunder"></span><span class="bar-tersier"></span></div>
     <div class="alokasi-grid">
       <div class="alokasi-card primer">
-        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:home" data-width="28"></span></div>
+        <div class="alokasi-icon"><span class="iconify" data-kicon="home" data-width="44"></span></div>
         <span class="alokasi-pct">50% Primer</span>
         <b class="count-up" id="alokasiPrimer" data-prefix="Rp ">Rp 0</b>
         <small>Kebutuhan pokok</small>
       </div>
       <div class="alokasi-card sekunder">
-        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:shopping" data-width="28"></span></div>
+        <div class="alokasi-icon"><span class="iconify" data-kicon="shopping-bag" data-width="44"></span></div>
         <span class="alokasi-pct">30% Sekunder</span>
         <b class="count-up" id="alokasiSekunder" data-prefix="Rp ">Rp 0</b>
         <small>Gaya hidup</small>
       </div>
       <div class="alokasi-card tersier">
-        <div class="alokasi-icon"><span class="iconify" data-icon="mdi:piggy-bank" data-width="28"></span></div>
+        <div class="alokasi-icon"><span class="iconify" data-kicon="piggy-bank" data-width="44"></span></div>
         <span class="alokasi-pct">20% Tersier</span>
         <b class="count-up" id="alokasiTersier" data-prefix="Rp ">Rp 0</b>
         <small>Tabungan & investasi</small>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -120,9 +167,9 @@
       <a href="metodologi.html" class="hg-foot-link" data-foot="tentang">Metodologi</a>
     </div>
     <div class="hg-footer-social">
-      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="mdi:instagram" data-width="22"></span></a>
-      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="mdi:facebook" data-width="22"></span></a>
-      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="mdi:close" data-width="20"></span></a>
+      <a class="so so-ig" href="#" aria-label="Instagram"><span class="iconify" data-icon="tabler:brand-instagram" data-width="22"></span></a>
+      <a class="so so-fb" href="#" aria-label="Facebook"><span class="iconify" data-icon="tabler:brand-facebook" data-width="22"></span></a>
+      <a class="so so-x" href="#" aria-label="X"><span class="iconify" data-icon="tabler:brand-x" data-width="20"></span></a>
     </div>
   </div>
   <div class="hg-footer-bar">Copyright © 2026 Karsa. All Right Reserved.</div>
@@ -135,20 +182,31 @@
 (function(){
   const s = document.getElementById('sliderGaji');
   const v = document.getElementById('sliderVal');
-  const track = () => (getComputedStyle(document.documentElement).getPropertyValue('--cream').trim() || '#e8ded2');
-  if(s && v){
-    s.addEventListener('input', () => {
-      v.textContent = s.value + '%';
-      if(window.updateHasil) updateHasil();
-      const pct = (s.value / 30) * 100;
-      const c = s.value<10?'#d85a43':s.value<20?'#e5a93b':'#4c7d5f';
-      s.style.background = `linear-gradient(to right, ${c} 0%, ${c} ${pct}%, ${track()} ${pct}%, ${track()} 100%)`;
-    });
-    v.textContent = s.value + '%';
+  const cssVar = (n, f) => (getComputedStyle(document.documentElement).getPropertyValue(n) || f).trim();
+  /* Fill diukur dari posisi tengah thumb (26px = 1.625rem) supaya sejajar. */
+  function paint() {
+    if (!s) return;
+    const min = parseFloat(s.min) || 0;
+    const max = parseFloat(s.max) || 30;
+    const val = parseFloat(s.value) || 0;
+    const p = Math.min(1, Math.max(0, (val - min) / (max - min)));
+    const w = s.offsetWidth || 1;
+    const tw = 26;
+    const x = (p * (w - tw) + tw / 2) / w * 100;
+    const ink = cssVar('--ink', '#211D1A');
+    const base = cssVar('--cream', '#e8ded2');
+    s.style.background = 'linear-gradient(to right, ' + ink + ' 0%, ' + ink + ' ' + x.toFixed(2) + '%, ' + base + ' ' + x.toFixed(2) + '%, ' + base + ' 100%)';
+    if (v) v.textContent = s.value + '%';
+  }
+  if (s) {
+    s.addEventListener('input', () => { paint(); if (window.updateHasil) updateHasil(); });
+    paint();
+    window.addEventListener('resize', paint);
   }
 })();
 </script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/karsa-icons.js"></script>
 <script src="assets/js/to-top.js"></script>
 </body>
 </html>

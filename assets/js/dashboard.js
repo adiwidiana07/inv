@@ -70,8 +70,25 @@
       mActions.appendChild(b);
     });
     modal.hidden = false;
+    lastFocus = document.activeElement;
+    var firstField = mBody.querySelector('input, select, textarea') || mActions.querySelector('button');
+    if (firstField) firstField.focus();
   }
-  function closeModal() { modal.hidden = true; }
+  var lastFocus = null;
+  function closeModal() {
+    modal.hidden = true;
+    if (lastFocus && document.contains(lastFocus) && typeof lastFocus.focus === 'function') lastFocus.focus();
+    lastFocus = null;
+  }
+  modal.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || modal.hidden) return;
+    var els = Array.prototype.slice.call(modal.querySelectorAll('button, input, select, textarea, a[href]'))
+      .filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+    if (!els.length) return;
+    var first = els[0], last = els[els.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
@@ -83,7 +100,7 @@
     document.getElementById('dbGreet').textContent = 'Halo, ' + name;
     document.getElementById('dbName').textContent = name;
     document.getElementById('dbEmail').textContent = email;
-    document.getElementById('dbAvatar').textContent = (name.charAt(0) || 'A').toUpperCase();
+    paintPhoto();
     var joined = user.createdAt || session.loginAt || Date.now();
     document.getElementById('dbJoined').textContent = 'Bergabung ' + fmtLong(joined);
   }
@@ -113,7 +130,7 @@
       list.innerHTML = '';
       hist.forEach(function (h) {
         var row = document.createElement('div');
-        row.className = 'db-row';
+        row.className = 'db-row static-box';
         row.innerHTML =
           '<button type="button" class="db-check' + (selected.has(h.id) ? ' on' : '') + '" data-check="' + h.id + '" aria-pressed="' + selected.has(h.id) + '" aria-label="Pilih ' + esc(h.label) + ' untuk dibandingkan">✓</button>' +
           '<div class="db-row-main"><b>' + esc(h.label) + (h.custom ? ' (custom)' : '') + '</b><span>' + fmtLong(h.at) + '</span></div>' +
@@ -173,8 +190,8 @@
 
   function viewRecord(h) {
     var prev = {};
-    try { prev = JSON.parse(localStorage.getItem('karsa_input') || '{}'); } catch (e) {}
-    localStorage.setItem('karsa_input', JSON.stringify({
+    try { prev = JSON.parse(sessionStorage.getItem('karsa_input') || '{}'); } catch (e) {}
+    sessionStorage.setItem('karsa_input', JSON.stringify({
       gaji: h.gaji, biaya: h.biaya, target: h.target || prev.target || 0,
       investasi: h.investasi || prev.investasi || 0, kenaikan: h.kenaikan || prev.kenaikan || 8
     }));
@@ -221,11 +238,11 @@
 
   function usePersona(p) {
     var prev = {};
-    try { prev = JSON.parse(localStorage.getItem('karsa_input') || '{}'); } catch (e) {}
+    try { prev = JSON.parse(sessionStorage.getItem('karsa_input') || '{}'); } catch (e) {}
     var data = { gaji: p.gaji, biaya: p.biaya, target: p.target };
-    try { localStorage.setItem('karsa_input', JSON.stringify(Object.assign({}, prev, data))); } catch (e) {}
-    try { localStorage.setItem('karsa_persona', 'custom'); } catch (e) {}
-    try { localStorage.setItem('karsa_persona_label', p.name); } catch (e) {}
+    try { sessionStorage.setItem('karsa_input', JSON.stringify(Object.assign({}, prev, data))); } catch (e) {}
+    try { sessionStorage.setItem('karsa_persona', 'custom'); } catch (e) {}
+    try { sessionStorage.setItem('karsa_persona_label', p.name); } catch (e) {}
     try { sessionStorage.setItem('karsa_prefill', JSON.stringify(Object.assign({ label: p.name }, data))); } catch (e) {}
     location.href = 'simulasi.html';
   }
@@ -278,6 +295,10 @@
     openModal('Edit Profil',
       '<label class="auth-field" for="epName"><span>Username</span>' +
       '<input type="text" id="epName" value="' + esc(session.name || '') + '"></label>' +
+      '<div class="auth-field"><span>Foto profil</span>' +
+      '<button type="button" class="db-btn db-btn-sm" id="epPhotoBtn">Ubah Foto</button>' +
+      '<input type="file" id="epPhoto" accept="image/*" hidden>' +
+      '<p class="auth-err" id="epPhotoErr" role="alert" hidden></p></div>' +
       '<p class="auth-err" id="epErr" role="alert" hidden></p>',
       [
         { label: 'Batal' },
@@ -300,6 +321,21 @@
           }
         }
       ]);
+    var epPhotoBtn = document.getElementById('epPhotoBtn');
+    var epPhoto = document.getElementById('epPhoto');
+    var epPhotoErr = document.getElementById('epPhotoErr');
+    if (epPhotoBtn && epPhoto) {
+      epPhotoBtn.addEventListener('click', function () { epPhoto.click(); });
+      epPhoto.addEventListener('change', function () {
+        var f = epPhoto.files && epPhoto.files[0];
+        savePhotoFile(f, epPhotoErr, function (ok) {
+          if (ok) {
+            epPhoto.value = '';
+            epPhotoBtn.textContent = 'Foto tersimpan!';
+          }
+        });
+      });
+    }
   });
 
   document.getElementById('changePassBtn').addEventListener('click', function () {
@@ -340,13 +376,73 @@
     save(HIST_KEY, load(HIST_KEY).filter(function (h) { return h.email !== email; }));
     save(PERS_KEY, load(PERS_KEY).filter(function (p) { return p.email !== email; }));
     try {
-      localStorage.removeItem('karsa_input');
-      localStorage.removeItem('karsa_persona');
-      localStorage.removeItem('karsa_persona_label');
+      sessionStorage.removeItem('karsa_input');
+      sessionStorage.removeItem('karsa_persona');
+      sessionStorage.removeItem('karsa_persona_label');
       sessionStorage.removeItem('karsa_prefill');
     } catch (e) {}
     selected.clear();
     renderAll();
+  });
+
+  /* ---------- Foto profil (base64 di localStorage) ---------- */
+  /* ---------- Foto profil: simpan base64, pakai ulang untuk modal ---------- */
+  function savePhotoFile(f, errEl, done) {
+    if (errEl) errEl.hidden = true;
+    if (!f) { if (done) done(false); return; }
+    if (f.size > 2 * 1024 * 1024) {
+      if (errEl) { errEl.hidden = false; errEl.textContent = 'Ukuran foto maksimal 2MB.'; }
+      if (done) done(false);
+      return;
+    }
+    var rd = new FileReader();
+    rd.onload = function () {
+      try { localStorage.setItem('karsa_profile_photo', String(rd.result || '')); } catch (e) {}
+      paintPhoto();
+      if (done) done(true);
+    };
+    rd.readAsDataURL(f);
+  }
+  function paintPhoto() {
+    var av = document.getElementById('dbAvatar');
+    if (!av) return;
+    var nm = session.name || email.split('@')[0];
+    var photo = null;
+    try { photo = localStorage.getItem('karsa_profile_photo'); } catch (e) {}
+    if (photo) {
+      av.innerHTML = '';
+      var img = document.createElement('img');
+      img.src = photo;
+      img.alt = 'Foto profil ' + nm;
+      av.appendChild(img);
+    } else {
+      av.textContent = (nm.charAt(0) || 'A').toUpperCase();
+    }
+  }
+
+  /* ---------- Kirim testimoni: simulasi UI, tidak menyimpan/menampilkan ke mana pun ---------- */
+  var testiInput = document.getElementById('testiInput');
+  var testiCount = document.getElementById('testiCount');
+  var testiBtn = document.getElementById('testiBtn');
+  var testiOk = document.getElementById('testiOk');
+  function syncTestiCount() {
+    if (testiCount && testiInput) testiCount.textContent = testiInput.value.length + ' / 200';
+  }
+  if (testiInput) {
+    testiInput.addEventListener('input', function () {
+      syncTestiCount();
+      if (testiOk) testiOk.hidden = true;
+    });
+    syncTestiCount();
+  }
+  if (testiBtn) testiBtn.addEventListener('click', function () {
+    if (!testiInput || !testiInput.value.trim()) {
+      if (testiInput) testiInput.focus();
+      return;
+    }
+    testiInput.value = '';
+    syncTestiCount();
+    if (testiOk) testiOk.hidden = false;
   });
 
   function renderAll() {

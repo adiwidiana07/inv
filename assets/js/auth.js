@@ -32,32 +32,33 @@
     return getUsers().find(function (u) { return u.email === email; }) || null;
   }
 
-  /* ---------- Navbar global: dipanggil di semua halaman ---------- */
+  /* Navbar global: belum login -> tombol Login; sudah login -> tombol
+     disembunyikan, diganti ikon user di kiri toggle tema (tanpa teks). */
   function syncNavbar() {
     var session = getSession();
+    var onDash = /(dashboard\.html)$/.test(location.pathname);
     document.querySelectorAll('[data-auth-links]').forEach(function (wrap) {
-      var btn = wrap.querySelector('[data-auth-btn]');
-      var dash = wrap.querySelector('[data-auth-dash]');
+      var navInner = (wrap.closest && wrap.closest('.hg-nav-inner')) || wrap.parentElement;
+      var btn = navInner.querySelector('[data-auth-btn]');
+      var icon = navInner.querySelector('[data-auth-icon]');
       if (session) {
-        if (!dash) {
-          dash = document.createElement('a');
-          dash.href = 'dashboard.html';
-          dash.className = 'hg-nav-link';
-          dash.setAttribute('data-nav', 'dashboard');
-          dash.setAttribute('data-auth-dash', '');
-          dash.textContent = 'Dashboard';
-          if (btn) wrap.insertBefore(dash, btn);
-          else wrap.appendChild(dash);
-          if (/(dashboard\.html)$/.test(location.pathname)) dash.classList.add('active');
+        if (btn) btn.style.display = 'none';
+        if (!icon) {
+          icon = document.createElement('a');
+          icon.href = 'dashboard.html';
+          icon.className = 'hg-user-icon';
+          icon.setAttribute('data-auth-icon', '');
+          icon.setAttribute('aria-label', 'Buka Dashboard');
+          icon.innerHTML = '<span class="iconify" data-kicon="user" data-width="26" data-height="26"></span>';
         }
-        if (btn) {
-          btn.textContent = 'Keluar';
-          btn.setAttribute('href', '#');
-          btn.setAttribute('data-action', 'logout');
-        }
+        icon.classList.toggle('active', onDash);
+        var toggle = navInner.querySelector('.hg-theme-toggle');
+        if (toggle) navInner.insertBefore(icon, toggle);
+        else navInner.appendChild(icon);
       } else {
-        if (dash) dash.remove();
+        if (icon) icon.remove();
         if (btn) {
+          btn.style.display = '';
           btn.textContent = 'Login';
           btn.setAttribute('href', 'login.html');
           btn.removeAttribute('data-action');

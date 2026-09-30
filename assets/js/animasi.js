@@ -316,7 +316,7 @@ function initChecker() {
 
 /* ---------- header title 3D sedikit bergoyang ---------- */
 function initTiltTitle() {
-  const titles = document.querySelectorAll('.panduan-title, .kenapa-title, .faq-title, .header-title, .sim-hero-title, .hasil-title, .tentang-title');
+  const titles = document.querySelectorAll('.kenapa-title, .faq-title, .header-title, .sim-hero-title, .hasil-title, .tentang-title');
   if (!titles.length || typeof anime === 'undefined') return;
   titles.forEach(function (t) {
     anime({
