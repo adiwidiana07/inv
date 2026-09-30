@@ -1853,19 +1853,17 @@ img.logo-dark { display: none; }
 }
 
 /* ============================================================
-   SELAMAT DATANG (kunjungan pertama saja)
+   SELAMAT DATANG (setiap refresh)
    ------------------------------------------------------------
    Dipasang oleh karsa.js bagian 03 yang menandai <html> dengan
-   kelas "karsa-first" HANYA pada kunjungan pertama per browser
-   (localStorage "karsa_welcome_v1"). Kunjungan kedua dan seterusnya
-   tidak mendapat kelas itu, jadi seluruh block di bawah mati total
-   dan halaman tampil seperti biasa.
+   kelas "karsa-first" setiap kali halaman dimuat, jadi animasi
+   hero di bawah muncul di setiap refresh.
 
    Kenapa tidak pakai AOS untuk ini?
    .hg-hero (fade-up) dan .hg-hero-inner (zoom-in) sudah dianimasikan
    AOS. Kalau kita tambahkan animasi lain di elemen yang sama, dua
-   animasi bertumpuk dan hasilnya berantakan. Jadi pada kunjungan
-   pertama, AOS dinetralkan khusus untuk hero (lihat blok
+   animasi bertumpuk dan hasilnya berantakan. Jadi saat hero intro
+   jalan, AOS dinetralkan khusus untuk hero (lihat blok
    "karsa-first" di bawah) dan urutan "pop" ini yang menggantikannya.
 
    Sifat animasi ini:
@@ -3572,9 +3570,14 @@ html.hg-tour-lock .hg-to-top {
 }
 @media (max-width: 42.5rem) {
   .hg-navbar { position: sticky; }
-  .hg-nav-inner { flex-wrap: wrap; gap: 0.8rem; padding: 0.9rem 1rem; position: relative; }
-  .hg-burger { display: flex; }
-  .hg-theme-toggle { flex-shrink: 0; }
+  .hg-nav-inner { flex-wrap: nowrap; align-items: center; gap: 0.6rem; padding: 0.9rem 1rem; position: relative; }
+  /* Mobile: logo kiri, aksi kanan dengan burger paling ujung.
+     DOM: logo, burger, links, login, toggle — order di bawah yang
+     memindahkan burger dari samping logo ke kanan. */
+  .hg-logo { order: 1; flex-shrink: 0; }
+  .hg-login { order: 2; margin-left: auto; flex-shrink: 0; }
+  .hg-theme-toggle { order: 3; }
+  .hg-burger { display: flex; order: 4; flex-shrink: 0; }
   .hg-nav-links {
     display: none;
     position: absolute;

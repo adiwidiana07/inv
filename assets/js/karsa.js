@@ -322,48 +322,24 @@
   }
 })();
 
-/* 03. KUNJUNGAN PERTAMA
-   Fungsi: tandai kunjungan pertama supaya CSS bisa memutar
-   animasi pembuka hanya sekali per browser. */
+/* 03. ANIMASI HERO SETIAP REFRESH
+   Fungsi: tambah kelas karsa-first setiap kali halaman dimuat supaya
+   CSS memutar animasi pembuka hero di setiap refresh. */
 
 (function () {
   'use strict';
 
-  var KEY = 'karsa_welcome_v1';
+  // Bersihkan penanda lama supaya pengunjung lama tetap dapat animasi.
+  try { localStorage.removeItem('karsa_welcome_v1'); } catch (e) {}
 
-  // Sudah pernah datang di browser ini?
-  function sudahDilihat() {
-    try {
-      return localStorage.getItem(KEY) === '1';
-    } catch (e) {
-      return false; /* storage tidak bisa dibaca */
-    }
-  }
-
-  // Tandai sudah datang, supaya kunjungan berikutnya tidak diulang.
-  function tandaiDilihat() {
-    try {
-      localStorage.setItem(KEY, '1');
-    } catch (e) {
-      /* abaikan: animasi tetap jalan, hanya tidak diingat */
-    }
-  }
-
-  // Pernah datang: tidak ada yang perlu dilakukan.
-  if (sudahDilihat()) return;
-
-  /* Reduced motion: jangan pakai animasi sama sekali. Key tetap dicatat
-     supaya pengecekan ini tidak terulang setiap load. */
+  /* Reduced motion: jangan pakai animasi sama sekali. */
   var reduceMotion = window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (reduceMotion) {
-    tandaiDilihat();
-    return;
-  }
+  if (reduceMotion) return;
 
-  document.documentElement.className += ' karsa-first';
-  tandaiDilihat();
+  if (document.documentElement.classList) document.documentElement.classList.add('karsa-first');
+  else document.documentElement.className += ' karsa-first';
 })();
 
 /* ----------------------------------------------------------------
